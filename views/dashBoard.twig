@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Asset/css/style.css">
+    <title>Oncle_d_Barber</title>
+</head>
+<body>
+    <header>
+        <img src="./Asset/img/home.png" alt="home">
+        <img src="./Asset/img/logo.png" alt="logo">
+    </header>
+    <main>
+        <!-- Dashbord Part -->
+        
+        <div id="name">
+            <p>
+                Bonjour <br>
+                {{customer.nom}}{{customer.prenom}}
+            </p>
+        </div>
+        <div id="appointment_card">
+            <div id="dashboard">
+                <p>Prochain rendez-vous</p>
+                <p>22/02/2023 à 14h30</p>
+                <div>
+                    <button>Modifier</button>
+                    <button>Supprimer</button>
+                </div>
+            </div>
+        </div>
+        <!-- Service Part -->
+        <div id="services">
+            <div id="title">
+                <p>Quel service souhaites-tu ?</p>
+                <div></div>
+            </div>
+            <div id="container">
+            <div>
+                <div class="circle">
+                    <img src="./Asset/img/coupe.png" alt="coupe">
+                </div>
+                <div class="titleCircle">Coupe de cheuveux</div>
+                <div class="price">
+                    <p>Adulte : 15€</p>
+                    <p>Adulte : 15€</p>
+                </div>
+            </div>
+            <div>
+                <div class="circle">
+                    <img src="./Asset/img/coloration.png" alt="coloration">
+                </div>
+                <div class="titleCircle">Coloration</div>
+                <div class="price">
+                    <p>Adulte : 15€</p>
+                    <p>Adulte : 15€</p>
+                </div>
+            </div>
+            <div>
+                <div class="circle">
+                    <img src="./Asset/img/barbe.png" alt="barbe">
+                </div>
+                <div class="titleCircle">Barbe et Contour</div>
+                <div class="price">
+                    <p>Adulte : 15€</p>
+                    <p>Adulte : 15€</p>
+                </div>
+            </div>
+            <div>
+                <div class="circle">
+                    <img src="./Asset/img/shampoing.png" alt="shampoing">
+                </div>
+                <div class="titleCircle">Soin Caplillaire</div>
+                <div class="price">
+                    <p>Adulte : 15€</p>
+                    <p>Adulte : 15€</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!-- Opinion and fidelity -->
+            <div id="OpinionFidelity">
+                <div id="fidelityCard">
+                    <div id="fidelityPicture">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                    </div>
+                </div>
+                <div id="TitleFidelityCard">
+                    <h2>Ta carte de fidélité</h2>
+                </div>
+                <div id="opinion">
+                <p>Laisse un avis</p>
+                </div>
+            </div>
+            <!-- disconnection and deletion -->
+            <div id="remove">
+                <button id="disconnect">Deconnexion</button>
+                <button id="delete">Supprimer compte</button>
+            </div>
+    </main>
+</body>
+</html>
