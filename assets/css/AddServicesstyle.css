@@ -1,0 +1,122 @@
+@media screen and (max-width: 768px) {
+    *{
+      margin: 0;
+      padding: 0;
+  }
+        @font-face {
+          font-family: istokbold;
+          src: url(../font/IstokWeb-Bold.ttf);
+      }
+      @font-face {
+          font-family: istokregular;
+          src: url(../font/IstokWeb-Regular.ttf);
+      } 
+    body{
+      background-color: #F3EBE0;
+      font-family: istokbold;
+    }
+  /* ------------------ LA NAV CONTIENT LE MENU ET SES ELEMENTS ------------------------------- */
+    #navcontainer{
+      display: flex;
+      justify-content:space-between;
+      margin-top: 35px;
+      background-color: #EDE1D1;
+      margin: 0;
+      }
+      #arrowmenu{ /* ------ arrow menu-------- */
+      margin-top: 48px;
+      margin-left: 12px;
+      }
+      #ODBLogo{/* ------ LOGO ODB  ------ */
+      margin-right:137px ;
+      }
+      /*************** Dashbord Part************/
+    main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+    
+    #prestation{
+    text-align: center;
+    font-size: x-large; 
+    }
+    .ActionButton{ /*************** Add/Modify/Delete buttons ************/
+        margin-top: 34px;
+    }
+                    
+                /*************** Service Container ************/
+    #container{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 350px;
+        margin: auto;
+    }
+
+    /*************** Service Container ************/
+     }
+     .circle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 130px;
+        height: 130px;
+        background-color: #2B1615;
+        border-radius: 100%;
+        margin: 8px;
+        margin-top: 50px;
+    }
+    .circle:hover{
+        border-color: aqua;
+        background-color: aqua;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: all 0.3s ease;
+    }
+
+    .titleService{
+        text-align: center;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 8px;
+}
+
+    .price{
+        width: 150px;
+        height: 95px;
+        background: #EDE1D1;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 7px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: center;
+    }
+/*************** REMOVE ACCOUNT OR DISCONNECT ************/
+    
+    
+    #remove{
+        display: flex;
+        flex-direction: column;
+        padding:40px;
+        align-items: center;
+    }
+
+    #disconnect{
+        width: 170px;
+        height: 44px;
+        background: #EDE1D1;
+        border: 1px solid #B18D8B;
+        border-radius: 26px;
+        font-size: large;
+        font-family: Istok web;
+        margin-bottom: 30px;
+    }
+
+    #disconnect:hover{
+        background: #B18D8B;
+        color: #ffffff;
+    }
+  

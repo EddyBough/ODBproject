@@ -1,3 +1,73 @@
-body{
-    background-color: aqua;
+@media screen and (max-width: 768px) {
+    *{
+        margin: 0;
+      }
+      @font-face {
+        font-family: istokbold;
+        src: url(/font/IstokWeb-Bold.ttf);
+    }
+    @font-face {
+        font-family: istokregular;
+        src: url(/font/IstokWeb-Regular.ttf);
+    } 
+  body{
+    background-color: #EDE1D1;
+    font-family: istokbold;
+  }
+  /* ------------------ CONTAINER ONE CONTIENT TOUT LE CONTENU DE LA PAGE ------------------------------- */
+  .containerone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 51px;
+    }
+    /* ------------------ RELATIFS AUX BOUTONS ------------------------------- */
+    .agendabutton{ 
+    box-sizing: border-box;
+    width: 246px;
+    height: 57px;
+    background: #2B1615;
+    border: 2px solid #A65236;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #EDE1D1;
+    }
+    .otherbutton{
+    box-sizing: border-box;
+    width: 246px;
+    height: 57px;
+    background: #EDE1D1;
+    border: 2px solid #A65236;
+    border-radius: 8px;
+    cursor: pointer;
+    color: black;
+    font-family: istokbold ;
+    }
+    .logout{
+    width: 170px;
+    height: 44px;
+    background: #EDE1D1;
+    border: 2px solid #B18D8B;
+    border-radius: 26px;
+    font-family: istokbold ;
+    cursor: pointer;
+    }
+    p{
+        margin: 25px;
+    }
+    button{
+        margin: 17px;
+    }
+    /* ------------------  FOOTER ------------------------------- */
+    #footerlogo{
+    display: flex;
+    justify-content: center;
+    }
+
+
+
+
+
+
 }

@@ -1,5 +1,5 @@
-const express = require ('express'); 
-const mongoose = require('mongoose');
+const express = require ('express');
+const mongoose = require('mongoose');// Mongoose est le lien entre mongoDB et le serveur
 require('dotenv').config() // cache les données afin que le mdp et le lien github ne soit pas lu (comme des exceptions lorsqu'on exportera notre dossier)
 const adminRouter = require('./routes/adminRouter'); //création du fichier routeur pour ajouter les projets
 const db = process.env.BDD_URL // on a crypté l'url de mongoDB dans le fichier .env afin qu'elle ne soit pas lisible lors de l'export du projet
@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: true})) // on encode notre form et on va l
 app.use(express.json()) // on met du json au cas où on a besoin du json
 app.use(adminRouter) // autorisation d'utiliser le adminRouter sinon ca ne marche pas 
 
-app.listen(3005, (err)=>{ // ecoute le port 3001
+app.listen(3005, (err)=>{ // ecoute le port 3005
     if (err) {
         console.log(err); // affiche l'erreur s'il y a erreur
     } else {

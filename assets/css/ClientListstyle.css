@@ -1,0 +1,57 @@
+@media screen and (max-width: 768px) {
+    *{
+      margin: 0;
+      padding: 0;
+  }
+        @font-face {
+          font-family: istokbold;
+          src: url(/font/IstokWeb-Bold.ttf);
+      }
+      @font-face {
+          font-family: istokregular;
+          src: url(/font/IstokWeb-Regular.ttf);
+      } 
+    body{
+      background-color: #F3EBE0;
+      font-family: istokbold;
+    }
+  /* ------------------ nav container ------------------------------- */
+    #navcontainer{
+      display: flex;
+      justify-content:space-between;
+      margin-top: 35px;
+      background-color: #EDE1D1;
+      margin: 0;
+      }
+      #arrowmenu{ /* ------ MENU-------- */
+      margin-top: 48px;
+      margin-left: 12px;
+      }
+      #ODBLogo{/* ------ LOGO ODB  ------ */
+      margin-right:120px ;
+      }
+      p{
+        margin: 7%;
+      }
+      /* ------ client list ------ */
+
+      .cardclient{
+        margin: 6%;
+      }
+      .clients { /* ------ list display management ------ */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 7%;
+      }
+      .clientcontainer{
+        box-sizing: border-box;
+        width: 280px;
+        height: 135px;
+        background: #FFFFFF;
+        border-radius: 8px;
+        color: black;
+        margin: 15px;
+        filter :drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+      }
+}  

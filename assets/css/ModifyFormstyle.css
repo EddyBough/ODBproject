@@ -1,0 +1,63 @@
+@media screen and (max-width: 768px) {
+    *{
+      margin: 0;
+      padding: 0;
+  }
+        @font-face {
+          font-family: istokbold;
+          src: url(../font/IstokWeb-Bold.ttf);
+      }
+      @font-face {
+          font-family: istokregular;
+          src: url(../font/IstokWeb-Regular.ttf);
+      } 
+    body{
+      background-color: #F3EBE0;
+      font-family: istokbold;
+    }
+  /* ------------------ nav container ------------------------------- */
+    #navcontainer{
+      display: flex;
+      justify-content:space-between;
+      margin-top: 35px;
+      background-color: #EDE1D1;
+      margin: 0;
+      }
+      #arrowmenu{ /* ------ MENU-------- */
+      margin-top: 48px;
+      margin-left: 12px;
+      }
+      #ODBLogo{/* ------ LOGO ODB  ------ */
+      margin-right:131px ;
+      }
+      /* ------------------ FORM CONTAINER ------------------------------- */
+    main{
+    margin: 7%;
+    }
+    
+    .container{
+      background-color:#B18D8B;
+      height: 500px;
+      border-radius:20px ;
+    }
+    form{
+    display: flex;
+    flex-direction: column;
+    margin: 7px;
+    }
+    h1{
+    text-align: center;
+    }
+    button{
+    width: 170px;
+    height: 44px;
+    background: #FFFFFF;
+    border: 1px solid #2B1615;
+    border-radius: 26px;
+    margin-top: 37px;
+    margin-left: 83px; 
+    }
+    input{
+        border: 2px solid black;
+    }
+    }
