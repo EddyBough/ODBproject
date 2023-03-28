@@ -20,6 +20,11 @@ const customerSchema = new mongoose.Schema({
     password : {
         type: String,
         required: [true, 'Le mot de passe est obligatoire']
+    },
+
+    status : {
+        type: Number,
+        required: [true]
     }
 
 })
