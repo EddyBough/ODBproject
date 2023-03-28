@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const customerSchema = new mongoose.Schema({
-    nom :{
+    name :{
         type: String,
         required: [true, 'Le nom est obligatoire']
     },
-    prenom :{
+    firstname :{
         type: String,
         required: [true, 'Le prénom est obligatoire']
     },
