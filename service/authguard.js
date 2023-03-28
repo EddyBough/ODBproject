@@ -1,4 +1,4 @@
-const { customerModel } = require("../models/customerModel")
+const { customerModel } = require("/models/customerModel")
 
 let authGuard = async (req, res, next)=>{ // le authguard va permettre de sécuriser la route et l'authentifié
     const company = await customerModel.findById(req.session.customerId)// N'exécute pas ce code tant que l'id n'a pas été comparé avec la base de donné
