@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Istok Web', sans-serif;
+    background-color: #EDE1D1;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20vh;
+}
+
+.back img {
+    cursor: pointer;
+    width: 30px;
+    height:30px;
+}
+
+.logo img {
+    width: 110px;
+    height: 110px;
+}
+.logo {
+    padding-left: 25%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.back {
+    padding-left: 20px;
+}
+
+.container-text-logo {
+    display: flex;
+    width: 100%;
+    height: 25vh;
+}
+
+.text { 
+    left: 20px;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    background-image: url(../../img/bloctext.png);
+    background-size: cover;
+    width: 240px;
+    height: 101px;
+}
+
+.text p {
+    width: 230px;
+}
+
+.draw {
+    position: absolute;
+    left: 40%;
+}
+
+.bloc_payment {
+    text-align: center;
+    justify-content: center;
+    background-color: #B18D8B;
+    width: 100%;
+    height: 100vh;
+}
+
+.social-size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+}
+.social {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 45%;
+    height: 10vh;
+}
+
+.social img {
+    width: 35px;
+    height: 35px;
+}
+
+.item {
+    background-color: #2b1615;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+}
+
+.notice {
+    text-align: center;
+    width: 100%;
+    height: 5vh;
+}
+
+
+.choice_size {
+    width: 100%;
+    height: 30vh;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 20vh;
+}
+
+.link a {
+    color: #2B1615;
+    font-size: 18px;
+}
+
+.link {
+    width: 100%;
+    height: 23vh;
+}
+
+.test img {
+    width: 158px;
+    height: 142px;
+}
+.test {
+    position: absolute;
+    transform: translate(160%, -100%);
+}
