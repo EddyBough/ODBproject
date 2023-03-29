@@ -114,3 +114,17 @@
     top: 10%;
     right: 5%;
 }
+
+.mail-size img{
+    position: absolute;
+    transform: translate(35%, 35%);
+    width: 30px;
+    height: 30px;
+}
+
+.password-size img {
+    position: absolute;
+    transform: translate(35%, 35%);
+    width: 30px;
+    height: 30px;
+}

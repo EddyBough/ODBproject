@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="/css/pages/login.css">
+		<link rel="stylesheet" href="/css/login.css">
 		<title>Connexion</title>
 	</head>
 	<body>
@@ -13,10 +13,12 @@
 			<div class="container-form">
 				<form action="/login" method="post">
 					<div class="mail-size">
+						<img src="./img/mail.png" alt="">
 						<input type="text" class="mail-bloc" id="loginMail" name="mail" value="{{company.mail}}" placeholder="E-mail">
 						<span>{{error.mail}}</span>
 					</div>
 					<div class="password-size">
+					<img src="./img/mdp.png" alt="">
 						<input type="password" class="password-bloc" id="loginPass" name="password" placeholder="Mot de passe">
 						<span>{{error.password}}</span>
 					</div>
@@ -29,7 +31,7 @@
 					</div>
 				</form>
 			</div>
-            
+
 			<div class="tool">
 				<img src="./img/outil.png" alt="">
 			</div>
@@ -46,5 +48,6 @@
 			</div>
 
 		</div>
+		<script src="./js/main.js"></script>
 	</body>
 </html>

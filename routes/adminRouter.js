@@ -49,9 +49,6 @@ adminRouter.get("/ModifyForm", async (req, res)=>{ //Cette ligne grâce au get p
     res.render('ModifyForm.twig')// Là elle va s'afficher
 })
 
-adminRouter.get("/login", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
-    res.render('login.twig')// Là elle va s'afficher
-})
 
 
 
