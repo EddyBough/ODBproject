@@ -1,10 +1,10 @@
-const express = require ('express');
-const mongoose = require('mongoose');// Mongoose est le lien entre mongoDB et le serveur
+const express = require("express")
+const mongoose = require("mongoose");// Mongoose est le lien entre mongoDB et le serveur
 require('dotenv').config() // cache les données afin que le mdp et le lien github ne soit pas lu (comme des exceptions lorsqu'on exportera notre dossier)
 const adminRouter = require('./routes/adminRouter'); //création du fichier routeur pour ajouter les projets
 const customerRouter = require('./routes/customerRouter');
 const db = process.env.BDD_URL // on a crypté l'url de mongoDB dans le fichier .env afin qu'elle ne soit pas lisible lors de l'export du projet
-const session = require('express-session') // gère les sessions par l'id et fait en sorte qu'il n'y en ait qu'un par session de connecté
+const session = require("express-session") // gère les sessions par l'id et fait en sorte qu'il n'y en ait qu'un par session de connecté
 const app = express() // on démarre l'appli
 
 

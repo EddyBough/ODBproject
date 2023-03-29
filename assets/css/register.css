@@ -1,0 +1,99 @@
+@media screen and (max-width:768px) {
+    @font-face {
+        font-family: Istok web;
+        src: url(/font/IstokWeb-Bold.ttf);
+    }
+
+    body{
+        background-color:#EDE1D1;
+        font-family:Istok web;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    h2{
+        text-align: center;
+        margin-top: 20%;
+        color: #2B1615;
+    }
+
+
+    #mower{
+        position: absolute;
+        top: 9%;
+        right: 70%;
+        z-index: 99;
+    }
+
+    #blade{
+        position: absolute;
+        top: 10%;
+        right: 6%;
+    }
+
+    main{
+        display: flex;
+    }
+
+    form{
+        z-index: 1;
+        margin: auto;
+        margin-top: 4%;
+        width: 330px;
+        height: 596px;
+        background: #B18D8B;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        
+    }
+
+    form div{
+        margin:auto;
+    }
+
+    label{
+        margin-left: 3%;
+        font-size: large;
+    }
+
+    input{
+        width: 250px;
+        height: 30px;
+        background: #FFFFFF;
+        border: 3px solid #2B1615;
+        border-radius: 3px;
+        margin: auto;
+    }
+
+    #button{
+        width: 170px;
+        height: 44px;
+        background: #FFFFFF;
+        border: 1px solid #2B1615;
+        border-radius: 26px;
+        font-family:Istok web;
+    }
+
+    #button:hover{
+        background: #2B1615;
+        border: 1px solid #FFFFFF;
+        color: #FFFFFF;
+    }
+
+    #comb{
+        position: absolute;
+        top: 84%;
+        z-index: 99;
+    }
+
+    #logo{
+        position: absolute;
+        top: 88%;
+        right: 6%;
+    }
+
+}
