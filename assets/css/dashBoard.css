@@ -1,7 +1,7 @@
 @media screen and (max-width:768px){
     @font-face {
         font-family: Istok web;
-        src: url(/font/IstokWeb-Bold.ttf);
+        src: url(../font/IstokWeb-Bold.ttf);
     }
     
     body{
