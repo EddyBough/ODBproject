@@ -20,8 +20,7 @@ const customerSchema = new mongoose.Schema({
     password : {
         type: String,
         required: [true, 'Le mot de passe est obligatoire']
-    }
-
+    },
 })
 
 const customerModel = mongoose.model ('customer', customerSchema);

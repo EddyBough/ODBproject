@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/pages/register.css">
+		<title>Inscription</title>
+	</head>
+	<body>
+		<div class="container-login">
+
+			<div class="container-form">
+				<form action="/register" method="post">
+					<div>
+						<span>
+							<label for="register_name">Nom</label><br>
+							<span>{{mongooseError.errors.name.message}}</span>
+						</span>
+						<input type="text" id="register_name" name="name" value="{{company.name}}">
+					</div>
+					<div>
+						<span>
+							<label for="register_siret">Prenom</label><br>
+							<span>{{mongooseError.errors.siret.message}}</span>
+						</span>
+						<input type="text" id="register_siret" name="siret" value="{{company.siret}}">
+					</div>
+					<div>
+						<span>
+							<label for="register_mail">Mail</label><br>
+							<span>{{mongooseError.errors.mail.message}}</span>
+						</span>
+						<input type="mail" id="register_mail" name="mail" value="{{company.mail}}">
+					</div>
+					<div>
+						<span>
+							<label for="register_name_director">Téléphone</label><br>
+							<span>{{mongooseError.errors.name_director.message}}</span>
+						</span>
+						<input type="text" id="register_name_director" name="name_director" value="{{company.name_director}}">
+					</div>
+					<div>
+						<span>
+							<label for="register_password">Mot de passe</label>
+							<br>
+							<span>{{preValidateError.passwordError}}</span>
+						</span>
+						<input type="password" id="register_password" name="password" value="{{company.name_password}}">
+					</div>
+					<div>
+						<button type="submit">Envoyé</button>
+					</div>
+				</form>
+			</div>
+
+            	<div class="tool">
+				<img src="./img/outil.png" alt="">
+			</div>
+			<div class="mower">
+				<img src="./img/tondeuse.png" alt="">
+			</div>
+
+			<div class="afro-test">
+				<img src="./img/peigneAfro.png" alt="">
+			</div>
+
+			<div class="logo-register">
+				<img src="./img/Logo.png" alt="">
+			</div>
+		</body>
+	</body>
+</html>
