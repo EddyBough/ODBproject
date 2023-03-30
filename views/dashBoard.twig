@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./Asset/css/style.css">
+    <link rel="stylesheet" href="/css/dashBoard.css">
     <title>Oncle_d_Barber</title>
 </head>
 <body>
     <header>
-        <img src="./Asset/img/home.png" alt="home">
-        <img src="./Asset/img/logo.png" alt="logo">
+        <a href="/modificationProfil">
+        <img id="home" src="/img/home.png" alt="home">
+        </a>
+        <img src="/img/logo.png" alt="logo">
     </header>
     <main>
         <!-- Dashbord Part -->
@@ -40,7 +42,7 @@
             <div id="container">
             <div>
                 <div class="circle">
-                    <img src="./Asset/img/coupe.png" alt="coupe">
+                    <img src="/img/coupe.png" alt="coupe">
                 </div>
                 <div class="titleCircle">Coupe de cheuveux</div>
                 <div class="price">
@@ -50,7 +52,7 @@
             </div>
             <div>
                 <div class="circle">
-                    <img src="./Asset/img/coloration.png" alt="coloration">
+                    <img src="/img/coloration.png" alt="coloration">
                 </div>
                 <div class="titleCircle">Coloration</div>
                 <div class="price">
@@ -60,7 +62,7 @@
             </div>
             <div>
                 <div class="circle">
-                    <img src="./Asset/img/barbe.png" alt="barbe">
+                    <img src="/img/barbe.png" alt="barbe">
                 </div>
                 <div class="titleCircle">Barbe et Contour</div>
                 <div class="price">
@@ -70,7 +72,7 @@
             </div>
             <div>
                 <div class="circle">
-                    <img src="./Asset/img/shampoing.png" alt="shampoing">
+                    <img src="/img/shampoing.png" alt="shampoing">
                 </div>
                 <div class="titleCircle">Soin Caplillaire</div>
                 <div class="price">
@@ -84,13 +86,13 @@
             <div id="OpinionFidelity">
                 <div id="fidelityCard">
                     <div id="fidelityPicture">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
-                        <img src="./Asset/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                        <img src="/img/jeton_fidelité.png" alt="jeton">
                     </div>
                 </div>
                 <div id="TitleFidelityCard">
@@ -102,9 +104,14 @@
             </div>
             <!-- disconnection and deletion -->
             <div id="remove">
+            <a href="/logout">
                 <button id="disconnect">Deconnexion</button>
+            </a>
+            <a href="/customerDeletet">
                 <button id="delete">Supprimer compte</button>
+            </a>
             </div>
     </main>
+    <script src="/js/main.js"></script>
 </body>
 </html>
