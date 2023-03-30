@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: true})) // on encode notre form et on va l
 app.use(express.json()) // on met du json au cas où on a besoin du json
 app.use(adminRouter) // autorisation d'utiliser le adminRouter sinon ca ne marche pas 
 
-app.listen(3005, (err)=>{ // ecoute le port 3001
+app.listen(3005, (err)=>{ // ecoute le port 3005
     if (err) {
         console.log(err); // affiche l'erreur s'il y a erreur
     } else {
