@@ -1,188 +1,193 @@
-body {
-    margin: 0;
-    overflow: hidden;
-    font-family: 'Istok Web', sans-serif;
-    background-color: #EDE1D1;
-}
-
-header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 20vh;
-}
-
-.back img {
-    cursor: pointer;
-    width: 30px;
-    height:30px;
-}
-
-.logo img {
-    width: 110px;
-    height: 110px;
-}
-.logo {
-    padding-left: 25%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-}
-
-.back {
-    padding-left: 20px;
-}
-
-.container-text-logo {
-    display: flex;
-    width: 100%;
-    height: 25vh;
-}
-
-.text { 
-    left: 20px;
-    position: relative;
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    background-image: url(../../img/bloctext.png);
-    background-size: cover;
-    width: 240px;
-    height: 101px;
-}
-
-.text p {
-    width: 230px;
-}
-
-.draw {
-    position: absolute;
-    left: 40%;
-}
-
-.bloc_payment {
+@media screen, (max-width: 414px) {
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Istok Web', sans-serif;
+        background-color: #EDE1D1;
+    }
     
-    justify-content: center;
-    background-color: #B18D8B;
-    width: 100%;
-    height: 100vh;
-}
-
-.choice_payment h1 {
-    text-align: center;
-}
-
-.choice_size {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.choice_payment {
-    margin: auto;
-    background-color: white;
-    border: solid 1px black;
-    width: 70%;
-    height: 20vh;
-}
-
-.confirmed {
-    width: 20px;
-    height: 20px;
-    border-radius: 50px;
-    background-color: none;
-    border: solid 1px black;
-}
-
-.confirmed_2 {
-    width: 20px;
-    height: 20px;
-    border-radius: 50px;
-    background-color: none;
-    border: solid 1px black;
-}
-
-.place {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.paypal {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.button-confirmed button {
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-.button-confirmed {
-    width: 100%;
-    height: 15vh;
-}
-
-.button_8 {
-    width: 70%;
-    height: 50px;
-    font-size: 22px;
-    font-weight: 600;
-    background-color: #402D2C;
-    border: solid 1px white;
-    color: white;
-    border-radius: 10px;
-}
-
-.social-size{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 10vh;
-}
-.social {
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    width: 45%;
-    height: 10vh;
-}
-
-.social img {
-    width: 35px;
-    height: 35px;
-}
-
-.item {
-    background-color: #2b1615;
-    width: 5px;
-    height: 5px;
-    border-radius: 10px;
-}
-
-.notice {
-    text-align: center;
-    width: 100%;
-    height: 5vh;
-}
-
-
-.choice_size {
-    width: 100%;
-    height: 30vh;
-}
-
-.test {
-    position: absolute;
-    transform: translate(160%, -100%);
+    header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 20vh;
+    }
+    
+    .back img {
+        cursor: pointer;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .logo img {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .logo {
+        padding-left: 25%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .back {
+        padding-left: 20px;
+    }
+    
+    .container-text-logo {
+        display: flex;
+        width: 100%;
+        height: 25vh;
+    }
+    
+    .text {
+        left: 20px;
+        position: relative;
+        z-index: 3;
+        display: flex;
+        justify-content: center;
+        background-image: url(../../img/bloctext.png);
+        background-size: cover;
+        width: 240px;
+        height: 101px;
+    }
+    
+    .text p {
+        width: 230px;
+    }
+    
+    .draw {
+        position: absolute;
+        left: 40%;
+    }
+    
+    .bloc_payment {
+        justify-content: center;
+        background-image: url(/img/Rectangle.svg);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .choice_payment h1 {
+        text-align: center;
+    }
+    
+    .choice_size {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .choice_payment {
+        margin: auto;
+        background-color: white;
+        border: solid 1px black;
+        width: 70%;
+        height: 20vh;
+    }
+    
+    .confirmed {
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        background-color: none;
+        border: solid 1px black;
+    }
+    
+    .confirmed_2 {
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        background-color: none;
+        border: solid 1px black;
+    }
+    
+    .place {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .paypal {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .button-confirmed button {
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .button-confirmed {
+        width: 100%;
+        height: 15vh;
+    }
+    
+    .button_8 {
+        width: 70%;
+        height: 50px;
+        font-size: 22px;
+        font-weight: 600;
+        background-color: #402D2C;
+        border: solid 1px white;
+        color: white;
+        border-radius: 10px;
+    }
+    
+    .social-size {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 10vh;
+    }
+    
+    .social {
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        width: 45%;
+        height: 10vh;
+    }
+    
+    .social img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .item {
+        background-color: #2b1615;
+        width: 5px;
+        height: 5px;
+        border-radius: 10px;
+    }
+    
+    .notice {
+        text-align: center;
+        width: 100%;
+        height: 5vh;
+    }
+    
+    
+    .choice_size {
+        width: 100%;
+        height: 30vh;
+    }
+    
+    .test {
+        position: absolute;
+        transform: translate(160%, -100%);
+    }
 }
