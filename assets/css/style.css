@@ -60,6 +60,7 @@ body {
     background-color: #EDE1D1;
     border-radius: 10px;
     border: solid 1px #2b1615;
+    cursor: pointer;
 }
 
 .img-size {
