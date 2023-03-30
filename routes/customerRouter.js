@@ -16,16 +16,28 @@ customerRouter.get('/register', async (req, res) => {// le get permet d'afficher
 })
 
 customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajouter un client dans la base de donné
+    try {
     req.body.password = await crypto.cryptPassword(req.body.password)//Await est utilisé pour attendre la fin de l'éxécution du crypto.
     //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
     let customer = new customerModel(req.body);
     customer.save();// Le client est enregistré dans la BDD
     res.redirect('/connexion')
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+    
 })
 
-customerRouter.get("/logout", async (req, res) => {
-    req.session.destroy() //Permet de teruire la session courante ce qui a pour effet de deconnecter l'utilisateur et de supprimer les données de session
+customerRouter.get("/logout", async (req, res) => {//
+    try {
+        req.session.destroy() //Permet de teruire la session courante ce qui a pour effet de deconnecter l'utilisateur et de supprimer les données de session
     res.redirect("/connexion")// Il redige par la suite à la page connexion
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+    
 });
 
 
