@@ -1,6 +1,7 @@
 const { customerModel } = require("../models/customerModel");
-
 const customerRouter = require("express").Router();// Constante pour créer un routeur qui a pour nom customerRouter
+const crypto = require('../service/crypto')
+
 
 
 
@@ -21,7 +22,7 @@ customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajout
     //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
     let customer = new customerModel(req.body);
     customer.save();// Le client est enregistré dans la BDD
-    res.redirect('/connexion')
+    res.redirect('/dashboard')
     } catch (error) {
         console.log(error);
         res.send(error)
