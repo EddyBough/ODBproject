@@ -20,7 +20,13 @@
         <div id="name">
             <p>
                 Bonjour <br>
-                {{customerName}}{{customerFirstname}}
+                {% for customer in customers %}
+            <div>
+            <h2>{{ customerName }}</h2>
+            <p>{{ customerFirstname }}</p>
+            </div>
+                {% endfor %}
+
             </p>
         </div>
         <div id="appointment_card">
