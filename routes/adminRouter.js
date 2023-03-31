@@ -49,7 +49,13 @@ adminRouter.get("/ModifyForm", async (req, res)=>{ //Cette ligne grâce au get p
     res.render('ModifyForm.twig')// Là elle va s'afficher
 })
 
+//---------------------------------------------------------------------------------------------------------------------------------
 
+// Route qui sert à afficher la page DeleteForm
+
+adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+    res.render('DeleteForm.twig')// Là elle va s'afficher
+})
 
 
 
