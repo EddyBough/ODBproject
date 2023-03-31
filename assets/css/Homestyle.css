@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    font-family: 'Istok Web', sans-serif;
+   
+    overflow: hidden;
+}
+
+body {
+    overflow: hidden;
+}
+
+.container {
+    background-color: #EDE1D1;
+    height: 65vh;
+    width: 100%;
+}
+
+.container-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: -20px;
+    z-index: 2;
+    background-color: #B18d8B;
+    border-radius: 30px 30px 0px 0px;
+    width: 100%;
+    height: 40vh;
+}
+
+.button-size {
+    position: relative;
+    justify-content: center;
+    margin: auto;
+}
+
+.button-login  {
+    margin-bottom: 20px;
+}
+
+.button-login {
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+    border-radius: 10px;
+    border: solid 1px #EDE1D1;
+    width: 80%;
+    height: 60px;
+    background-color: #2b1615;
+}
+
+.button-register {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2b1615;
+    width: 80%;
+    height: 60px;
+    background-color: #EDE1D1;
+    border-radius: 10px;
+    border: solid 1px #2b1615;
+    cursor: pointer;
+}
+
+.img-size {
+    text-align: center;
+    width: 100%;
+    height: 45vh;
+}
+
+.img-size img {
+    width: 260px;
+    height: 260px;
+}
+.social-size{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+}
+.social {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    width: 45%;
+    height: 10vh;
+}
+
+.social img {
+    width: 35px;
+    height: 35px;
+}
+
+.item {
+    background-color: #2b1615;
+    width: 5px;
+    height: 5px;
+    border-radius: 10px;
+}
+
+.notice {
+    text-align: center;
+    width: 100%;
+    height: 5vh;
+}
+
+.notice a {
+    color: #2b1615;
+    font-size: 19px;
+}
