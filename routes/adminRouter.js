@@ -13,7 +13,7 @@ adminRouter.get("/adminhome", async (req, res)=>{ //Cette ligne grâce au get pe
 
 // Route qui sert à afficher la page AdminAgenda
 
-adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AdminAgenda
     res.render('AdminAgenda.twig')// Là elle va s'afficher
 })
 
@@ -21,15 +21,15 @@ adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get 
 
 // Route qui sert à afficher la page ClientList
 
-adminRouter.get("/ClientList", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+adminRouter.get("/ClientList", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil ClientList
     res.render('ClientList.twig')// Là elle va s'afficher
 })
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Route qui sert à afficher la page AddingServices
+// Route qui sert à afficher la page AddServices
 
-adminRouter.get("/AddServices", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+adminRouter.get("/AddServices", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AddServices
     res.render('AddServices.twig')// Là elle va s'afficher
 })
 
