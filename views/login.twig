@@ -1,53 +1,36 @@
 <!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/loginstyle.css">
-        <title>Connexion</title>
-    </head>
-    <body>
-        <div class="container-login">
+<html lang="en">
 
-            <div class="container-form">
-                <form action="/login" method="post">
-                    <div class="mail-size">
-                        <img src="./img/mail.png" alt="">
-                        <input type="text" class="mail-bloc" id="loginMail" name="mail" value="{{company.mail}}" placeholder="E-mail">
-                        <span>{{error.mail}}</span>
-                    </div>
-                    <div class="password-size">
-                    <img src="./img/mdp.png" alt="">
-                        <input type="password" class="password-bloc" id="loginPass" name="password" placeholder="Mot de passe">
-                        <span>{{error.password}}</span>
-                    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Document</title>
+</head>
 
-                    <div class="edit-passeword">
-                        <a href="">Mot de passe oublié</a>
-                    </div>
-                    <div class="login-button">
-                        <button type="submit">Connexion</button>
-                    </div>
-                </form>
-            </div>
+<body>
+    <div id="picture">
+        <img id="pictureOne" src="/img/tondeuse1.png" alt="tondeuse">
+        <img id="pictureTwo" src="/img/lame.png" alt="lame">
+    </div>
+    <main>
+        <form id="connexion" action="/login" method="POST">
+            <label for="email"> </label>
+            <input type="email" id="email" name="email" placeholder="email" required>
 
-            <div class="tool">
-                <img src="./img/outil.png" alt="">
-            </div>
-            <div class="mower">
-                <img src="./img/tondeuse.png" alt="">
-            </div>
+            <label for="password"></label>
+            <input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
-            <div class="afro-test">
-                <img src="./img/peigneAfro.png" alt="">
-            </div>
+            <a href="">Mot de passe oublié</a>
 
-            <div class="logo-register">
-                <img src="./img/Logo.png" alt="">
-            </div>
+            <input type="submit" id="connect" value="Connexion">
+        </form>
+    </main>
+    <div id="pictureThree">
+        <img id="comb" src="/img/peigne.png" alt="peigne">
+        <img id="logo" src="/img/logo.png" alt="logo">
+    </div>
+</body>
 
-        </div>
-        <script src="./js/login.js"></script>
-    </body>
 </html>

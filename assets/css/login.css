@@ -1,0 +1,147 @@
+@media screen and (max-width:768px) {
+    @font-face {
+        font-family: Istok web;
+        src: url(../font/IstokWeb-Bold.ttf);
+        
+    }
+
+body{
+    font-family:Istok web;
+    margin: 0;
+    padding: 0;
+    background-color: #EDE1D1;
+
+}
+
+#picture{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#pictureOne{
+    position: absolute;
+    left: 22px;
+top: 75px;
+width: 170px;
+height: 160px;
+}
+
+#pictureTwo{
+    position: relative;
+    left: 276.68px;
+    top: 100px;
+    width: 102px;
+    height: 102px;
+}
+
+main{
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+#connexion{
+    width: 338px;
+    height: 555px;
+    background: #B18D8B;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+
+#email{
+    
+    margin-top: 6rem;
+    background: #EDE1D1;
+    border: 1px solid #523839;
+    border-radius: 23px;
+    height: 44px;
+    font-family: Istok web;
+    font-size: large;
+    align-items: center;
+    text-align: center;
+}
+
+#password{
+    height: 44px;
+    margin-top: 6rem;
+    background: #EDE1D1;
+    border: 1px solid #523839;
+    border-radius: 23px;
+    font-family: Istok web;
+    font-size: large;
+    align-items: center;
+    text-align: center;
+}
+
+input[type="email"]::placeholder {
+    color: #523839;
+    text-align: center;
+    background-image: url(../img/email.png);
+    background-repeat: no-repeat;
+    background-position: 25px;
+    background-size: 18px;
+}
+
+input[type="password"]::placeholder {
+    color: #523839;
+    text-align: center;
+    background-image: url(../img/cadenas.png);
+    background-repeat: no-repeat;
+    background-position: 25px;
+    background-size: 18px;
+}
+
+
+
+
+a{
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+}
+
+#connect{
+    width: 170px;
+    height: 44px;
+    background: #EDE1D1;
+    border: 1px solid #2B1615;
+    border-radius: 26px;
+    margin-bottom: 4rem;
+    font-family: Istok web;
+}
+
+#connect:hover{
+    background: #2B1615;
+    border: 1px solid #EDE1D1;
+    color: white
+}
+
+#pictureThree{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#comb{
+    position: absolute;
+left: 3px;
+top: 670px;
+
+}
+
+#logo{
+    position: absolute;
+width: 150px;
+height: 150px;
+left: 222px;
+top: 728px;
+
+}
+
+}
