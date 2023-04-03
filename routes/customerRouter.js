@@ -30,7 +30,7 @@ customerRouter.post('/login', async (req,res)=>{// Le post lui permet d'ajouter 
     try {
         let customer = await customerModel.findOne({mail: req.body.mail}) // ici il va récupérer le mail dans la bdd
         if (customer && await crypto.comparePassword(req.body.password, customer.password)){ // là il va comparer le mot de passe de la bdd 
-        req.session.customerId = customer._id
+        req.session.customer = customer
     res.redirect('/dashboard')
         }
     } catch (error) {
@@ -101,8 +101,8 @@ customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajout
 customerRouter.get('/dashboard', async (req, res)=>{
     try {
         res.render('dashBoard.twig',{ //Renvoie moi au navigateur et affiche moi la page 
-            customerName : req.session.customerName,
-            customerFirstname : req.session.customerFirstname,
+            customer : req.session.customer,
+            
         });
     } catch (error) {
         console.log(error);
