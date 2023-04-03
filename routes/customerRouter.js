@@ -2,10 +2,69 @@ const { customerModel } = require("../models/customerModel");
 const customerRouter = require("express").Router();// Constante pour créer un routeur qui a pour nom customerRouter
 const crypto = require('../service/crypto')
 
+//-----------------------------------Page Home------------------------------------------------------------------
 
 
+customerRouter.get('/home', async (req, res) => {// le get permet d'afficher la page d'inscription (register)
+    try {
+        res.render("home.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
 
-//-----------------------------------Page Connexion des clients-------------------------------------------------
+//-----------------------------------Page Connexion--------------------------------------------------------------
+
+customerRouter.get('/login', async (req, res) => {// le get permet d'afficher la page de connexion (register)
+    try {
+        res.render("login.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+
+customerRouter.post('/login', async (req,res)=>{// Le post lui permet d'ajouter un client dans la base de donné
+    try {
+        let customer = await customerModel.findOne({mail: req.body.mail}) // ici il va récupérer le mail dans la bdd
+        if (customer && await crypto.comparePassword(req.body.password, customer.password)){ // là il va comparer le mot de passe de la bdd 
+        req.session.customerId = customer._id
+    res.redirect('/dashboard')
+        }
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+    
+})
+
+
+customerRouter.get("/logout", async (req, res) => {//
+    try {
+        req.session.destroy() //Permet de teruire la session courante ce qui a pour effet de deconnecter l'utilisateur et de supprimer les données de session
+    res.redirect("/login")// Il redige par la suite à la page connexion
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+    
+});
+
+customerRouter.get("/customerDelete/:id", async (req, res) => { //Route qui va nous permettre de supprimer le compte
+    try {
+        await customerModel.deleteOne({_id: req.params.id }) //Await permet de temporiser l'execution de la fonction deletOne
+        console.log('Votre compte a supprimé avec succès'); //Car il va d'abord chercher dans la base de donné l'id correspondant au client afin de le supprimer de la base de donnée
+        res.redirect("/login"); //Ensuite il le redirige vers la page connexion
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+    }
+});
+
+
+//-----------------------------------Page Inscription des clients-------------------------------------------------
 
 customerRouter.get('/register', async (req, res) => {// le get permet d'afficher la page d'inscription (register)
     try {
@@ -30,28 +89,9 @@ customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajout
     
 })
 
-customerRouter.get("/logout", async (req, res) => {//
-    try {
-        req.session.destroy() //Permet de teruire la session courante ce qui a pour effet de deconnecter l'utilisateur et de supprimer les données de session
-    res.redirect("/connexion")// Il redige par la suite à la page connexion
-    } catch (error) {
-        console.log(error);
-        res.send(error)
-    }
-    
-});
 
 
-customerRouter.get("/customerDelete/:id", async (req, res) => { //Route qui va nous permettre de supprimer le compte
-    try {
-        await customerModel.deleteOne({_id: req.params.id }) //Await permet de temporiser l'execution de la fonction deletOne
-        console.log('Votre compte a supprimé avec succès'); //Car il va d'abord chercher dans la base de donné l'id correspondant au client afin de le supprimer de la base de donnée
-        res.redirect("/connexion"); //Ensuite il le redirige vers la page connexion
-    } catch (error) {
-        console.log(error);
-        res.send(error);
-    }
-});
+
 
 
 //-----------------------------------Page Tableau de board des clients-------------------------------------------------

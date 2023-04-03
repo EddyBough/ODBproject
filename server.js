@@ -13,7 +13,7 @@ app.use(express.static("./assets")) // démarre tout ce qui est image etc...
 app.use(express.urlencoded({extended: true})) // on encode notre form et on va le décoder pour qu'il soit utilisable sur notre route
 app.use(express.json()) // on met du json au cas où on a besoin du json
 app.use(adminRouter) // autorisation d'utiliser le adminRouter sinon ca ne marche pas 
-app.use(customerRouter)// autorisation d'utiliser le adminRouter sinon ca ne marche pas 
+app.use(customerRouter)// autorisation d'utiliser le adminRouter sinon ca ne marche pas
 
 
 app.listen(3005, (err)=>{ // ecoute le port 3005
