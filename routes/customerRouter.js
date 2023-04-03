@@ -101,8 +101,8 @@ customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajout
 customerRouter.get('/dashboard', async (req, res)=>{
     try {
         res.render('dashBoard.twig',{ //Renvoie moi au navigateur et affiche moi la page 
-            customer : req.session.customer,
-            
+            customer : req.session.customer,//permet d'accéder aux données stockées pour le client en cours de session.
+            // customer devient ainsi un objet qui ira dans le tableau de bord du client
         });
     } catch (error) {
         console.log(error);
