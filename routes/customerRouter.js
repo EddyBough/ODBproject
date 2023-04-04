@@ -26,12 +26,12 @@ customerRouter.get('/login', async (req, res) => {// le get permet d'afficher la
 })
 
 
-customerRouter.post('/login', async (req,res)=>{// Le post lui permet d'ajouter un client dans la base de donné
+customerRouter.post('/login', async (req,res)=>{// le post va envoyer les donnée qu'on a entré dans le formulaire de connexion
     try {
-        let customer = await customerModel.findOne({mail: req.body.mail}) // ici il va récupérer le mail dans la bdd
-        if (customer && await crypto.comparePassword(req.body.password, customer.password)){ // là il va comparer le mot de passe de la bdd 
-        req.session.customer = customer
-    res.redirect('/dashboard')
+        let customer = await customerModel.findOne({mail: req.body.mail}) // le findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
+        if (customer && await crypto.comparePassword(req.body.password, customer.password)){ //Si l'email correspond le comparePassword va comparer le mot de passe dans la BDD 
+        req.session.customer = customer //L'utilisateur sera récupéré
+    res.redirect('/dashboard')// Il sera redirigé vers le dashboard
         }
     } catch (error) {
         console.log(error);
@@ -40,11 +40,12 @@ customerRouter.post('/login', async (req,res)=>{// Le post lui permet d'ajouter 
     
 })
 
+//-----------------------------------Page déconnexion du Dashboard--------------------------------------------------------------
 
 customerRouter.get("/logout", async (req, res) => {//
     try {
-        req.session.destroy() //Permet de teruire la session courante ce qui a pour effet de deconnecter l'utilisateur et de supprimer les données de session
-    res.redirect("/login")// Il redige par la suite à la page connexion
+        req.session.destroy() //Le destroy va récupérer l'id en cours et va le detruire afin de se deconnecter
+    res.redirect("/login")// Il redige par la suite à la page login
     } catch (error) {
         console.log(error);
         res.send(error)
@@ -52,16 +53,37 @@ customerRouter.get("/logout", async (req, res) => {//
     
 });
 
-customerRouter.get("/customerDelete/:id", async (req, res) => { //Route qui va nous permettre de supprimer le compte
+//-----------------------------------Fonction supprimer compte--------------------------------------------------------------
+
+customerRouter.get("/customerDelete/:id", async (req, res) => {
     try {
-        await customerModel.deleteOne({_id: req.params.id }) //Await permet de temporiser l'execution de la fonction deletOne
-        console.log('Votre compte a supprimé avec succès'); //Car il va d'abord chercher dans la base de donné l'id correspondant au client afin de le supprimer de la base de donnée
+        await customerModel.deleteOne({_id: req.params.id }) //Il va recuperer l'id de la BDD afin de le supprimer
         res.redirect("/login"); //Ensuite il le redirige vers la page connexion
     } catch (error) {
         console.log(error);
         res.send(error);
     }
 });
+
+
+//-----------------------------------Mot de passe oublié-------------------------------------------------
+
+
+
+customerRouter.get('/forgotPassword', async (req, res) => {
+    try {
+        res.render("forgotPassword.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+
+
+
+
+
 
 
 //-----------------------------------Page Inscription des clients-------------------------------------------------
@@ -75,13 +97,13 @@ customerRouter.get('/register', async (req, res) => {// le get permet d'afficher
     }
 })
 
-customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajouter un client dans la base de donné
+customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajouter un client dans la base de donnée
     try {
     req.body.password = await crypto.cryptPassword(req.body.password)//Await est utilisé pour attendre la fin de l'éxécution du crypto.
     //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
     let customer = new customerModel(req.body);
     customer.save();// Le client est enregistré dans la BDD
-    res.redirect('/dashboard')
+    res.redirect('/dashboard')//Il sera ensuite redirigé vers son dashboard
     } catch (error) {
         console.log(error);
         res.send(error)
@@ -91,19 +113,18 @@ customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajout
 
 
 
-
-
-
 //-----------------------------------Page Tableau de board des clients-------------------------------------------------
 
 
 
 customerRouter.get('/dashboard', async (req, res)=>{
     try {
-        res.render('dashBoard.twig',{ //Renvoie moi au navigateur et affiche moi la page 
-            customer : req.session.customer,//permet d'accéder aux données stockées pour le client en cours de session.
-            // customer devient ainsi un objet qui ira dans le tableau de bord du client
-        });
+        let customers =  await customerModel.find({customerId: req.session.customerId})//le find va recuperer une requete mongoose
+   res.render('dashboard.twig',{ // je suis bien authentifié mon tableau de bord client apparait
+    customers: customers,//la ligne de code customers: customers est un tableau d'objet et permet de donner une étiquette aux données que nous souhaitons afficher dans la vue, 
+    //afin que nous puissions les utiliser facilement dans le code Twig pour afficher les informations du client.
+    customerName: req.session.customerName
+})
     } catch (error) {
         console.log(error);
         res.json(error)
