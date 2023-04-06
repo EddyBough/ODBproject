@@ -152,8 +152,28 @@ customerRouter.get('/modificationProfil', async (req, res) => {
     }
 })
 
+//-----------------------------------Page paiement des clients-------------------------------------------------
 
 
+customerRouter.get('/payments', async (req, res) => {
+    try {
+        res.render("Payment.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+
+
+customerRouter.get('/postPayments', async (req, res) => {
+    try {
+        res.render("postPayment.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
 
 
 

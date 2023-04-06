@@ -106,15 +106,15 @@
 
 .checkbox-spin {
     display: none;
-  }
+}
 
-  .checkbox-spin + label span {
+.checkbox-spin + label span {
     display: inline-block;
     width: 25px;
     height: 19px;
     margin: 0 5px -4px 0;
     /*layout relationship between check and label*/
-  }
+}
 
     .checkbox-spin + label span:before,
     .checkbox-spin + label span:after {
@@ -246,8 +246,10 @@
         background: #B18D8B;
         color: #ffffff;
     }
+ /*************** Modal ************/
 
-    #delete{
+ /**Bouton supprimer compte*****/
+    .show-modal{  
         width: 201px;
         height: 47px;
         background: #F53333;
@@ -257,9 +259,79 @@
         font-family: Istok web;
     }
 
-    #delete:hover{
+    .show-modal:hover{
         background: #641111;
         border: 2px solid #F53333;
         color: #ffffff;
     }
+/*****Croix pour annuler l'apparition du modal*****/
+    .close-modal {
+        position: absolute;
+        top: 0.1rem;
+        right: 0.2rem;
+        font-size: 3rem;
+        color: #333;
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+/*****Rectangle blanc du modal*****/
+    .modal {
+        position: absolute;
+        top: 170%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        background-color: white;
+        padding: 3rem;
+        border-radius: 5px;
+        box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+        z-index: 10;
+    }
+/*****Espace noir transparent*****/
+    .overlay {
+        position: absolute;
+        top: 140%;
+        left: 0;
+        width: 100%;
+        height: 70%;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(3px);
+        z-index: 5;
+    }
+
+    #text{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 3px;
+        font-family: Istok web;
+    }
+    
+    /*****Bouton*****/
+    #text button{
+        width: 90px;
+        height: 25px;
+        margin: 8px;
+        border-radius: 20px;
+        border: 2px solid ;
+    }
+
+    #text button:hover{
+        background: #641111;
+        border: 2px solid #F53333;
+        color: #ffffff;
+    }
+
+    #btnNo:hover{
+        background: black;
+        border: 2px solid white;
+        color: #ffffff;
+    }
+
 }

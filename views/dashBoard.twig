@@ -136,11 +136,21 @@
             <a href="/logout">
                 <button id="disconnect">Deconnexion</button>
             </a>
-            
-            <a href="/customerDelete/{{customer._id}}">
-            <button id="delete">Supprimer compte</button>
-            </a>
-            
+            <button class="show-modal">Supprimer compte</button>
+                <div class="modal hidden">
+                    <button class="close-modal" id="delete">&times;</button>
+                    <p id="text">
+                    Voulez vous vraiment supprimer votre compte ?
+                    
+                    <a href="/customerDelete/{{customer._id}}">
+                    <button>Oui</button>
+                    </a>
+                    <button id="btnNo">Non</button>
+                    </p>
+                    <p>Oncle D t'as vraiment tué à ce point ?</p>
+                </div>
+                <div class="overlay hidden"></div>
+            </div>
             </div>
             {% endfor %}  
             <!-- La boucle for nous sert à itérer tout le tableau se trouvant sur mongo db -->
