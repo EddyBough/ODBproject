@@ -6,7 +6,12 @@ const adminRouter = require("express").Router() // Constante pour créer un rout
 // Route qui sert à afficher la page adminhome
 
 adminRouter.get("/adminhome", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
-    res.render('adminhome.twig')// Là elle va s'afficher
+    try {
+        res.render("adminhome.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //----------------------------------------------------------------------------------------------------------------------------------
@@ -14,7 +19,12 @@ adminRouter.get("/adminhome", async (req, res)=>{ //Cette ligne grâce au get pe
 // Route qui sert à afficher la page AdminAgenda
 
 adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AdminAgenda
-    res.render('AdminAgenda.twig')// Là elle va s'afficher
+    try {
+        res.render("AdminAgenda.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //----------------------------------------------------------------------------------------------------------------------------------
@@ -22,7 +32,12 @@ adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get 
 // Route qui sert à afficher la page ClientList
 
 adminRouter.get("/ClientList", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil ClientList
-    res.render('ClientList.twig')// Là elle va s'afficher
+    try {
+        res.render("ClientList.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -30,7 +45,12 @@ adminRouter.get("/ClientList", async (req, res)=>{ //Cette ligne grâce au get p
 // Route qui sert à afficher la page AddServices
 
 adminRouter.get("/AddServices", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AddServices
-    res.render('AddServices.twig')// Là elle va s'afficher
+    try {
+        res.render("AddServices.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -38,7 +58,12 @@ adminRouter.get("/AddServices", async (req, res)=>{ //Cette ligne grâce au get 
 // Route qui sert à afficher la page AddForm
 
 adminRouter.get("/AddForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
-    res.render('AddForm.twig')// Là elle va s'afficher
+    try {
+        res.render("AddForm.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -46,7 +71,12 @@ adminRouter.get("/AddForm", async (req, res)=>{ //Cette ligne grâce au get perm
 // Route qui sert à afficher la page ModifyForm
 
 adminRouter.get("/ModifyForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
-    res.render('ModifyForm.twig')// Là elle va s'afficher
+    try {
+        res.render("ModifyForm.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -54,16 +84,17 @@ adminRouter.get("/ModifyForm", async (req, res)=>{ //Cette ligne grâce au get p
 // Route qui sert à afficher la page DeleteForm
 
 adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
-    res.render('DeleteForm.twig')// Là elle va s'afficher
+    try {
+        res.render("DeleteForm.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
 })
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Route qui sert à afficher la page Clientreview
 
-adminRouter.get("/clientreview", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
-    res.render('clientreview.twig')// Là elle va s'afficher
-})
 
 
 
