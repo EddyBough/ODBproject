@@ -1,4 +1,5 @@
 const adminRouter = require("express").Router() // Constante pour créer un routeur qui a pour nom AdminRouter
+const crypto = require('../service/crypto')
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
