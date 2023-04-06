@@ -95,7 +95,16 @@ adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get p
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
+// Route qui sert à afficher la page ModificationCustomer
 
+adminRouter.get('/modificationCustomer', async (req, res) => {
+    try {
+        res.render("modificationCustomer.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
 
 
 
