@@ -21,41 +21,35 @@
         <img id="blade"src="/img/lame.png" alt="lame">
     </header>
     <main>
-        <form>
+    
+        <form action="/modificationProfil/{{customer.id}}" method="post">
+        
             <div>
                 <label for="name">Nom</label><br>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" value="{{customer.name}}">
             </div>
 
             <div>
-                <label for="surname">Prénom</label><br>
-                <input type="text" id="surname" name="surname">
+                <label for="firstname">Prénom</label><br>
+                <input type="text" id="firstname" name="firstname" value="{{customer.firstname}}">
             </div>
 
             <div>
                 <label for="email">Email</label><br>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" value="{{customer.email}}">
             </div>
 
             <div>
                 <label for="phone">Téléphone</label><br>
-                <input type="tel" id="phone" name="phone">
+                <input type="tel" id="phone" name="phone" value="{{customer.phone}}">
             </div>
 
             <div>
-                <label for="password">Mot de passe</label><br>
-                <input type="password" id="password" name="password">
+                <button id="button" type="submit" >Valider</button>
             </div>
-
-            <div>
-                <label for="confirm_password">Confirmer le mot de passe</label><br>
-                <input type="password" id="password" name="confirmPassword">
-            </div>
-
-            <div>
-                <button id="button" >Valider</button>
-            </div>
+            
         </form>
+
     </main>
     <footer>
         <img id="comb" src="/img/peigne.png" alt="peigne">

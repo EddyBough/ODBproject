@@ -82,10 +82,6 @@ customerRouter.get('/forgotPassword', async (req, res) => {
 
 
 
-
-
-
-
 //-----------------------------------Page Inscription des clients-------------------------------------------------
 
 customerRouter.get('/register', async (req, res) => {// le get permet d'afficher la page d'inscription (register)
@@ -119,11 +115,12 @@ customerRouter.post('/register', async (req,res)=>{// Le post lui permet d'ajout
 
 customerRouter.get('/dashboard', async (req, res)=>{
     try {
+        console.log(req.session);
         let customers =  await customerModel.find({customerId: req.session.customerId})//le find va recuperer une requete mongoose
    res.render('dashboard.twig',{ // je suis bien authentifié mon tableau de bord client apparait
     customers: customers,//la ligne de code customers: customers est un tableau d'objet et permet de donner une étiquette aux données que nous souhaitons afficher dans la vue, 
     //afin que nous puissions les utiliser facilement dans le code Twig pour afficher les informations du client.
-    customerName: req.session.customerName
+    connectedCustomer: req.session.customer//connectedCustomer est égal à la session sur laquelle l'utilisateur est connecté
 })
     } catch (error) {
         console.log(error);
@@ -134,21 +131,28 @@ customerRouter.get('/dashboard', async (req, res)=>{
 
 //-----------------------------------Page Modification des clients-------------------------------------------------
 
-customerRouter.get('/modificationCustomer', async (req, res) => {
+
+
+customerRouter.get('/modificationProfil/:id', async (req, res) => {
     try {
-        res.render("modificationCustomer.twig")
+        let customer = await customerModel.findOne({_id: req.params.id})
+        res.render("modificationProfil.twig",{
+            customer: customer
+        })
     } catch (error) {
         console.log(error);
         res.send(error)
     }
 })
 
-customerRouter.get('/modificationProfil', async (req, res) => {
+customerRouter.post("/modificationProfil/:id", async (req, res)=>{
     try {
-        res.render("modificationProfil.twig")
+        await customerModel.updateOne(({_id: req.params.id}), req.body)
+        res.redirect("/dashboard");
     } catch (error) {
         console.log(error);
-        res.send(error)
+        res.send(error);
+        
     }
 })
 
@@ -175,6 +179,17 @@ customerRouter.get('/postPayments', async (req, res) => {
     }
 })
 
+
+//-----------------------------------Page Avis des clients-------------------------------------------------
+
+customerRouter.get('/clientreview', async (req, res) => {
+    try {
+        res.render("clientreview.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
 
 
 
