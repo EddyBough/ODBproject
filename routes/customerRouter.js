@@ -61,9 +61,9 @@ customerRouter.post('/login', async (req, res) => {// le post va envoyer les don
         let customer = await customerModel.findOne({ mail: req.body.mail }) // le findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
         if (customer && await crypto.comparePassword(req.body.password, customer.password)) {//Si l'email correspond le comparePassword va comparer le mot de passe dans la BDD 
             req.session.customer = customer //L'utilisateur sera récupéré
-            if (customer.role == "admin") {
-                res.redirect('/adminhome')// Il sera redirigé vers le dashboard
-            } else{
+            if (customer.role == "admin") {//Si c'est l'admin
+                res.redirect('/adminhome')// Il sera redirigé vers adminhome
+            } else{//si c'est autre que l'admin ( user donc )
                 res.redirect('/dashboard')// Il sera redirigé vers le dashboard
             }
           
@@ -185,7 +185,7 @@ customerRouter.get('/customerAgenda', async (req, res) => {
 
 
 
-//-----------------------------------Page Modification des clients-------------------------------------------------
+//-----------------------------------Page Modification profil-------------------------------------------------
 
 
 
@@ -236,13 +236,13 @@ customerRouter.get('/postPayments', async (req, res) => {
 })
 
 
-//-----------------------------------Page Avis des clients-------------------------------------------------
+//-----------------------------------Page Clientview-------------------------------------------------
 
-customerRouter.get('/clientreview', async (req, res) => {
+customerRouter.get('/clientreview', async (req, res) => { // fonction qui servira à récupéré la page clientreview et récupéré les avis de clientreview
     try {
-        let reviews = await reviewModel.find()
-        res.render("clientreview.twig",{
-           reviews: reviews,
+        let reviews = await reviewModel.find() // récupéré les données du reviewModel postées du formulaire post clientreview
+        res.render("clientreview.twig",{ 
+           reviews: reviews, // récupérer du FOR review: reviews de la page clientreview tous les avis des clients
         })
     } catch (error) {
         console.log(error);
@@ -252,9 +252,9 @@ customerRouter.get('/clientreview', async (req, res) => {
 
 customerRouter.post('/clientreview', async (req, res) => {
     try {
-        //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
-        let review = new reviewModel(req.body);
-        review.save();// Le client est enregistré dans la BDD
+        
+        let review = new reviewModel(req.body);//On prend en compte le reviewModel
+        review.save();// On l'ajoute 
         res.redirect('/dashboard')//Il sera ensuite redirigé vers son dashboard
     } catch (error) {
         console.log(error);

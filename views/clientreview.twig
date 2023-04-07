@@ -22,19 +22,19 @@
 
     <h1>Votre avis compte !</h1>
     <div id="clientspicture"><img src="/img/clientspicture.svg" alt="clientspicture"></div><br>
-    <hr>{% for review in reviews %}
+    <hr>{% for review in reviews %} <!-- début du FOR qui va afficher les avis en récupérant les données qu'on va soumettre dans le formulaire ci dessous -->
         
     {% for i in ..review.note %}
-         <i  class="las la-star" style="color:#EBBA65;"></i>
+         <i  class="las la-star" style="color:#EBBA65;"></i> <!-- FOR qui va afficher les étoiles -->
      {% endfor %}
-    <p> {{review.name}}</p>
- <p>{{review.avis}}</p><br>
+    <p> {{review.name}}</p> <!-- Afficher le nom de la personne qui va soumettre l'avis pour l'afficher parmi les avis déjà posté -->
+ <p>{{review.avis}}</p><br> <!-- Afficher le contenu de l'avis -->
  <hr>
      <div class="">
      
            
         </div>
-        <p style="visibility:hidden;">{{review.note}}</p>
+        <p style="visibility:hidden;">{{review.note}}</p><!-- afficher l'étoile -->
     {% endfor %}
 
     <!-- FORM REVIEW-->
