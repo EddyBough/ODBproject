@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav>  <!-- NAVIGATION MENU -->
-<div id="navcontainer"><img src="/img/arrowmenu.svg"  id="arrowmenu" alt="arrowmenu" width="26px" height="29px">
+<a href="/dashboard"><div id="navcontainer"><img src="/img/arrowmenu.svg"  id="arrowmenu" alt="arrowmenu" width="26px" height="29px"></a>
                 <img src="/img/ODBlogo.svg" id="ODBLogo" alt="ODBLogo"></div><br>
         </nav>
     </header>
@@ -22,25 +22,32 @@
 
     <h1>Votre avis compte !</h1>
     <div id="clientspicture"><img src="/img/clientspicture.svg" alt="clientspicture"></div><br>
-    <hr>
-    <p> Thomas</p>
-    <p>Résultats impressionnant</p><br>
-    <hr>
-    <p> Fahari </p>
-    <p>Super, je recommande</p><br>
+    <hr>{% for review in reviews %}
+        
+    {% for i in ..review.note %}
+         <i  class="las la-star" style="color:#EBBA65;"></i>
+     {% endfor %}
+    <p> {{review.name}}</p>
+ <p>{{review.avis}}</p><br>
+ <hr>
+     <div class="">
+     
+           
+        </div>
+        <p style="visibility:hidden;">{{review.note}}</p>
+    {% endfor %}
 
     <!-- FORM REVIEW-->
 
-    <form method="post" action="">
+    <form action="/clientreview" method="post">
 		
-		<input type="text" id="nom" name="nom" value="nom"><br><br>
-		<input type="email" id="email" name="email" value="email"><br><br>
+		<input type="text" id="nom" name="name" placeholder="Nom"><br><br>
 
-		<textarea id="avis" name="avis" value="avis" rows="5" cols="30">Ecris ton avis</textarea><br><br>
+		<textarea id="avis" name="avis" value="avis" rows="5" cols="30"></textarea><br><br>
 
     <!-- GESTION OF STARS -->
         <div class="stars">
-            <i class="lar la-star" data-value="1"></i><i class="lar la-star" data-value="2"></i><i class="lar la-star" data-value="3"></i><i class="lar la-star" data-value="4"></i><i class="lar la-star" data-value="5"></i>
+            <i style="color:#EBBA65;" class="las la-star" data-value="1"></i><i class="lar la-star" data-value="2"></i><i class="lar la-star" data-value="3"></i><i class="lar la-star" data-value="4"></i><i class="lar la-star" data-value="5"></i>
         </div>
         <input type="hidden" name="note" id="note" value="0">
 
@@ -59,8 +66,7 @@
             <img src="/img/insta.png" alt="insta">
             <div class="point"></div>
             <img src="/img/Tiktok.png" alt="tiktok">
-            <img id="engine" src="/img/tondeuse_2.png" alt="engine">
-        </div>
+            
 
     </footer>
     

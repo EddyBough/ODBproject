@@ -1,4 +1,5 @@
 const { customerModel } = require("../models/customerModel");
+const { reviewModel } = require("../models/reviewModel");
 const customerRouter = require("express").Router();// Constante pour créer un routeur qui a pour nom customerRouter
 const crypto = require('../service/crypto')
 const axios = require('axios')
@@ -58,9 +59,15 @@ customerRouter.post('/login', async (req, res) => {// le post va envoyer les don
 
     try {
         let customer = await customerModel.findOne({ mail: req.body.mail }) // le findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
-        if (customer && await crypto.comparePassword(req.body.password, customer.password)) { //Si l'email correspond le comparePassword va comparer le mot de passe dans la BDD 
+        if (customer && await crypto.comparePassword(req.body.password, customer.password)) {//Si l'email correspond le comparePassword va comparer le mot de passe dans la BDD 
             req.session.customer = customer //L'utilisateur sera récupéré
-            res.redirect('/dashboard')// Il sera redirigé vers le dashboard
+            if (customer.role == "admin") {
+                res.redirect('/adminhome')// Il sera redirigé vers le dashboard
+            } else{
+                res.redirect('/dashboard')// Il sera redirigé vers le dashboard
+            }
+          
+           
         } else {
             throw 'non connecté'
         }
@@ -233,13 +240,27 @@ customerRouter.get('/postPayments', async (req, res) => {
 
 customerRouter.get('/clientreview', async (req, res) => {
     try {
-        res.render("clientreview.twig")
+        let reviews = await reviewModel.find()
+        res.render("clientreview.twig",{
+           reviews: reviews,
+        })
     } catch (error) {
         console.log(error);
         res.send(error)
     }
 })
 
+customerRouter.post('/clientreview', async (req, res) => {
+    try {
+        //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
+        let review = new reviewModel(req.body);
+        review.save();// Le client est enregistré dans la BDD
+        res.redirect('/dashboard')//Il sera ensuite redirigé vers son dashboard
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
 
 
 

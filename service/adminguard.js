@@ -1,9 +1,9 @@
 const { customerModel } = require("/models/customerModel")
 
-let authGuard = async (req, res, next)=>{ // le authguard va permettre de sécuriser la route et l'authentifié
+let adminGuard = async (req, res, next)=>{ // le authguard va permettre de sécuriser la route et l'authentifié
     const customer = await customerModel.findById(req.session.customer._id)// N'exécute pas ce code tant que l'id n'a pas été comparé avec la base de donné
 
-    if (customer) { // Si l'authentification est valide 
+    if (customer && customer.role == "admin") { // Si l'authentification est valide 
         next() // Joue moi le code qui se trouve dans la route workerView donc la page s'affichera
     }else{
         console.log("deconnexion");

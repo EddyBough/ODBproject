@@ -1,6 +1,8 @@
 window.onload = () => {
     // On va chercher toutes les étoiles
-    const stars = document.querySelectorAll(".la-star");
+    const container = document.querySelector('.stars')
+    const stars = container.getElementsByClassName("la-star");
+    console.log(stars);
     
     // On va chercher l'input
     const note = document.querySelector("#note");
@@ -29,6 +31,7 @@ window.onload = () => {
         // On écoute le clic
         star.addEventListener("click", function(){
             note.value = this.dataset.value;
+            
         });
 
         star.addEventListener("mouseout", function(){
@@ -50,7 +53,10 @@ window.onload = () => {
                 star.style.color = "#EBBA65";
                 star.classList.add("las");
                 star.classList.remove("lar");
+                
             }
         }
+        
     }
+    console.log(note);
 }
