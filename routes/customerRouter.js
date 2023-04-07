@@ -161,6 +161,22 @@ customerRouter.get('/dashboard', async (req, res) => {
     }
 
 });
+//-----------------------------------Page agenda des clients-------------------------------------------------
+
+customerRouter.get('/customerAgenda', async (req, res) => {
+    try {
+        res.render("customerAgenda.twig")
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+})
+
+
+
+
+
+
 
 //-----------------------------------Page Modification des clients-------------------------------------------------
 

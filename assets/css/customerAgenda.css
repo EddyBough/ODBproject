@@ -1,0 +1,33 @@
+@media screen and (max-width:768px) {
+
+    @font-face {
+        font-family: Istok web;
+        src: url(../font/IstokWeb-Bold.ttf);
+        
+    }
+
+
+body{
+    display: flex;
+    font-family:Istok web;
+    margin: 0;
+    padding: 0;
+    background-color: #EDE1D1;
+    flex-direction: column;
+}
+
+header{
+    display: flex;
+    align-items: center;
+}
+
+#arrow{
+    margin-right: 3rem;
+    margin-left: 1rem;
+}
+
+#logo{
+    margin: 0 2rem;
+}
+
+}
