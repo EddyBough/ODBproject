@@ -69,7 +69,7 @@ customerRouter.post('/login', async (req, res) => {// le post va envoyer les don
           
            
         } else {
-            throw 'non connecté'
+            throw 'mot de passe ou email invalide'
         }
 
     } catch (error) {
@@ -139,7 +139,8 @@ customerRouter.post('/register', async (req, res) => {// Le post lui permet d'aj
         //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
         let customer = new customerModel(req.body);
         customer.save();// Le client est enregistré dans la BDD
-        res.redirect('/dashboard')//Il sera ensuite redirigé vers son dashboard
+        req.session.customer = customer // récupérer le customer qui vient d'être créé en session ( le sauvegarder le réutiliser dans le dashboard)
+        res.redirect('/dashboard')
     } catch (error) {
         console.log(error);
         res.send(error)
@@ -156,10 +157,7 @@ customerRouter.post('/register', async (req, res) => {// Le post lui permet d'aj
 customerRouter.get('/dashboard', async (req, res) => {
     try {
         console.log(req.session);
-        let customers = await customerModel.find({ customerId: req.session.customerId })//le find va recuperer une requete mongoose
         res.render('dashboard.twig', { // je suis bien authentifié mon tableau de bord client apparait
-            customers: customers,//la ligne de code customers: customers est un tableau d'objet et permet de donner une étiquette aux données que nous souhaitons afficher dans la vue, 
-            //afin que nous puissions les utiliser facilement dans le code Twig pour afficher les informations du client.
             connectedCustomer: req.session.customer//connectedCustomer est égal à la session sur laquelle l'utilisateur est connecté
         })
     } catch (error) {

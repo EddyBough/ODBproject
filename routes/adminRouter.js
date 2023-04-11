@@ -1,5 +1,6 @@
-const adminRouter = require("express").Router() // Constante pour créer un routeur qui a pour nom AdminRouter
-const crypto = require('../service/crypto')
+const adminRouter = require("express").Router(); // Constante pour créer un routeur qui a pour nom AdminRouter
+const { customerModel } = require("../models/customerModel"); 
+const crypto = require('../service/crypto');
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -14,6 +15,18 @@ adminRouter.get("/adminhome", async (req, res)=>{ //Cette ligne grâce au get pe
         res.send(error)
     }
 })
+
+// Route qui sert à déconnecter l'admin
+
+adminRouter.get("/logout", async (req, res) => {//
+    try {
+        req.session.destroy() //Le destroy va récupérer l'id en cours et va le detruire afin de se deconnecter
+        res.redirect("/login")// Il redige par la suite à la page login
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+});
 
 //----------------------------------------------------------------------------------------------------------------------------------
 
@@ -30,16 +43,24 @@ adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get 
 
 //----------------------------------------------------------------------------------------------------------------------------------
 
-// Route qui sert à afficher la page ClientList
+// Route qui sert à afficher la page ClientList et récupérer la liste de tous les clients
 
-adminRouter.get("/ClientList", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil ClientList
+adminRouter.get('/ClientList', async (req, res) => {
     try {
-        res.render("ClientList.twig")
+        console.log(req.session);
+        let customers = await customerModel.find({}) // modifié pour récupérer tous les clients
+        res.render('ClientList.twig', {
+            customers: customers,
+            connectedCustomer: req.session.customer
+        })
     } catch (error) {
         console.log(error);
-        res.send(error)
+        res.json(error)
     }
-})
+
+});
+
+
 
 //---------------------------------------------------------------------------------------------------------------------------------
 

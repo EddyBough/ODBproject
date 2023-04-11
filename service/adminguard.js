@@ -11,4 +11,4 @@ let adminGuard = async (req, res, next)=>{ // le authguard va permettre de sécu
     }
 }
 
-module.exports = authGuard
+module.exports = adminGuard
