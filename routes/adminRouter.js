@@ -116,14 +116,28 @@ adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get p
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Route qui sert à afficher la page ModificationCustomer
+// Route qui sert à afficher la page ModificationCustomer et modifier un client dans la bdd
 
-adminRouter.get('/modificationCustomer', async (req, res) => {
+adminRouter.get('/modificationCustomer/:id', async (req, res) => { 
     try {
-        res.render("modificationCustomer.twig")
+        let customer = await customerModel.findOne({ _id: req.params.id }) // on va récupérer les données sur la page modificationCustomer
+        res.render("modificationCustomer.twig", {
+            customer: customer
+        })
     } catch (error) {
         console.log(error);
         res.send(error)
+    }
+})
+
+adminRouter.post("/modificationCustomer/:id", async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
+    try {
+        await customerModel.updateOne(({ _id: req.params.id }), req.body)
+        res.redirect("/ClientList");
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+
     }
 })
 

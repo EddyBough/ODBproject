@@ -16,29 +16,29 @@
         <img id="blade"src="/img/lame.png" alt="lame">
     </header>
     <main>
-        <form>
+        <form action="/modificationCustomer/{{customer._id}}" method="post"> <!-- Dans ce form grâce au value= on récupère les données des clients séléctionné sur la page ClientList et grâce à la route dans adminRouter on va modifier les champs qu'on veut et les modif' seront effectuées sur mongoDB -->
             <div>
                 <label for="name">Nom</label><br>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" value="{{customer.name}}">
             </div>
 
             <div>
-                <label for="surname">Prénom</label><br>
-                <input type="text" id="surname" name="surname">
+                <label for="firstname">Prénom</label><br>
+                <input type="text" id="firstname" name="firstname" value="{{customer.firstname}}">
             </div>
 
             <div>
                 <label for="email">Email</label><br>
-                <input type="email" id="email" name="email">
+                <input type="email" id="email" name="email" value="{{customer.email}}">
             </div>
 
             <div>
                 <label for="phone">Téléphone</label><br>
-                <input type="tel" id="phone" name="phone">
+                <input type="tel" id="phone" name="phone" value="{{customer.phone}}">
             </div>
 
             <div>
-                <input id="button" type="submit" value="Valider">
+                <button id="button" type="submit" value="Valider">VALIDER</button>
             </div>
         </form>
     </main>
