@@ -48,9 +48,9 @@ adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get 
 adminRouter.get('/ClientList', async (req, res) => {
     try {
         console.log(req.session);
-        let customers = await customerModel.find({}) // modifié pour récupérer tous les clients
+        let customers = await customerModel.find({}) // le find va récupérer tous les clients créés par le model customerModel
         res.render('ClientList.twig', {
-            customers: customers,
+            customers: customers, // on a créé une boucle for pour récupérer la liste de customer crée dans la bdd 
             connectedCustomer: req.session.customer
         })
     } catch (error) {
