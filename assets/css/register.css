@@ -96,4 +96,10 @@
         right: 6%;
     }
 
+    #container_password span{
+        font-size: small;
+        color: rgb(157, 30, 30);
+    }
+
+
 }
