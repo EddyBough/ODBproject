@@ -66,8 +66,8 @@ customerRouter.post('/login', async (req, res) => {// le post va envoyer les don
             } else{//si c'est autre que l'admin ( user donc )
                 res.redirect('/dashboard')// Il sera redirigé vers le dashboard
             }
-          
-           
+        
+        
         } else {
             throw 'mot de passe ou email invalide'
         }
@@ -135,12 +135,22 @@ customerRouter.get('/register', async (req, res) => {// le get permet d'afficher
 
 customerRouter.post('/register', async (req, res) => {// Le post lui permet d'ajouter un client dans la base de donnée
     try {
+        let errors = {}; //Variable qui va contenir les erreurs
+        if (req.body.password !== req.body.confirmPassword) {// Cette étape permet de vérifier si les MDP sont identique
+            errors.confirmPassword = "*Les mots de passe doivent être identiques";//Si ils ne correspondent pas le message d'erreur sera stocké dans la variable errors
+            return res.render('register.twig', {errors: errors});// et seront renvoyé dans la page register
+        }
+        if (Object.keys(errors).length > 0) {//la longeur de l'erreur est vérifié, si elle est supérieur à 0 cela veut dire qu'il y a  des erreurs dans les données du formulaire
+            return res.render('register', {errors: errors}); //elles seront renvoyé au register.twig
+        }else{//si il ne trouve pas d'erreur, le MDP est crypté à l'aide de la fonction cryptopassword avant d'etre enregistré dans la base de données            
         req.body.password = await crypto.cryptPassword(req.body.password)//Await est utilisé pour attendre la fin de l'éxécution du crypto.
         //le crypto permet lui de crypter le password afin qu'il ne soit pas visible dans la BDD
         let customer = new customerModel(req.body);
         customer.save();// Le client est enregistré dans la BDD
         req.session.customer = customer // récupérer le customer qui vient d'être créé en session ( le sauvegarder le réutiliser dans le dashboard)
         res.redirect('/dashboard')
+        }
+        
     } catch (error) {
         console.log(error);
         res.send(error)
