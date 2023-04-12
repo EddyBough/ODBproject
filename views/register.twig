@@ -40,11 +40,15 @@
             <div>
                 <label for="password">Mot de passe</label><br>
                 <input type="password" id="password" name="password">
+                <span>{{errors.password}}</span>
             </div>
 
-            <div>
+            <div id="container_password">
                 <label for="confirm_password">Confirmer le mot de passe</label><br>
-                <input type="password" id="password" name="confirmPassword">
+                <input type="password" id="password" name="confirmPassword"><br>
+                {% if errors.confirmPassword %}
+                <span>{{errors.confirmPassword}}</span>
+                {% endif %}
             </div>
 
             <div>
