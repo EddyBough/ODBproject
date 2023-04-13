@@ -58,7 +58,7 @@ customerRouter.get('/login', async (req, res) => {// le get permet d'afficher la
 customerRouter.post('/login', async (req, res) => {// le post va envoyer les donnée qu'on a entré dans le formulaire de connexion
 
     try {
-        let customer = await customerModel.findOne({ mail: req.body.mail }) // le findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
+        let customer = await customerModel.findOne({ email: req.body.email }) // le findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
         if (customer && await crypto.comparePassword(req.body.password, customer.password)) {//Si l'email correspond le comparePassword va comparer le mot de passe dans la BDD 
             req.session.customer = customer //L'utilisateur sera récupéré
             if (customer.role == "admin") {//Si c'est l'admin
@@ -191,8 +191,6 @@ customerRouter.get('/customerAgenda', async (req, res) => {
 
 
 
-
-
 //-----------------------------------Page Modification profil-------------------------------------------------
 
 
@@ -223,7 +221,7 @@ customerRouter.post("/modificationProfil/:id", async (req, res) => {
 //-----------------------------------Page paiement des clients-------------------------------------------------
 
 
-customerRouter.get('/payments', async (req, res) => {
+customerRouter.get('/payment', async (req, res) => {
     try {
         res.render("Payment.twig")
     } catch (error) {
@@ -234,7 +232,7 @@ customerRouter.get('/payments', async (req, res) => {
 
 
 
-customerRouter.get('/postPayments', async (req, res) => {
+customerRouter.get('/postPayment', async (req, res) => {
     try {
         res.render("postPayment.twig")
     } catch (error) {
