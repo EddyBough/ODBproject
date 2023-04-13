@@ -2,7 +2,7 @@ const { customerModel } = require("../models/customerModel");
 const { reviewModel } = require("../models/reviewModel");
 const customerRouter = require("express").Router();// Constante pour créer un routeur qui a pour nom customerRouter
 const crypto = require('../service/crypto')
-const axios = require('axios')
+const eventModel = require('../models/eventModel')
 
 //-----------------------------------Page Home------------------------------------------------------------------
 
@@ -16,24 +16,17 @@ customerRouter.get('/home', async (req, res) => {// le get permet d'afficher la 
     }
 })
 
+//-----------------------------------Page TEST------------------------------------------------------------------
+
 customerRouter.get('/test', async (req, res) => {// le get permet d'afficher la page d'inscription (register)
-    try {
-        const headers = {
-            'Authorization': `Bearer ${process.env.API_KEY}`,
-          };
-        let res = await axios.get(`https://calendly.com/api/v1/users/me`, {
-            headers: headers
-          })
+    let events = await eventModel.eventModel.find()
+    res.render("test.twig",{ 
+    })
+})
 
-         
-          console.log(res);
-        res.render("home.twig",{
-
-        })
-    } catch (error) {
-        console.log(error);
-        res.send(error)
-    }
+customerRouter.get('/events', async (req, res) => {// La route du fetch pour le calendrier sur la page test
+    let events = await eventModel.eventModel.find()
+    res.json(events)
 })
 
 

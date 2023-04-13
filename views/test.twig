@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'/>
+		<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+		<script>
+
+			document.addEventListener('DOMContentLoaded', async function () { // on a la fonction qui permet d'afficher le calendrier
+let calendarEl = document.getElementById('calendar'); // le calendar est ici
+let calendar = new FullCalendar.Calendar(calendarEl, {initialView: 'dayGridMonth'});
+let events = await fetch('http://localhost:3005/events') // on appelle la route qu'on fetch 
+events = await events.json()
+events.forEach(element => {
+    calendar.addEvent(element);
+});
+
+// Ajouter l'événement au calendrier
+calendar.render();
+});
+		</script>
+	</head>
+	<body>
+		<div id='calendar'></div>
+	</body>
+</html>
