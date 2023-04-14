@@ -2,7 +2,7 @@ const { customerModel } = require("../models/customerModel");
 const { reviewModel } = require("../models/reviewModel");
 const customerRouter = require("express").Router();// Constante pour créer un routeur qui a pour nom customerRouter
 const crypto = require('../service/crypto')
-const axios = require('axios') //Importe la bibliothèque axios
+const eventModel = require('../models/eventModel')
 
 //-----------------------------------Page Home------------------------------------------------------------------
 
@@ -16,17 +16,19 @@ customerRouter.get('/home', async (req, res) => {// le get permet d'afficher la 
     }
 })
 
+//-----------------------------------Page TEST------------------------------------------------------------------
+
 customerRouter.get('/test', async (req, res) => {// le get permet d'afficher la page d'inscription (register)
     try {
         const headers = {
             'Authorization': `Bearer ${process.env.API_KEY}`,
-        };
+          };
         let res = await axios.get(`https://calendly.com/api/v1/users/me`, {
             headers: headers
-        })
+          })
 
-        
-        console.log(res);
+         
+          console.log(res);
         res.render("home.twig",{
 
         })
