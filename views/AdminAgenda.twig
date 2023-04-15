@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang='en'>
+	<head>
+	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/AdminAgendastyle.css">
-    <title>Agenda Administrator</title>
-</head>
-<body>
-    <header>
-        <nav>  <!-- NAVIGATION MENU -->
-<a href="/adminhome"><div id="navcontainer"><img src="/img/arrowmenu.png"  id="arrowmenu" alt="arrowmenu" width="26px" height="24px"></a>
-                <img src="/img/ODBlogo.png" id="ODBLogo" alt="ODBLogo"></div><br>
-        </nav>
-    </header>
-    
-    <main>
-            <!-- AGENDA PART -->
-<div id="agendacontainer">
-<div><p>Agenda</p></div>
-<div class="calendly-inline-widget" data-url="https://calendly.com/boughanmieddy8" style="min-width:320px;height:630px;"></div> <!-- LIEN WIDGET DE L'API-->
-<script type="text/javascript" src="https://calendly.com/assets/external/widget.js"></script> <!-- script de l'api  -->
-</div>
+		<link rel="stylesheet" href="/css/adminAgenda.css">
+		<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
+		<script>
+		document.addEventListener('DOMContentLoaded', async function () { // on a la fonction qui permet d'afficher le calendrier
+    let calendarEl = document.getElementById('calendar'); // le calendar est ici
+    let calendar = new FullCalendar.Calendar(calendarEl, {initialView: 'timeGrid',locale:"fr"});
+    let events = await fetch('http://localhost:3005/events') // on appelle la route qu'on fetch
+    events = await events.json()
+    events.forEach(element => {
+        calendar.addEvent(element);
+        });
+        // Ajouter l'événement au calendrier
+        calendar.render();
+        });
+		</script>
+	</head>
+	<body>
+	
+	<header>
+		<img id="arrow" src="/img/fleche_gauche.png" width="33px" height="33px" alt="fleche">
+        <img id="logo" src="/img/logo.png"  alt="logo">
+	</header>
+	<main>
+	<div>
+		<h2>Agenda</h2>
+	</div>
 
-    </main>
-    
-</body>
-</html>
+	<div id='calendar'></div>
+	</main>
+		
+	</body>
+
+	</html>
