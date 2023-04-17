@@ -1,5 +1,7 @@
 const adminRouter = require("express").Router(); // Constante pour créer un routeur qui a pour nom AdminRouter
 const { customerModel } = require("../models/customerModel"); 
+const { prestationModel } = require("../models/prestationModel"); 
+const upload = require('../service/uploaderImg')
 const crypto = require('../service/crypto');
 
 
@@ -66,14 +68,56 @@ adminRouter.get('/ClientList', async (req, res) => {
 
 // Route qui sert à afficher la page AddServices
 
-adminRouter.get("/AddServices", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AddServices
+adminRouter.get('/AddServices', upload.single('photo'), async (req, res) => {
     try {
-        res.render("AddServices.twig")
+        console.log(req.session);
+        let prestations = await prestationModel.find({}) // le find va récupérer tous les clients créés par le model customerModel
+        res.render('AddServices.twig', {
+            prestation: prestations, // on a créé une boucle for pour récupérer la liste de customer crée dans la bdd 
+            connectedCustomer: req.session.customer // on récupère le customer en session qui est connecté ( l'admin dans notre cas)
+        })
     } catch (error) {
         console.log(error);
-        res.send(error)
+        res.json(error)
     }
-})
+
+});
+
+adminRouter.post('/AddPrestation', upload.single('photo'), async (req, res) => { // fonction qui sert à ajouter les prestations (page AddForm)
+    try {
+      const { title, category, price, type } = req.body;
+      const photo = req.file.filename;
+      const prestations = new prestationModel({ title, category, price, type, photo }); // ajout de la prestation en suivant le prestationModel
+      await prestations.save(); // Ajout de la prestation dans la bdd 
+      res.redirect('/AddServices'); // lorsque l'ajout est fait, redirection vers AddServices
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  });
+
+  adminRouter.post('/ModifyForm/:id', upload.single('photo'), async (req, res) => {
+    try {
+      const id = req.body.id;
+      const updatedPrestation = {
+        title: req.body.title,
+        category: req.body.category,
+        price: req.body.price,
+        type: req.body.type,
+        photo: req.body.photo
+      };
+      const result = await prestationModel.findByIdAndUpdate(id, updatedPrestation);
+      if (!result) {
+        return res.status(404).send('Prestation non trouvée');
+      }
+      res.redirect('/AddServices');
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Erreur lors de la modification de la prestation');
+    }
+  });
+
+
 
 //---------------------------------------------------------------------------------------------------------------------------------
 

@@ -30,14 +30,14 @@
                 <div class="circle">
                     <img src="/img/coupe.png" alt="coupe">
                 </div>
-                <div class="titleService">Coupe de cheveux</div>
+                <div class="titleService">{% for prestation in prestation %}{{prestation.title}}</div> <!-- FOR qui va itérer toutes les coupes existante en bdd -->
                 <div class="price">
-                    <p>Adulte : 15€ </p>
-                    <p>Adulte : 15€</p>
+                    <p>{{prestation.type}} </p>
+                    <p>{{prestation.price}}€</p>
                 </div>
             </div>
             <div>
-                <div class="circle">
+                <div class="circle">{% endfor %}
                     <img src="/img/coloration.png" alt="coloration">
                 </div>
                 <div class="titleService">Coloration</div>

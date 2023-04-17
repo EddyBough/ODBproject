@@ -20,18 +20,18 @@
     <!-- ADD FORM CONTAINER -->
 
     <div class="container">
-<form action="" method="post">
+<form method="POST" action="/AddPrestation" enctype="multipart/form-data"> <!-- chemin qui correspond à la route dans adminRouter qui permettra d'ajouter en bdd et de les récupérer sur la page AddServices ensuite. -->
     <h1>Ajout</h1>
     <label>Titre : </label>
-    <input type="text" name="nom" />
-    <label>Personne : </label>
-    <input type="text" name="prenom" />
+    <input type="text" name="title"/>
+    <label>Catégorie : </label>
+    <input type="text" name="category"/>
     <label>Prix : </label>
-    <input type="text" name="telephone" />
+    <input type="text" name="price"/>
     <label>Type : </label>
-    <input type="text" name="adresse" />
-    <label>Image : </label>
-    <input type="text" name="email" />
+    <input type="text" name="type"/>
+    <label for="file">Sélectionnez une image :</label>
+  <input type="file" id="image" name="photo">
     <button type="submit">Ajouter</button>
 </form>
 </div>

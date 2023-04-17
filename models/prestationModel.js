@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Schema créé pour les prestations ( modification, ajout, suppression dans la view admin )
 
 const prestationSchema = new mongoose.Schema({
 
@@ -20,21 +20,15 @@ const prestationSchema = new mongoose.Schema({
         type: Number,
         required: [true, "prix requis"],
     },
-    phone:{
-        type: Number,
-        required: [true, "telephone requis"],
+    type:{
+        type: String,
+        required: [true, "type requis"],
     },
-    password:{
+    photo:{
         type: String,
         required: [true, "mot de passe requis"],
     },
-    role:{
-        type: String,
-        required: [true],
-        enum:['user','admin'],
-        default: 'user',
-    }
 });
 
-const prestationModel = mongoose.model ('prestation', prestationSchema);
+const prestationModel = mongoose.model ('prestations', prestationSchema);
 exports.prestationModel = prestationModel;
