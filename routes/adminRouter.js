@@ -185,6 +185,20 @@ adminRouter.post("/modificationCustomer/:id", async (req, res) => { // ici en cl
     }
 })
 
+//---------------------------------------------------------------------------------------------------------------------------------
+
+// Route qui sert à se déconnecter
+
+adminRouter.get("/logout", async (req, res) => {//
+    try {
+        req.session.destroy() //Le destroy va récupérer l'id en cours et va le detruire afin de se deconnecter
+        res.redirect("/login")// Il redige par la suite à la page login
+    } catch (error) {
+        console.log(error);
+        res.send(error)
+    }
+});
+
 
 
 
