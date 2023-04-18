@@ -35,19 +35,20 @@
             <div>
                 <label for="phone">Téléphone</label><br>
                 <input type="tel" id="phone" name="phone">
+                <span class="error">{{errors.phone.message}}</span>
             </div>
 
             <div>
                 <label for="password">Mot de passe</label><br>
                 <input type="password" id="password" name="password">
-                <span>{{errors.password}}</span>
+                <span class="error">{{errors.password.message}}</span>
             </div>
 
             <div id="container_password">
                 <label for="confirm_password">Confirmer le mot de passe</label><br>
                 <input type="password" id="password" name="confirmPassword"><br>
                 {% if errors.confirmPassword %}
-                <span>{{errors.confirmPassword}}</span>
+                <span class="error">{{errors.confirmPassword}}</span>
                 {% endif %}
             </div>
 

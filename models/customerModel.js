@@ -1,51 +1,59 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const customerSchema = new mongoose.Schema({
-
-    name: {
-        type: String,
-        required: [true, "nom requis"],
-        validate:{
-            validator: function(v){
-                return /^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(v)
-            },
-            message: "Entrez un nom valide"
-    }
+  name: {
+    type: String,
+    required: [true, "nom requis"],
+    validate: {
+      validator: function (v) {
+        return /^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+          v
+        );
+      },
+      message: "Entrez un nom valide",
     },
-    firstname: {
-        type: String,
-        required: [true, "prenom requis"],
-        validator: function(v) {
-            return /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(v);
-        },
-        message: "Entrez un prenom valide"
+  },
+  firstname: {
+    type: String,
+    required: [true, "prenom requis"],
+    validator: function (v) {
+      return /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+        v
+      );
     },
-    email: {
-        type: String,
-        required: [true, "mail requis"],
-        validate: {
-            validator: function(v) {
-                return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(v);
-            },
-            message: "Entrez un mail valide"
-        },
+    message: "Entrez un prenom valide",
+  },
+  email: {
+    type: String,
+    required: [true, "mail requis"],
+    validate: {
+      validator: function (v) {
+        return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(v);
+      },
+      message: "Entrez un mail valide",
     },
-    phone:{
-        type: Number,
-        required: [true, "telephone requis"],
+  },
+  phone: {
+    type: Number,
+    required: [true, "telephone requis"],
+    validate: {
+      validator: function (value) {
+        return /^(\+33|0)[0-9]{9}$/.test(v);
+      },
+      message: "Numéro de téléphone invalide",
     },
-    password:{
-        type: String,
-        required: [true, "mot de passe requis"],
-    },
-    role:{
-        type: String,
-        required: [true],
-        enum:['user','admin'],
-        default: 'user',
-    }
+  },
+  password: {
+    type: String,
+    required: [true, "mot de passe requis"],
+  },
+  role: {
+    type: String,
+    required: [true],
+    enum: ["user", "admin"],
+    default: "user",
+  },
 });
 
-const customerModel = mongoose.model ('customer', customerSchema);
+const customerModel = mongoose.model("customer", customerSchema);
 exports.customerModel = customerModel;
-
