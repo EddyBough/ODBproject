@@ -34,10 +34,10 @@ const customerSchema = new mongoose.Schema({
     },
   },
   phone: {
-    type: Number,
+    type: String,
     required: [true, "telephone requis"],
     validate: {
-      validator: function (value) {
+      validator: function (v) {
         return /^(\+33|0)[0-9]{9}$/.test(v);
       },
       message: "Numéro de téléphone invalide",
