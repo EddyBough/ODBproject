@@ -96,27 +96,6 @@ adminRouter.post('/AddPrestation', upload.single('photo'), async (req, res) => {
     }
   });
 
-  adminRouter.post('/ModifyForm/:id', upload.single('photo'), async (req, res) => {
-    try {
-      const id = req.body.id;
-      const updatedPrestation = {
-        title: req.body.title,
-        category: req.body.category,
-        price: req.body.price,
-        type: req.body.type,
-        photo: req.body.photo
-      };
-      const result = await prestationModel.findByIdAndUpdate(id, updatedPrestation);
-      if (!result) {
-        return res.status(404).send('Prestation non trouvée');
-      }
-      res.redirect('/AddServices');
-    } catch (error) {
-      console.log(error);
-      res.status(500).send('Erreur lors de la modification de la prestation');
-    }
-  });
-
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
@@ -134,16 +113,32 @@ adminRouter.get("/AddForm", async (req, res)=>{ //Cette ligne grâce au get perm
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Route qui sert à afficher la page ModifyForm
+// Route qui sert à afficher la page ModifyForm et faire les modifications des prestations
 
-adminRouter.get("/ModifyForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+adminRouter.get('/ModifyForm/:id', async (req, res) => { 
     try {
-        res.render("ModifyForm.twig")
+        let prestation = await prestationModel.findOne({ _id: req.params.id }) // on va récupérer les données sur la page modificationCustomer
+        res.render("ModifyForm.twig", {
+            prestation: prestation
+        })
     } catch (error) {
         console.log(error);
         res.send(error)
+    } 
+})
+
+adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
+    try {
+        req.body.photo = req.file.filename // je renvoi la requête qui va post la photo que je modifie
+        await prestationModel.updateOne(({ _id: req.params.id }), req.body)
+        res.redirect("/AddServices");
+    } catch (error) {
+        console.log(error);
+        res.send(error);
+
     }
 })
+
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
