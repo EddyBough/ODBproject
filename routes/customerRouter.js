@@ -3,6 +3,35 @@ const { reviewModel } = require("../models/reviewModel");
 const customerRouter = require("express").Router(); // Constante pour créer un routeur qui a pour nom customerRouter
 const crypto = require("../service/crypto");
 const eventModel = require("../models/eventModel");
+const nodemailer = require("nodemailer") // nodemailer
+
+
+//----------Route du NODEMAILER-------------------------------//
+
+const transporter = nodemailer.createTransport({        
+  service: "Outlook365",
+  auth: {
+    user: process.env.USER_MAIL,
+    pass: process.env.PASS_MAIL,
+  },
+  tls: {rejectUnauthorized: false}
+})
+
+customerRouter.get('/sendMail', async (req, res) =>{ // repasser en POST lorsque ce sera mis en place
+  try{
+    
+     let info = await transporter.sendMail({
+        from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
+        to: "boughanmieddy@outlook.fr",
+        subject: "test",
+        html: "test dddd",
+     })
+     res.redirect('/login')
+  }catch (err){
+     console.log(err);
+     res.send(err)
+  }
+})
 
 //-----------------------------------Page Home------------------------------------------------------------------
 

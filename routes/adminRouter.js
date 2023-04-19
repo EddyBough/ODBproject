@@ -127,10 +127,33 @@ adminRouter.get('/ModifyForm/:id', async (req, res) => {
     } 
 })
 
+// adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => { // lorsque qu'on post un formulaire de modif, 
+//     try {
+//         let updateData = {}; //Avec ce code, nous initialisons un objet vide updateData
+//         if (req.file) { //nous vérifions si une nouvelle image a été téléchargée avec if (req.file)
+//             updateData.photo = req.file.filename; // Si c'est le cas, nous mettons à jour la valeur de photo dans l'objet updateData avec le nom de fichier de la nouvelle image
+//         }
+//         updateData.title = req.body.title;
+//         updateData.category = req.body.category;
+//         updateData.price = req.body.price;
+//         updateData.type = req.body.type;
+
+//         await prestationModel.updateOne({ _id: req.params.id }, updateData); //Ici, nous utilisons l'ID de la prestation que nous souhaitons modifier pour le sélectionner. C'est pourquoi nous avons { _id: req.params.id }.
+//         //Ici, nous utilisons updateData qui est l'objet que nous avons créé à partir des valeurs saisies dans le formulaire de modification.
+//         res.redirect("/AddServices");
+//     } catch (error) {
+//         console.log(error);
+//         res.send(error);
+//     }
+// });
+
 adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
     try {
-        req.body.photo = req.file.filename // je renvoi la requête qui va post la photo que je modifie
-        await prestationModel.updateOne(({ _id: req.params.id }), req.body)
+        
+        if (req.file) { // file est une expression de multer donc la requête recupère file
+          req.body.photo = req.file.filename //Cette ligne vérifie si un fichier a été téléchargé dans la requête. Si c'est le cas, elle met à jour le champ "photo" de l'objet "req.body" avec le nom du fichier téléchargé.
+        }
+        await prestationModel.updateOne(({ _id: req.params.id }), req.body)//Cette ligne utilise la méthode "updateOne" du modèle "prestationModel" pour mettre à jour un document de la collection "prestations" avec l'ID correspondant à "req.params.id". Elle passe l'objet "req.body" comme argument pour définir les nouvelles valeurs des champs de la collection. Cette méthode est asynchrone, donc nous utilisons le mot clé "await" pour attendre sa résolution avant de continuer.
         res.redirect("/AddServices");
     } catch (error) {
         console.log(error);
@@ -138,6 +161,8 @@ adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => 
 
     }
 })
+
+
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
