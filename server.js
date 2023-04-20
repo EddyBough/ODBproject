@@ -37,20 +37,20 @@ mongoose.connect(db)
 //*****************Algo pour créer les rendez-vous directement dans le serveur grace au modelEvent*************/
 
 
-  for (let i = 0; i < 10; i++) {
-    let date = new Date();
-  date.setMinutes(date.getMinutes() + (i*30));
-  dateEnd = new Date()
-  dateEnd.setMinutes(date.getMinutes() + 30),
-    obj = {
-      title:"Rendez-vous",
-      start:date.toISOString(),
-      end: dateEnd.toISOString(),
-      allDay: 0,
-      userId: "643d56ecfe93fca1e3650bbe",
-    }
-    let event = new eventModel.eventModel(obj);
-    event.save()
+  // for (let i = 0; i < 10; i++) {
+  //   let date = new Date();
+  // date.setMinutes(date.getMinutes() + (i*30));
+  // dateEnd = new Date()
+  // dateEnd.setMinutes(date.getMinutes() + 30),
+  //   obj = {
+  //     title:"Rendez-vous",
+  //     start:date.toISOString(),
+  //     end: dateEnd.toISOString(),
+  //     allDay: 0,
+  //     userId: "643d56ecfe93fca1e3650bbe",
+  //   }
+  //   let event = new eventModel.eventModel(obj);
+  //   event.save()
     
-  }
+  // }
   
