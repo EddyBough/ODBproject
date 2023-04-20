@@ -19,18 +19,18 @@
 <!-- DELETE FORM  -->
 
     <div class="container">
-<form action="" method="post">
+<form action="/DeleteForm/{{prestation._id}}" method="post" enctype="multipart/form-data"> <!-- route liée sur AddServices.twig et chemin lié à la route adminRouter.get et post('/ModifyForm/:id' -->
     <h1>Supprimer</h1>
     <label>Titre : </label>
-    <input type="text" name="nom" />
-    <label>Personne : </label>
-    <input type="text" name="prenom" />
+    <input type="text" name="title" value="{{prestation.title}}"/>
+    <label>Catégorie : </label>
+    <input type="text" name="category" value="{{prestation.category}}" />
     <label>Prix : </label>
-    <input type="text" name="telephone" />
+    <input type="text" name="price" value="{{prestation.price}}" />
     <label>Type : </label>
-    <input type="text" name="adresse" />
-    <label>Image : </label>
-    <input type="text" name="email" />
-    <button type="submit">Supprimer</button>
+    <input type="text" name="type" value="{{prestation.type}}" />
+    <label for="file">Sélectionnez une image :</label>
+    <input type="file" id="image" name="photo" value="{{prestation.photo}}">
+    <button type="submit">Supression</button>
 </form>
 </div>

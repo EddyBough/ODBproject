@@ -127,25 +127,6 @@ adminRouter.get('/ModifyForm/:id', async (req, res) => {
     } 
 })
 
-// adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => { // lorsque qu'on post un formulaire de modif, 
-//     try {
-//         let updateData = {}; //Avec ce code, nous initialisons un objet vide updateData
-//         if (req.file) { //nous vérifions si une nouvelle image a été téléchargée avec if (req.file)
-//             updateData.photo = req.file.filename; // Si c'est le cas, nous mettons à jour la valeur de photo dans l'objet updateData avec le nom de fichier de la nouvelle image
-//         }
-//         updateData.title = req.body.title;
-//         updateData.category = req.body.category;
-//         updateData.price = req.body.price;
-//         updateData.type = req.body.type;
-
-//         await prestationModel.updateOne({ _id: req.params.id }, updateData); //Ici, nous utilisons l'ID de la prestation que nous souhaitons modifier pour le sélectionner. C'est pourquoi nous avons { _id: req.params.id }.
-//         //Ici, nous utilisons updateData qui est l'objet que nous avons créé à partir des valeurs saisies dans le formulaire de modification.
-//         res.redirect("/AddServices");
-//     } catch (error) {
-//         console.log(error);
-//         res.send(error);
-//     }
-// });
 
 adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
     try {
@@ -177,6 +158,16 @@ adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get p
         res.send(error)
     }
 })
+
+adminRouter.post("/DeleteForm/:id", async (req, res) => { // cette fonction sert à supprimer une prestation depuis la page AddServices.twig
+    try {
+      await prestationModel.deleteOne({ _id: req.params.id }); //Il va recuperer l'id de la BDD afin de le supprimer
+      res.redirect("/AddServices"); //Ensuite il le redirige vers la page connexion
+    } catch (error) {
+      console.log(error);
+      res.send(error);
+    }
+  });
 
 //---------------------------------------------------------------------------------------------------------------------------------
 

@@ -18,9 +18,8 @@
     <main> <!-- ADD/MODIFY/DELETE BUTTON -->
         <div id="prestation"><p>Mes prestations</p></div>
         <div class="ActionButton">
-            <a href="/AddForm" target="_blank"> <img id="Addbg" src="/img/Addbuttonbg.png" alt="AddButton"></a>
-            <a href="/ModifyForm" target="_blank"><img id="Modifybg" src="/img/Modifybuttonbg.png" alt="ModifyButton"></a>
-            <a href="/DeleteForm" target="_blank"><img id="Deletebg" src="/img/Deletebuttonbg.png" alt="DeleteButton"></a>
+            <a href="/AddForm"> <img id="Addbg" src="/img/Addbuttonbg.png" alt="AddButton"></a>
+            
         </div>
         
         <!-- Service Part -->
@@ -36,6 +35,7 @@
                     <p>{{prestation.type}}</p>
                     <p>{{prestation.price}}€</p>
                     <a href="/ModifyForm/{{prestation._id}}"><button>Modifier</button></a><!-- chemin lié à la route adminRouter.get('/ModifyForm/:id' -->
+                    <a href="/DeleteForm/{{prestation._id}}"><button>Supprimer</button></a>                
                 </div>
             </div>
             {% endfor %}
