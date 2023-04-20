@@ -40,7 +40,7 @@ const customerSchema = new mongoose.Schema({
       validator: function (v) {
         return /^(\+33|0)[0-9]{9}$/.test(v);
       },
-      message: "Numéro de téléphone invalide",
+      message: "Le format du n° de tel est incorrect",
     },
   },
   password: {

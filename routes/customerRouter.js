@@ -163,6 +163,12 @@ customerRouter.post("/register", async (req, res) => {
       errors.confirmPassword = "*Les mots de passe doivent être identiques"; //Si ils ne correspondent pas le message d'erreur sera stocké dans la variable errors
       return res.render("register.twig", { errors: errors }); // et seront renvoyé dans la page register
     }
+    let usersearch = await customerModel.findOne({email:req.body.email})
+    if (usersearch) {
+      errors.email = "cette email existe déjà";
+      return res.render("register.twig", { errors: errors });
+    }
+
     if (Object.keys(errors).length > 0) {
       //la longeur de l'erreur est vérifié, si elle est supérieur à 0 cela veut dire qu'il y a  des erreurs dans les données du formulaire
       return res.render("register", { errors: errors }); //elles seront renvoyé au register.twig
