@@ -148,7 +148,7 @@ adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => 
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
-// Route qui sert à afficher la page DeleteForm
+// Route qui sert à afficher la page DeleteForm (ne sert à rien pour l'instant car on rentre dans le get de la route juste en dessous)
 
 adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
     try {
@@ -159,10 +159,12 @@ adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get p
     }
 })
 
-adminRouter.post("/DeleteForm/:id", async (req, res) => { // cette fonction sert à supprimer une prestation depuis la page AddServices.twig
+
+// fonction qui permet de supprimer la prestation
+adminRouter.get("/DeleteForm/:id", async (req, res) => { 
     try {
-      await prestationModel.deleteOne({ _id: req.params.id }); //Il va recuperer l'id de la BDD afin de le supprimer
-      res.redirect("/AddServices"); //Ensuite il le redirige vers la page connexion
+      await prestationModel.deleteOne({ _id: req.params.id }); //Il va recuperer l'id de la prestation séléctionné dans la BDD afin de le supprimer
+      res.redirect("/AddServices"); //Ensuite il le redirige vers la page AddServices
     } catch (error) {
       console.log(error);
       res.send(error);

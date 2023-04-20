@@ -32,7 +32,7 @@
                 </div>
                 <div class="titleService">{{prestation.title}}</div> <!-- FOR qui va itérer toutes les coupes existante en bdd -->
                 <div class="price">
-                    <p>{{prestation.type}}</p>
+                    <p>{{prestation.category}}</p>
                     <p>{{prestation.price}}€</p>
                     <a href="/ModifyForm/{{prestation._id}}"><button>Modifier</button></a><!-- chemin lié à la route adminRouter.get('/ModifyForm/:id' -->
                     <a href="/DeleteForm/{{prestation._id}}"><button>Supprimer</button></a>                

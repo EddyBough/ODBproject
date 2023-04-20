@@ -16,10 +16,9 @@
       font-family: istokbold;
     }
   /* ------------------ nav container ------------------------------- */
-    #navcontainer{
+      #navcontainer{
       display: flex;
       justify-content:space-between;
-      margin-top: 35px;
       background-color: #EDE1D1;
       margin: 0;
       }

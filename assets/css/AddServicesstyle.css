@@ -19,7 +19,6 @@
     #navcontainer{
       display: flex;
       justify-content:space-between;
-      margin-top: 35px;
       background-color: #EDE1D1;
       margin: 0;
       }
@@ -28,22 +27,29 @@
       margin-left: 12px;
       }
       #ODBLogo{/* ------ LOGO ODB  ------ */
-      margin-right:137px ;
+      margin-right:128px ;
       }
       /*************** Dashbord Part************/
     main{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     }
     
     #prestation{
-    text-align: center;
     font-size: x-large; 
     }
-    .ActionButton{ /*************** Add/Modify/Delete buttons ************/
+    .ActionButton{ /*************** Add button ************/
         margin-top: 34px;
+    }
+
+    button{/*************** /Modify/Delete buttons ************/
+        font-family: istokregular;
+        width: 5rem;
+        background-color: #EDE1D1;
+        border: #2B1615 solid 1px;
+        border-radius: 10px 10px 10px 10px;
+
     }
                     
                 /*************** Service Container ************/
@@ -68,11 +74,7 @@
         margin: 8px;
         margin-top: 50px;
     }
-    .circle:hover{
-        border: 6px solid #55AADB;
-        }
     
-
     .titleService{
         text-align: center;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -81,7 +83,7 @@
 
     .price{
         width: 150px;
-        height: 95px;
+        height: 144px;
         background: #EDE1D1;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         border-radius: 7px;
@@ -107,8 +109,12 @@
         border: 1px solid #B18D8B;
         border-radius: 26px;
         font-size: large;
-        font-family: Istok web;
+        font-family: istokbold;
         margin-bottom: 30px;
+    }
+
+    a{
+        text-decoration: none;
     }
 
     #disconnect:hover{
