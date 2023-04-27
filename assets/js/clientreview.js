@@ -8,7 +8,7 @@ window.onload = () => {
     const note = document.querySelector("#note");
 
     // On boucle sur les étoiles pour le ajouter des écouteurs d'évènements
-    for(star of stars){
+    for(let star of stars){
         // On écoute le survol
         star.addEventListener("mouseover", function(){
             resetStars();

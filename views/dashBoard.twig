@@ -52,12 +52,12 @@
                 <div class="titleCircle">{{prestation.title}}</div>
                 <div class="price">
                     <div class="choice">
-                            <input class="checkbox-spin" type="checkbox" id="check1"/>
-                            <label for="check1"><span></span>{{prestation.category}}{{prestation.price}}€</label>
-                    </div>
+                            <input class="checkbox-spin" data-price={{prestation.price}}  type="checkbox"  id="check{{ prestation.id ~ loop.index }}"/>
+                            <label for="check{{ prestation.id ~ loop.index }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
+                    </div> 
                     <div class="choice">
-                        <input class="checkbox-spin" type="checkbox" id="check2"/>
-                        <label for="check2"><span></span>{{prestation.category}}{{prestation.price}}€</label>
+                        <input class="checkbox-spin" data-price={{prestation.price}} type="checkbox" id="check{{ prestation.id ~ (loop.index + 1) }}"/>
+                        <label for="check{{ prestation.id ~ (loop.index + 1) }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
                     </div>
                 </div>
                 
@@ -65,6 +65,10 @@
             {% endfor %}
             </div>
         </div>
+
+        <a href="/customerAgenda">
+                <button id="disconnect">Prendre rendez vous</button>
+            </a>
         <!-- Opinion and fidelity -->
             <div id="OpinionFidelity">
                 <div id="fidelityCard">
@@ -111,5 +115,7 @@
             <!-- La boucle for nous sert à itérer tout le tableau se trouvant sur mongo db -->
     </main>
     <script src="/js/main.js"></script>
+    <script src="/js/rdv.js"></script>
+
 </body>
 </html>

@@ -293,4 +293,24 @@ customerRouter.post("/clientreview", async (req, res) => {
   }
 });
 
+//-----------------------------------Page customeragenda-------------------------------------------------
+
+customerRouter.get("/custumerAgenda/:date/:price", async (req, res) => {
+  try {
+    obj = {
+          title:req.session.customer.firstname,
+          start:req.params.date,
+          end: req.params.date,
+          allDay: 0,
+          userId: req.session.customer._id,
+        }
+        let event = new eventModel.eventModel(obj);
+        event.save()
+    res.redirect("/dashboard"); //Il sera ensuite redirigé vers son dashboard
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
 module.exports = customerRouter;
