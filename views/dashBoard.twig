@@ -52,11 +52,11 @@
                 <div class="titleCircle">{{prestation.title}}</div>
                 <div class="price">
                     <div class="choice">
-                            <input class="checkbox-spin" data-price={{prestation.price}}  type="checkbox"  id="check{{ prestation.id ~ loop.index }}"/>
+                            <input class="checkbox-spin" data-price={{prestation.price}}  type="checkbox"  id="check{{ prestation.id ~ loop.index }}"/><!-- Le loop index rend la checkbox unique  -->
                             <label for="check{{ prestation.id ~ loop.index }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
                     </div> 
                     <div class="choice">
-                        <input class="checkbox-spin" data-price={{prestation.price}} type="checkbox" id="check{{ prestation.id ~ (loop.index + 1) }}"/>
+                        <input class="checkbox-spin" data-price={{prestation.price}} type="checkbox" id="check{{ prestation.id ~ (loop.index + 1) }}"/><!-- Le data-price permet de garder en mémoire dans le local storage ( dans le navigateur) le prix sélectionné -->
                         <label for="check{{ prestation.id ~ (loop.index + 1) }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
                     </div>
                 </div>

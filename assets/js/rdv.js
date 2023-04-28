@@ -1,4 +1,4 @@
-let checkboxes = document.querySelectorAll('.checkbox-spin')
+let checkboxes = document.querySelectorAll('.checkbox-spin') // dans cette page on met en place ce qu'on a dataprice afin qu'il garde en mémoire le prix dans le localstorage
 checkboxes.forEach(checkboxe => {
 
     checkboxe.addEventListener('click', (elem)=>{

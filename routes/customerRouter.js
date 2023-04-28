@@ -47,15 +47,15 @@ customerRouter.get("/home", async (req, res) => {
   }
 });
 
-//-----------------------------------Page TEST------------------------------------------------------------------
+//-----------------------------------Page AdminAgenda------------------------------------------------------------------
 
-customerRouter.get("/adminagenda", async (req, res) => {
+customerRouter.get("/adminagenda", async (req, res) => { 
   // le get permet d'afficher la page d'inscription (register)
   let events = await eventModel.eventModel.find();
   res.render("adminAgenda.twig", {});
 });
 
-customerRouter.get("/events", async (req, res) => {
+customerRouter.get("/events", async (req, res) => { // on va afficher tout les events
   // La route du fetch pour le calendrier sur la page test
   let events = await eventModel.eventModel.find();
   res.json(events);
