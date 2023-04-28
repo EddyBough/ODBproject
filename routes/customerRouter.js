@@ -198,13 +198,15 @@ customerRouter.post("/register", async (req, res) => {
 
 //-----------------------------------Page Tableau de board des clients-------------------------------------------------
 
-customerRouter.get("/dashboard", async (req, res) => { // page qui permet de récupérer la route dashboard
+customerRouter.get("/dashboard", async (req, res) => {
   try {
     console.log(req.session);
     const prestations = await prestationModel.find(); // je veux récupérer les données du tableau prestationmodel afin d'afficher les prestations en bdd pour les afficher sur la page dashboard
+    const event = await eventModel.eventModel.findOne({ connectedCustomer: req.session.customer }); // je veux récupérer les rdv créé dans event donc je fais une boucle for dans dashboard.twig qui récupère les rdv du customerConnected en session
     res.render("dashboard.twig", {
       connectedCustomer: req.session.customer,
-      prestation: prestations, // on a une boucle for qui va itérer toutes les données de prestationModel donc on créer une boucle for pour itérer toutes les données 
+      prestation: prestations,
+      event: event,
     });
   } catch (error) {
     console.log(error);

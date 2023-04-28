@@ -30,7 +30,9 @@
         <div id="appointment_card">
             <div id="dashboard">
                 <p>Prochain rendez-vous</p>
-                <p>22/02/2023 à 14h30</p>
+               {% for event in event %}
+                
+                <p>{{event.start}}</p>{% endfor %}
                 <div>
                     <button>Modifier</button>
                     <button>Supprimer</button>
