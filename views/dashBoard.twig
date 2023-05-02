@@ -30,7 +30,9 @@
         <div id="appointment_card">
             <div id="dashboard">
                 <p>Prochain rendez-vous</p>
-                <p>22/02/2023 à 14h30</p>
+               {% for event in event %}
+                
+                <p>{{event.start}}</p>{% endfor %}
                 <div>
                     <button>Modifier</button>
                     <button>Supprimer</button>
@@ -44,73 +46,31 @@
                 <div></div>
             </div>
             <div id="container">
+            {% for prestation in prestation %}
             <div>
                 <div class="circle">
-                    <img src="/img/coupe.png" alt="coupe">
+                    <img src="../uploads/{{ prestation.photo }}" alt="coupe">
                 </div>
-                <div class="titleCircle">Coupe de cheuveux</div>
+                <div class="titleCircle">{{prestation.title}}</div>
                 <div class="price">
                     <div class="choice">
-                            <input class="checkbox-spin" type="checkbox" id="check1"/>
-                            <label for="check1"><span></span>Adulte: 15€</label>
+                            <input class="checkbox-spin" data-price={{prestation.price}}  type="checkbox"  id="check{{ prestation.id ~ loop.index }}"/><!-- Le loop index rend la checkbox unique  -->
+                            <label for="check{{ prestation.id ~ loop.index }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
+                    </div> 
+                    <div class="choice">
+                        <input class="checkbox-spin" data-price={{prestation.price}} type="checkbox" id="check{{ prestation.id ~ (loop.index + 1) }}"/><!-- Le data-price permet de garder en mémoire dans le local storage ( dans le navigateur) le prix sélectionné -->
+                        <label for="check{{ prestation.id ~ (loop.index + 1) }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
                     </div>
-                    <div class="choice">
-                        <input class="checkbox-spin" type="checkbox" id="check2"/>
-                        <label for="check2"><span></span>Adulte: 15€</label>
-                    </div>
                 </div>
+                
             </div>
-            <div>
-                <div class="circle">
-                    <img src="/img/coloration.png" alt="coloration">
-                </div>
-
-                <div class="titleCircle">Coloration</div>
-                <div class="price">
-                    <div class="choice">
-                        <input class="checkbox-spin" type="checkbox" id="check3"/>
-                        <label for="check3"><span></span>Adulte: 15€</label>
-                </div>
-                <div class="choice">
-                    <input class="checkbox-spin" type="checkbox" id="check4"/>
-                    <label for="check4"><span></span>Adulte: 15€</label>
-                </div>
-                </div>
-            </div>
-            <div>
-                <div class="circle">
-                    <img src="/img/barbe.png" alt="barbe">
-                </div>
-                <div class="titleCircle">Barbe et Contour</div>
-                <div class="price">
-                    <div class="choice">
-                        <input class="checkbox-spin" type="checkbox" id="check5"/>
-                        <label for="check5"><span></span>Adulte: 15€</label>
-                </div>
-                <div class="choice">
-                    <input class="checkbox-spin" type="checkbox" id="check6"/>
-                    <label for="check6"><span></span>Adulte: 15€</label>
-                </div>
-                </div>
-            </div>
-            <div>
-                <div class="circle">
-                    <img src="/img/shampoing.png" alt="shampoing">
-                </div>
-                <div class="titleCircle">Soin Caplillaire</div>
-                <div class="price">
-                    <div class="choice">
-                        <input class="checkbox-spin" type="checkbox" id="check7"/>
-                        <label for="check7"><span></span>Adulte: 15€</label>
-                </div>
-                <div class="choice">
-                    <input class="checkbox-spin" type="checkbox" id="check8"/>
-                    <label for="check8"><span></span>Adulte: 15€</label>
-                </div>
-                </div>
-            </div>
+            {% endfor %}
             </div>
         </div>
+
+        <a href="/customerAgenda">
+                <button id="disconnect">Prendre rendez vous</button>
+            </a>
         <!-- Opinion and fidelity -->
             <div id="OpinionFidelity">
                 <div id="fidelityCard">
@@ -157,5 +117,7 @@
             <!-- La boucle for nous sert à itérer tout le tableau se trouvant sur mongo db -->
     </main>
     <script src="/js/main.js"></script>
+    <script src="/js/rdv.js"></script>
+
 </body>
 </html>

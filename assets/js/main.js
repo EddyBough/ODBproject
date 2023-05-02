@@ -24,7 +24,6 @@ btnsOpenModal[i].addEventListener('click', openModal);
 
 
 
-
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
 btnYes.addEventListener('click', closeModal);

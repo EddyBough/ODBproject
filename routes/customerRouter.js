@@ -1,9 +1,11 @@
-const { customerModel } = require("../models/customerModel");
-const { reviewModel } = require("../models/reviewModel");
+const { customerModel } = require("../models/customerModel"); // j'importe customerModel pour pouvoir l'utiliser
+const { reviewModel } = require("../models/reviewModel"); // j'importe reviewModel pour pouvoir l'utiliser dans la gestion d'avis
 const customerRouter = require("express").Router(); // Constante pour créer un routeur qui a pour nom customerRouter
 const crypto = require("../service/crypto");
 const eventModel = require("../models/eventModel");
 const nodemailer = require("nodemailer") // nodemailer
+const { prestationModel } = require("../models/prestationModel"); // j'importe prestationModel pour pouvoir l'utiliser sur la page dashboard
+const upload = require('../service/uploaderImg') // multer pour la gestion d'upload d'image
 
 
 //----------Route du NODEMAILER-------------------------------//
@@ -45,15 +47,15 @@ customerRouter.get("/home", async (req, res) => {
   }
 });
 
-//-----------------------------------Page TEST------------------------------------------------------------------
+//-----------------------------------Page AdminAgenda------------------------------------------------------------------
 
-customerRouter.get("/adminagenda", async (req, res) => {
+customerRouter.get("/adminagenda", async (req, res) => { 
   // le get permet d'afficher la page d'inscription (register)
   let events = await eventModel.eventModel.find();
   res.render("adminAgenda.twig", {});
 });
 
-customerRouter.get("/events", async (req, res) => {
+customerRouter.get("/events", async (req, res) => { // on va afficher tout les events
   // La route du fetch pour le calendrier sur la page test
   let events = await eventModel.eventModel.find();
   res.json(events);
@@ -199,15 +201,19 @@ customerRouter.post("/register", async (req, res) => {
 customerRouter.get("/dashboard", async (req, res) => {
   try {
     console.log(req.session);
+    const prestations = await prestationModel.find(); // je veux récupérer les données du tableau prestationmodel afin d'afficher les prestations en bdd pour les afficher sur la page dashboard
+    const event = await eventModel.eventModel.findOne({ connectedCustomer: req.session.customer }); // je veux récupérer les rdv créé dans event donc je fais une boucle for dans dashboard.twig qui récupère les rdv du customerConnected en session
     res.render("dashboard.twig", {
-      // je suis bien authentifié mon tableau de bord client apparait
-      connectedCustomer: req.session.customer, //connectedCustomer est égal à la session sur laquelle l'utilisateur est connecté
+      connectedCustomer: req.session.customer,
+      prestation: prestations,
+      event: event,
     });
   } catch (error) {
     console.log(error);
     res.json(error);
   }
 });
+
 //-----------------------------------Page agenda des clients-------------------------------------------------
 
 customerRouter.get("/customerAgenda", async (req, res) => {
@@ -223,7 +229,7 @@ customerRouter.get("/customerAgenda", async (req, res) => {
 
 customerRouter.get("/modificationProfil/:id", async (req, res) => {
   try {
-    let customer = await customerModel.findOne({ _id: req.params.id });
+    let customer = await customerModel.findOne({ _id: req.params.id }); // ici on a une requête mongoose qui va récupérer les données du client grâce à son id connecté afin qu'il puisse les modifier dans le form post
     res.render("modificationProfil.twig", {
       customer: customer,
     });
@@ -233,10 +239,10 @@ customerRouter.get("/modificationProfil/:id", async (req, res) => {
   }
 });
 
-customerRouter.post("/modificationProfil/:id", async (req, res) => {
+customerRouter.post("/modificationProfil/:id", async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
   try {
-    await customerModel.updateOne({ _id: req.params.id }, req.body);
-    res.redirect("/dashboard");
+    await customerModel.updateOne({ _id: req.params.id }, req.body); // on a deux argument : modifier l'id et envoyer un req.body parce qu'on envoi une nouvelle requête qui va modifier grâce au UpdateOne
+    res.redirect("/dashboard"); // une fois que c'est fait, redirection sur dashboard.twig
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -282,6 +288,26 @@ customerRouter.post("/clientreview", async (req, res) => {
   try {
     let review = new reviewModel(req.body); //On prend en compte le reviewModel
     review.save(); // On l'ajoute
+    res.redirect("/dashboard"); //Il sera ensuite redirigé vers son dashboard
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+//-----------------------------------Page customeragenda-------------------------------------------------
+
+customerRouter.get("/custumerAgenda/:date/:price", async (req, res) => {
+  try {
+    obj = {
+          title:req.session.customer.firstname,
+          start:req.params.date,
+          end: req.params.date,
+          allDay: 0,
+          userId: req.session.customer._id,
+        }
+        let event = new eventModel.eventModel(obj);
+        event.save()
     res.redirect("/dashboard"); //Il sera ensuite redirigé vers son dashboard
   } catch (error) {
     console.log(error);
