@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="/css/adminAgenda.css">
 		<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
 		<script>
-			document.addEventListener('DOMContentLoaded', async function () { // on a la fonction qui permet d'afficher le calendrier
+		document.addEventListener('DOMContentLoaded', async function () { // on a la fonction qui permet d'afficher le calendrier
 let calendarEl = document.getElementById('calendar'); // le calendar est ici
 let calendar = new FullCalendar.Calendar(calendarEl, {
 initialView: 'timeGrid',
@@ -15,35 +15,42 @@ locale: "fr"
 });
 
 
-let events = await fetch('http://localhost:3005/events') // on appelle la route qu'on fetch
-events = await events.json()
+//******Creation du calendrier******//
+
+let events = await fetch('http://localhost:3005/events') // Ici on récupere les evenements à partir de l'API
+events = await events.json()//Ensuite on converti les evenement que nous avons récupéré au formats JSON
 console.log(events);
-events.forEach(element => {
+events.forEach(element => {//Nous ajoutons chaque evenement récupérer dans le calendrier
 calendar.addEvent(element);
 });
-// Ajouter l'événement au calendrier
-calendar.render();
+calendar.render();//Pour finir on affiche le calendrier grace à la méthode render de l'objet calendar.
 
-let div = document.createElement('div');
-div.classList.add('container-date')
-let parent = document.querySelector('.fc-header-toolbar');
-div.innerHTML = '<p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p>' 
-parent.insertAdjacentElement('afterend', div);
-let hr = document.createElement('hr')
+//******Modification du design du calendrier******//
+
+let div = document.createElement('div');	// Création d'un nouvel élément HTML <div>
+div.classList.add('container-date')			// Ajout de la classe CSS "container-date" à l'élément <div>
+let parent = document.querySelector('.fc-header-toolbar');	// Recherche de l'élément HTML parent avec la classe CSS ".fc-header-toolbar"
+div.innerHTML = '<p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p><p class="date"></p>' // Ajout de contenu HTML dans l'élément <div>
+parent.insertAdjacentElement('afterend', div);	// Ajout de l'élément <div> juste après l'élément parent
+let hr = document.createElement('hr')	// Création d'un nouvel élément HTML <hr>
 
 
-for (let i = 0; i < 7; i++) {
-let date = new Date()
-await date.setDate(date.getDate() + i)
-let dateStr = await date.toLocaleDateString('fr-fr', {
+//******Calendrier sur sept jours******//
+
+
+for (let i = 0; i < 7; i++) { // Nous faison une boucle sur septs éléments de la classe Date
+let date = new Date() // Création d'un objet Date pour la date courante
+await date.setDate(date.getDate() + i) // Ajout de "i" jours à la date courante pour obtenir la date de la semaine en cours
+let dateStr = await date.toLocaleDateString('fr-fr', { // Conversion de la date en chaîne de caractères au format "jour de la semaine, jour du mois" en français
 weekday: "short",
 day: "numeric"
 })
-document.querySelectorAll('.date')[i].innerHTML = dateStr
-document.querySelectorAll('.date')[i].addEventListener('click', () => {
-calendar.gotoDate(date)
+document.querySelectorAll('.date')[i].innerHTML = dateStr // Ajout de la date dans le paragraphe <p> correspondant
+document.querySelectorAll('.date')[i].addEventListener('click', () => {// Ajout d'un écouteur d'événements au clic sur le paragraphe <p>
+calendar.gotoDate(date)// Déplacement du calendrier à la date cliquée
 })
 }
+//Nous avons caché certain bouton du calendrier dans un soucis de design
 let btn = document.querySelectorAll('.fc-button')
 btn.forEach(elem=>{
 	elem.style.display = "none"

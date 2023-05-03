@@ -13,8 +13,10 @@
 			<img id="logo" src="/img/logo.png" alt="logo">
 		</header>
 		<main>
-		
-           
+		{% if event %}
+		 <div id="modif" data-eventId = "{{eventId}}" style='display: none'></div>
+		{% endif %}
+        
 		</main>
 		<script src="/js/customerAgenda.js"></script>
 	</body>

@@ -6,7 +6,7 @@ const eventModel = require("../models/eventModel");
 const nodemailer = require("nodemailer") // nodemailer
 const { prestationModel } = require("../models/prestationModel"); // j'importe prestationModel pour pouvoir l'utiliser sur la page dashboard
 const upload = require('../service/uploaderImg') // multer pour la gestion d'upload d'image
-
+const authGuard = require("../service/authguard");
 
 //----------Route du NODEMAILER-------------------------------//
 
@@ -47,19 +47,7 @@ customerRouter.get("/home", async (req, res) => {
   }
 });
 
-//-----------------------------------Page AdminAgenda------------------------------------------------------------------
 
-customerRouter.get("/adminagenda", async (req, res) => { 
-  // le get permet d'afficher la page d'inscription (register)
-  let events = await eventModel.eventModel.find();
-  res.render("adminAgenda.twig", {});
-});
-
-customerRouter.get("/events", async (req, res) => { // on va afficher tout les events
-  // La route du fetch pour le calendrier sur la page test
-  let events = await eventModel.eventModel.find();
-  res.json(events);
-});
 
 //-----------------------------------Page Connexion--------------------------------------------------------------
 
@@ -132,6 +120,63 @@ customerRouter.get("/customerDelete/:id", async (req, res) => {
     res.send(error);
   }
 });
+//-----------------------------------Fonction supprimer evenement--------------------------------------------------------------
+
+customerRouter.get("/eventDelete/:id", authGuard,async (req, res) => {
+  try {
+    await eventModel.eventModel.deleteOne({ _id: req.params.id }); //Il va recuperer l'id de la BDD afin de le supprimer
+    res.redirect("/dashboard"); //Ensuite il le redirige vers la page connexion
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+//-----------------------------------Page Modification evenement-------------------------------------------------
+
+customerRouter.get("/modificationEvent/:id/", authGuard,async (req, res) => {
+  try {
+    let event = await eventModel.eventModel.findOne({ _id: req.params.id }); // ici on a une requête mongoose qui va récupérer les données du client grâce à son id connecté afin qu'il puisse les modifier dans le form post
+    res.render("customerAgenda.twig", {
+      event: event,
+      eventId: req.params.id
+    });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+customerRouter.get("/modificationEventDate/:id/:date", authGuard,async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
+  try {
+    let date = new Date(req.params.date)
+    date.setSeconds(0)
+    date.setMilliseconds(0)
+    let dateEnd = new Date(req.params.date)
+    dateEnd.setMinutes(date.getMinutes()+30),
+
+    obj = {
+          title:req.session.customer.firstname,
+          start:date.toISOString(),
+          end: dateEnd.toISOString(),
+          dateString: date.toLocaleDateString('fr-fr', {
+            weekday: "long",
+            day: "numeric",
+            month: 'long',
+            year: 'numeric'
+            })+ ' '+date.toLocaleTimeString('fr-FR'),
+          allDay: 0,
+          userId: req.session.customer._id,
+        }
+    await eventModel.eventModel.updateOne({ _id: req.params.id }, obj); // on a deux argument : modifier l'id et envoyer un req.body parce qu'on envoi une nouvelle requête qui va modifier grâce au UpdateOne
+    res.redirect("/dashboard"); // une fois que c'est fait, redirection sur dashboard.twig
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+
 
 //-----------------------------------Mot de passe oublié-------------------------------------------------
 
@@ -185,7 +230,12 @@ customerRouter.post("/register", async (req, res) => {
         console.log(err);
         throw err
       }
-
+      let info = await transporter.sendMail({
+        from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
+        to: req.body.email,
+        subject: "inscription a la baraqua",
+        html: "you win....",
+     })
       customer.save(); // Le client est enregistré dans la BDD
       req.session.customer = customer; // récupérer le customer qui vient d'être créé en session ( le sauvegarder le réutiliser dans le dashboard)
       res.redirect("/dashboard");
@@ -198,7 +248,7 @@ customerRouter.post("/register", async (req, res) => {
 
 //-----------------------------------Page Tableau de board des clients-------------------------------------------------
 
-customerRouter.get("/dashboard", async (req, res) => {
+customerRouter.get("/dashboard",authGuard, async (req, res) => {
   try {
     console.log(req.session);
     const prestations = await prestationModel.find(); // je veux récupérer les données du tableau prestationmodel afin d'afficher les prestations en bdd pour les afficher sur la page dashboard
@@ -216,7 +266,7 @@ customerRouter.get("/dashboard", async (req, res) => {
 
 //-----------------------------------Page agenda des clients-------------------------------------------------
 
-customerRouter.get("/customerAgenda", async (req, res) => {
+customerRouter.get("/customerAgenda", authGuard ,async (req, res) => {
   try {
     res.render("customerAgenda.twig");
   } catch (error) {
@@ -227,7 +277,7 @@ customerRouter.get("/customerAgenda", async (req, res) => {
 
 //-----------------------------------Page Modification profil-------------------------------------------------
 
-customerRouter.get("/modificationProfil/:id", async (req, res) => {
+customerRouter.get("/modificationProfil/:id", authGuard,async (req, res) => {
   try {
     let customer = await customerModel.findOne({ _id: req.params.id }); // ici on a une requête mongoose qui va récupérer les données du client grâce à son id connecté afin qu'il puisse les modifier dans le form post
     res.render("modificationProfil.twig", {
@@ -239,7 +289,7 @@ customerRouter.get("/modificationProfil/:id", async (req, res) => {
   }
 });
 
-customerRouter.post("/modificationProfil/:id", async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
+customerRouter.post("/modificationProfil/:id", authGuard,async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
   try {
     await customerModel.updateOne({ _id: req.params.id }, req.body); // on a deux argument : modifier l'id et envoyer un req.body parce qu'on envoi une nouvelle requête qui va modifier grâce au UpdateOne
     res.redirect("/dashboard"); // une fois que c'est fait, redirection sur dashboard.twig
@@ -251,7 +301,7 @@ customerRouter.post("/modificationProfil/:id", async (req, res) => { // dans ce 
 
 //-----------------------------------Page paiement des clients-------------------------------------------------
 
-customerRouter.get("/payment", async (req, res) => {
+customerRouter.get("/payment", authGuard,async (req, res) => {
   try {
     res.render("Payment.twig");
   } catch (error) {
@@ -260,7 +310,7 @@ customerRouter.get("/payment", async (req, res) => {
   }
 });
 
-customerRouter.get("/postPayment", async (req, res) => {
+customerRouter.get("/postPayment", authGuard,async (req, res) => {
   try {
     res.render("postPayment.twig");
   } catch (error) {
@@ -295,14 +345,26 @@ customerRouter.post("/clientreview", async (req, res) => {
   }
 });
 
-//-----------------------------------Page customeragenda-------------------------------------------------
 
-customerRouter.get("/custumerAgenda/:date/:price", async (req, res) => {
+
+//------------Route pour la création d'évenement---------------
+
+customerRouter.get("/custumerAgenda/:date/:price", authGuard,async (req, res) => {
   try {
+    let date = new Date(req.params.date)
+    let dateEnd = new Date(req.params.date)
+    dateEnd.setMinutes(date.getMinutes()+30),
+
     obj = {
           title:req.session.customer.firstname,
           start:req.params.date,
-          end: req.params.date,
+          end: dateEnd.toISOString(),
+          dateString: date.toLocaleDateString('fr-fr', {
+            weekday: "long",
+            day: "numeric",
+            month: 'long',
+            year: 'numeric'
+            })+ ' '+date.toLocaleTimeString('fr-FR'),
           allDay: 0,
           userId: req.session.customer._id,
         }

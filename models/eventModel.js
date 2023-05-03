@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');//Modele pour les evenements dans le calendrier 
 
 const eventSchema = new mongoose.Schema({
 
@@ -7,6 +7,10 @@ const eventSchema = new mongoose.Schema({
         required: [true, "titre requis"],
     },
     start: {
+        type: String,
+        required: [true, "début requis"],
+    },
+    dateString: {
         type: String,
         required: [true, "début requis"],
     },

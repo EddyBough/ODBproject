@@ -99,19 +99,19 @@ border-radius: 20px;
 
 /* Permet de changer la couleur du container evenemment */
 .fc-event-time{
-    background-color: green;
+    background-color: rgba(35, 120, 67, 0.61);;
    
 }
 
 
 .fc-event-title-container{
-    background-color: green;
+    background-color: rgba(35, 120, 67, 0.61);;
     
 }
 
 .fc-event{
-    background-color: green;
-    border-color: green;
+    background-color: rgba(35, 120, 67, 0.61);;
+    border-color: rgba(35, 120, 67, 0.61);;
 } 
 
 

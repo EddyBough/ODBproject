@@ -232,14 +232,15 @@
     }
 
     #disconnect{
-        width: 170px;
+        width: 190px;
         height: 44px;
         background: #EDE1D1;
         border: 1px solid #B18D8B;
         border-radius: 26px;
         font-size: large;
         font-family: Istok web;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
     }
 
     #disconnect:hover{

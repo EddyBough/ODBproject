@@ -1,15 +1,17 @@
 const adminRouter = require("express").Router(); // Constante pour créer un routeur qui a pour nom AdminRouter
 const { customerModel } = require("../models/customerModel"); 
-const { prestationModel } = require("../models/prestationModel"); 
+const { prestationModel } = require("../models/prestationModel");
+const eventModel = require("../models/eventModel"); 
 const upload = require('../service/uploaderImg')
 const crypto = require('../service/crypto');
+const adminGuard = require("../service/adminguard");
 
 
 //---------------------------------------------------------------------------------------------------------------------------------
 
 // Route qui sert à afficher la page adminhome
 
-adminRouter.get("/adminhome", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+adminRouter.get("/adminhome", adminGuard,async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
     try {
         res.render("adminhome.twig")
     } catch (error) {
@@ -34,7 +36,7 @@ adminRouter.get("/logout", async (req, res) => {//
 
 // Route qui sert à afficher la page AdminAgenda
 
-adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AdminAgenda
+adminRouter.get("/AdminAgenda", adminGuard,async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil AdminAgenda
     try {
         res.render("AdminAgenda.twig")
     } catch (error) {
@@ -47,7 +49,7 @@ adminRouter.get("/AdminAgenda", async (req, res)=>{ //Cette ligne grâce au get 
 
 // Route qui sert à afficher la page ClientList et récupérer la liste de tous les clients
 
-adminRouter.get('/ClientList', async (req, res) => {
+adminRouter.get('/ClientList', adminGuard,async (req, res) => {
     try {
         console.log(req.session);
         let customers = await customerModel.find({}) // le find va récupérer tous les clients créés par le model customerModel
@@ -68,7 +70,7 @@ adminRouter.get('/ClientList', async (req, res) => {
 
 // Route qui sert à afficher la page AddServices
 
-adminRouter.get('/AddServices', upload.single('photo'), async (req, res) => {
+adminRouter.get('/AddServices', adminGuard,upload.single('photo'), async (req, res) => {
     try {
         console.log(req.session);
         let prestations = await prestationModel.find({}) // le find va récupérer tous les clients créés par le model customerModel
@@ -83,7 +85,7 @@ adminRouter.get('/AddServices', upload.single('photo'), async (req, res) => {
 
 });
 
-adminRouter.post('/AddPrestation', upload.single('photo'), async (req, res) => { // fonction qui sert à ajouter les prestations (page AddForm)
+adminRouter.post('/AddPrestation', adminGuard,upload.single('photo'), async (req, res) => { // fonction qui sert à ajouter les prestations (page AddForm)
     try {
       const { title, category, price, type } = req.body;
       const photo = req.file.filename;
@@ -102,7 +104,7 @@ adminRouter.post('/AddPrestation', upload.single('photo'), async (req, res) => {
 
 // Route qui sert à afficher la page AddForm
 
-adminRouter.get("/AddForm", async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
+adminRouter.get("/AddForm", adminGuard,async (req, res)=>{ //Cette ligne grâce au get permet de récupérer la page d'accueil adminhome
     try {
         res.render("AddForm.twig")
     } catch (error) {
@@ -115,7 +117,7 @@ adminRouter.get("/AddForm", async (req, res)=>{ //Cette ligne grâce au get perm
 
 // Route qui sert à afficher la page ModifyForm et faire les modifications des prestations
 
-adminRouter.get('/ModifyForm/:id', async (req, res) => { 
+adminRouter.get('/ModifyForm/:id', adminGuard,async (req, res) => { 
     try {
         let prestation = await prestationModel.findOne({ _id: req.params.id }) // on va récupérer les données sur la page modificationCustomer
         res.render("ModifyForm.twig", {
@@ -128,7 +130,7 @@ adminRouter.get('/ModifyForm/:id', async (req, res) => {
 })
 
 
-adminRouter.post("/ModifyForm/:id", upload.single('photo'), async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
+adminRouter.post("/ModifyForm/:id", adminGuard,upload.single('photo'), async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
     try {
         
         if (req.file) { // file est une expression de multer donc la requête recupère file
@@ -161,7 +163,7 @@ adminRouter.get("/DeleteForm", async (req, res)=>{ //Cette ligne grâce au get p
 
 
 // fonction qui permet de supprimer la prestation
-adminRouter.get("/DeleteForm/:id", async (req, res) => { 
+adminRouter.get("/DeleteForm/:id", adminGuard,async (req, res) => { 
     try {
       await prestationModel.deleteOne({ _id: req.params.id }); //Il va recuperer l'id de la prestation séléctionné dans la BDD afin de le supprimer
       res.redirect("/AddServices"); //Ensuite il le redirige vers la page AddServices
@@ -175,7 +177,7 @@ adminRouter.get("/DeleteForm/:id", async (req, res) => {
 
 // Route qui sert à afficher la page ModificationCustomer et modifier un client dans la bdd
 
-adminRouter.get('/modificationCustomer/:id', async (req, res) => { 
+adminRouter.get('/modificationCustomer/:id', adminGuard,async (req, res) => { 
     try {
         let customer = await customerModel.findOne({ _id: req.params.id }) // on va récupérer les données sur la page modificationCustomer
         res.render("modificationCustomer.twig", {
@@ -187,8 +189,13 @@ adminRouter.get('/modificationCustomer/:id', async (req, res) => {
     }
 })
 
-adminRouter.post("/modificationCustomer/:id", async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
+adminRouter.post("/modificationCustomer/:id", adminGuard,async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
     try {
+        let user = await customerModel.findOne(({ _id: req.params.id }))
+       let fidelity = parseInt(user.fidelityPoint) + parseInt(req.body.fidelityPoint)
+        if ( fidelity > 10 ) {
+            req.body.fidelityPoint = 10
+        }
         await customerModel.updateOne(({ _id: req.params.id }), req.body)
         res.redirect("/ClientList");
     } catch (error) {
@@ -212,7 +219,19 @@ adminRouter.get("/logout", async (req, res) => {//
     }
 });
 
+//-----------------------------------Page AdminAgenda------------------------------------------------------------------
 
+adminRouter.get("/adminagenda", adminGuard,async (req, res) => { 
+    // le get permet d'afficher la page d'inscription (register)
+    let events = await eventModel.eventModel.find();
+    res.render("adminAgenda.twig", {});
+});
+
+  adminRouter.get("/events", adminGuard,async (req, res) => { // on va afficher tout les events
+    // La route du fetch pour le calendrier sur la page test
+    let events = await eventModel.eventModel.find();
+    res.json(events);
+});
 
 
 

@@ -30,12 +30,18 @@
         <div id="appointment_card">
             <div id="dashboard">
                 <p>Prochain rendez-vous</p>
-               {% for event in event %}
-                
-                <p>{{event.start}}</p>{% endfor %}
+                {% if not event %}
+                <p>Vous n'avez pas de rendez-vous</p>
+                {% endif %}
+                {% for event in event %}
+                <p>{{ event.dateString }} </p>{% endfor %}
                 <div>
+                <a href="/modificationEvent/{{event._id}}">
                     <button>Modifier</button>
+                    </a>
+                    <a href="/eventDelete/{{event._id}}">
                     <button>Supprimer</button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -55,7 +61,7 @@
                 <div class="price">
                     <div class="choice">
                             <input class="checkbox-spin" data-price={{prestation.price}}  type="checkbox"  id="check{{ prestation.id ~ loop.index }}"/><!-- Le loop index rend la checkbox unique  -->
-                            <label for="check{{ prestation.id ~ loop.index }}"><span></span>{{prestation.category}}{{prestation.price}}€</label>
+                            <label for="check{{ prestation.id ~ loop.index }}"><span></span>{{prestation.category}} {{prestation.price}}€</label>
                     </div> 
                     <div class="choice">
                         <input class="checkbox-spin" data-price={{prestation.price}} type="checkbox" id="check{{ prestation.id ~ (loop.index + 1) }}"/><!-- Le data-price permet de garder en mémoire dans le local storage ( dans le navigateur) le prix sélectionné -->
@@ -73,15 +79,11 @@
             </a>
         <!-- Opinion and fidelity -->
             <div id="OpinionFidelity">
-                <div id="fidelityCard">
+                <div id="fidelityCard" {% if connectedCustomer.fidelityPoint == 10 %}style='background-color: blue;'{% endif %}>
                     <div id="fidelityPicture">
+                    {% for i in 1..connectedCustomer.fidelityPoint %}
                         <img src="/img/jeton_fidelité.png" alt="jeton">
-                        <img src="/img/jeton_fidelité.png" alt="jeton">
-                        <img src="/img/jeton_fidelité.png" alt="jeton">
-                        <img src="/img/jeton_fidelité.png" alt="jeton">
-                        <img src="/img/jeton_fidelité.png" alt="jeton">
-                        <img src="/img/jeton_fidelité.png" alt="jeton">
-                        <img src="/img/jeton_fidelité.png" alt="jeton">
+                    {% endfor %}
                     </div>
                 </div>
                 <div id="TitleFidelityCard">

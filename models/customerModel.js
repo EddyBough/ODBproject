@@ -53,6 +53,10 @@ const customerSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user",
   },
+  fidelityPoint: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const customerModel = mongoose.model("customer", customerSchema);
