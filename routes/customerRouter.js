@@ -233,8 +233,8 @@ customerRouter.post("/register", async (req, res) => {
       let info = await transporter.sendMail({
         from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
         to: req.body.email,
-        subject: "inscription a la baraqua",
-        html: "you win....",
+        subject: "Bienvenue chez Tonton, clique sur le lien",
+        html: "Bienvenue chez ODB",
      })
       customer.save(); // Le client est enregistré dans la BDD
       req.session.customer = customer; // récupérer le customer qui vient d'être créé en session ( le sauvegarder le réutiliser dans le dashboard)

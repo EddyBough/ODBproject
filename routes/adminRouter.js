@@ -227,7 +227,7 @@ adminRouter.get("/adminagenda", adminGuard,async (req, res) => {
     res.render("adminAgenda.twig", {});
 });
 
-  adminRouter.get("/events", adminGuard,async (req, res) => { // on va afficher tout les events
+  adminRouter.get("/events",async (req, res) => { // on va afficher tout les events
     // La route du fetch pour le calendrier sur la page test
     let events = await eventModel.eventModel.find();
     res.json(events);
