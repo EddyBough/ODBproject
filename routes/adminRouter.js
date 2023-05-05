@@ -191,8 +191,8 @@ adminRouter.get('/modificationCustomer/:id', adminGuard,async (req, res) => {
 
 adminRouter.post("/modificationCustomer/:id", adminGuard,async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
     try {
-        let user = await customerModel.findOne(({ _id: req.params.id }))
-       let fidelity = parseInt(user.fidelityPoint) + parseInt(req.body.fidelityPoint)
+        
+       let fidelity = parseInt(req.body.fidelityPoint)
         if ( fidelity > 10 ) {
             req.body.fidelityPoint = 10
         }

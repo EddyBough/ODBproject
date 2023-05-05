@@ -60,9 +60,7 @@ for (let i = 0; i < 7; i++) {
               window.location.href = `/modificationEventDate/${modifCont.getAttribute('data-eventId')}/${dateStr}`
           }else{
               window.location.href = `/custumerAgenda/${dateStr}/${price}`
-  
           }
-  
       })
       }
     }
