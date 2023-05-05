@@ -134,7 +134,7 @@ customerRouter.get("/eventDelete/:id", authGuard,async (req, res) => {
 
 //-----------------------------------Page Modification evenement-------------------------------------------------
 
-customerRouter.get("/modificationEvent/:id/", authGuard,async (req, res) => {
+customerRouter.get("/modificationEvent/:id", async (req, res) => {
   try {
     let event = await eventModel.eventModel.findOne({ _id: req.params.id }); // ici on a une requête mongoose qui va récupérer les données du client grâce à son id connecté afin qu'il puisse les modifier dans le form post
     res.render("customerAgenda.twig", {
@@ -147,7 +147,7 @@ customerRouter.get("/modificationEvent/:id/", authGuard,async (req, res) => {
   }
 });
 
-customerRouter.get("/modificationEventDate/:id/:date", authGuard,async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
+customerRouter.get("/modificationEventDate/:id/:date", async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
   try {
     let date = new Date(req.params.date)
     date.setSeconds(0)
@@ -248,11 +248,12 @@ customerRouter.post("/register", async (req, res) => {
 
 //-----------------------------------Page Tableau de board des clients-------------------------------------------------
 
-customerRouter.get("/dashboard",authGuard, async (req, res) => {
+customerRouter.get("/dashboard", async (req, res) => {
   try {
     console.log(req.session);
-    const prestations = await prestationModel.find(); // je veux récupérer les données du tableau prestationmodel afin d'afficher les prestations en bdd pour les afficher sur la page dashboard
-    const event = await eventModel.eventModel.findOne({ connectedCustomer: req.session.customer }); // je veux récupérer les rdv créé dans event donc je fais une boucle for dans dashboard.twig qui récupère les rdv du customerConnected en session
+    const prestations = await prestationModel.find() // je veux récupérer les données du tableau prestationmodel afin d'afficher les prestations en bdd pour les afficher sur la page dashboard
+    const event = await eventModel.eventModel.find({ userId: req.session.customer }); //Dans le modele event, on va récupérer l'id du customer qui a créé l'évenement !
+    console.log(event);
     res.render("dashboard.twig", {
       connectedCustomer: req.session.customer,
       prestation: prestations,
@@ -266,7 +267,7 @@ customerRouter.get("/dashboard",authGuard, async (req, res) => {
 
 //-----------------------------------Page agenda des clients-------------------------------------------------
 
-customerRouter.get("/customerAgenda", authGuard ,async (req, res) => {
+customerRouter.get("/customerAgenda" ,async (req, res) => {
   try {
     res.render("customerAgenda.twig");
   } catch (error) {

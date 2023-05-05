@@ -191,13 +191,13 @@ adminRouter.get('/modificationCustomer/:id', adminGuard,async (req, res) => {
 
 adminRouter.post("/modificationCustomer/:id", adminGuard, async (req, res) => {
     try {
-      let customer = await customerModel.findOne(({ _id: req.params.id }));
-      let fidelity = parseInt(customer.fidelityPoint) + 1; // incrémenter la fidélité de 1
-      if (fidelity > 10) {
-        fidelity = 10; // limiter la fidélité à 10
-      }
-      await customerModel.updateOne(({ _id: req.params.id }), { fidelityPoint: fidelity }); // mettre à jour la fidélité dans la base de données
-      res.redirect("/ClientList");
+        
+       let fidelity = parseInt(req.body.fidelityPoint)
+        if ( fidelity > 10 ) {
+            req.body.fidelityPoint = 10
+        }
+        await customerModel.updateOne(({ _id: req.params.id }), req.body)
+        res.redirect("/ClientList");
     } catch (error) {
       console.log(error);
       res.send(error);

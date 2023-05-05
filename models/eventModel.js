@@ -24,7 +24,8 @@ const eventSchema = new mongoose.Schema({
         required: [true, "toute la journée"],
     },
    userId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,//Mongoose recupere dans le userID de l'evenement, l'id du customer qui a creer l'évènement
+    ref: "customer"
    }
 });
 

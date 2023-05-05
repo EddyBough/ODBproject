@@ -33,16 +33,20 @@
                 {% if not event %}
                 <p>Vous n'avez pas de rendez-vous</p>
                 {% endif %}
-                {% for event in event %}
-                <p>{{ event.dateString }} </p>{% endfor %}
+                {% for events in event %}
+                <p>{{ events.dateString }} </p>
                 <div>
-                <a href="/modificationEvent/{{event._id}}">
+
+                <a href="/modificationEvent/{{ events.id }}">
                     <button>Modifier</button>
                     </a>
-                    <a href="/eventDelete/{{event._id}}">
+
+                    <a href="/eventDelete/{{ events.id }}">
                     <button>Supprimer</button>
                     </a>
+
                 </div>
+                {% endfor %}
             </div>
         </div>
         <!-- Service Part -->
@@ -79,11 +83,14 @@
             </a>
         <!-- Opinion and fidelity -->
             <div id="OpinionFidelity">
-                <div id="fidelityCard" {% if connectedCustomer.fidelityPoint == 10 %}style='background-color: blue;'{% endif %}>
+                
+                <div id="fidelityCard" {% if connectedCustomer.fidelityPoint == 10 %}style='background-color: #6D8EA1;'{% endif %}>
                     <div id="fidelityPicture">
+                    {% if connectedCustomer.fidelityPoint != 0 %}
                     {% for i in 1..connectedCustomer.fidelityPoint %}
                         <img src="/img/jeton_fidelité.png" alt="jeton">
                     {% endfor %}
+                    {% endif %}
                     </div>
                 </div>
                 <div id="TitleFidelityCard">
