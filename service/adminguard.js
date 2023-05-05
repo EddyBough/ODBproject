@@ -11,7 +11,7 @@ let adminGuard = async (req, res, next)=>{
             next() // Joue moi le code qui se trouve dans la route workerView donc la page s'affichera
         }else{
             console.log("deconnexion");
-            res.redirect('/connexion') // sinon, le authguard permettra de me rediriger vers la page "connexion" si mon id ne correpond pas. 
+            res.redirect('/login') // sinon, le authguard permettra de me rediriger vers la page "connexion" si mon id ne correpond pas. 
         }
     } // le authguard va permettre de sécuriser la route et l'authentifié
   

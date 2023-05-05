@@ -189,21 +189,21 @@ adminRouter.get('/modificationCustomer/:id', adminGuard,async (req, res) => {
     }
 })
 
-adminRouter.post("/modificationCustomer/:id", adminGuard,async (req, res) => { // ici en cliquant sur valider dans le form de modificationCustomer, on va post les validations sur mongoDB sur l'id (l'utilisateur donc).
+adminRouter.post("/modificationCustomer/:id", adminGuard, async (req, res) => {
     try {
-        let user = await customerModel.findOne(({ _id: req.params.id }))
-       let fidelity = parseInt(user.fidelityPoint) + parseInt(req.body.fidelityPoint)
-        if ( fidelity > 10 ) {
-            req.body.fidelityPoint = 10
-        }
-        await customerModel.updateOne(({ _id: req.params.id }), req.body)
-        res.redirect("/ClientList");
+      let customer = await customerModel.findOne(({ _id: req.params.id }));
+      let fidelity = parseInt(customer.fidelityPoint) + 1; // incrémenter la fidélité de 1
+      if (fidelity > 10) {
+        fidelity = 10; // limiter la fidélité à 10
+      }
+      await customerModel.updateOne(({ _id: req.params.id }), { fidelityPoint: fidelity }); // mettre à jour la fidélité dans la base de données
+      res.redirect("/ClientList");
     } catch (error) {
-        console.log(error);
-        res.send(error);
-
+      console.log(error);
+      res.send(error);
     }
-})
+  });
+  
 
 //---------------------------------------------------------------------------------------------------------------------------------
 

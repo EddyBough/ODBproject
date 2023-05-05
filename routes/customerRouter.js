@@ -233,7 +233,7 @@ customerRouter.post("/register", async (req, res) => {
       let info = await transporter.sendMail({
         from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
         to: req.body.email,
-        subject: "Bienvenue chez Tonton, clique sur le lien",
+        subject: "Bienvenue chez Tonton",
         html: "Bienvenue chez ODB",
      })
       customer.save(); // Le client est enregistré dans la BDD
@@ -321,7 +321,7 @@ customerRouter.get("/postPayment", authGuard,async (req, res) => {
 
 //-----------------------------------Page Clientview-------------------------------------------------
 
-customerRouter.get("/clientreview", async (req, res) => {
+customerRouter.get("/clientreview",authGuard, async (req, res) => {
   // fonction qui servira à récupéré la page clientreview et récupéré les avis de clientreview
   try {
     let reviews = await reviewModel.find(); // récupéré les données du reviewModel postées du formulaire post clientreview
@@ -334,7 +334,7 @@ customerRouter.get("/clientreview", async (req, res) => {
   }
 });
 
-customerRouter.post("/clientreview", async (req, res) => {
+customerRouter.post("/clientreview",authGuard, async (req, res) => {
   try {
     let review = new reviewModel(req.body); //On prend en compte le reviewModel
     review.save(); // On l'ajoute
