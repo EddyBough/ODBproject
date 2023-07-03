@@ -15,21 +15,23 @@
 			<img id="pictureTwo" src="/img/lame.png" alt="lame">
 		</div>
 		<main>
-			<div>
-				
-			</div>
-			<form id="connexion" action="/login" method="POST">
+			<div></div>
+			<form
+				id="connexion" action="/login" method="POST">
+				{# Formulaire de connexion qui va envoyer les informations entrées #}
 				<label for="email"></label>
 				<input type="email" id="email" name="email" placeholder="email" required>
-				
+
 
 				<label for="password"></label>
 				<input type="password" id="password" name="password" placeholder="Mot de passe" required>
 
 				<p>{{errorLogin}}</p>
-				
+				{# Formulaire de connexion qui va poster les informations entrées #}
+
 				<a href="">Mot de passe oublié</a>
-				
+				{# fonctionnalité présente dans une prochaine version du projet #}
+
 
 				<input type="submit" id="connect" value="Connexion">
 			</form>

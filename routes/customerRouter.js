@@ -10,35 +10,35 @@ const authGuard = require("../service/authguard");
 
 //----------Route du NODEMAILER-------------------------------//
 
-const transporter = nodemailer.createTransport({        
+const transporter = nodemailer.createTransport({
   service: "Outlook365",
   auth: {
     user: process.env.USER_MAIL,
     pass: process.env.PASS_MAIL,
   },
-  tls: {rejectUnauthorized: false}
+  tls: { rejectUnauthorized: false }
 })
 
-customerRouter.get('/sendMail', async (req, res) =>{ // repasser en POST lorsque ce sera mis en place
-  try{
-    
-     let info = await transporter.sendMail({
-        from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
-        to: "boughanmieddy@outlook.fr",
-        subject: "test",
-        html: "test dddd",
-     })
-     res.redirect('/login')
-  }catch (err){
-     console.log(err);
-     res.send(err)
+customerRouter.get('/sendMail', async (req, res) => { // repasser en POST lorsque ce sera mis en place
+  try {
+
+    let info = await transporter.sendMail({
+      from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
+      to: "boughanmieddy@outlook.fr",
+      subject: "test",
+      html: "test dddd",
+    })
+    res.redirect('/login')
+  } catch (err) {
+    console.log(err);
+    res.send(err)
   }
 })
 
 //-----------------------------------Page Home------------------------------------------------------------------
 
 customerRouter.get("/home", async (req, res) => {
-  // le get permet d'afficher la page d'inscription (register)
+  // le get permet d'afficher la page home
   try {
     res.render("home.twig");
   } catch (error) {
@@ -49,10 +49,10 @@ customerRouter.get("/home", async (req, res) => {
 
 
 
-//-----------------------------------Page Connexion--------------------------------------------------------------
+//-----------------------------------Page login--------------------------------------------------------------
 
 customerRouter.get("/login", async (req, res) => {
-  // le get permet d'afficher la page de connexion (register)
+  // le get permet de récupérer la page de login 
   try {
     let errorLogin = "";
     if (req.session.errorLogin) {
@@ -69,10 +69,10 @@ customerRouter.get("/login", async (req, res) => {
 });
 
 customerRouter.post("/login", async (req, res) => {
-  // le post va envoyer les donnée qu'on a entré dans le formulaire de connexion
+  // le post va envoyer les données qu'on a entré dans le formulaire de connexion
 
   try {
-    let customer = await customerModel.findOne({ email: req.body.email }); // le findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
+    let customer = await customerModel.findOne({ email: req.body.email }); // la méthode findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
     if (
       customer &&
       (await crypto.comparePassword(req.body.password, customer.password))
@@ -122,7 +122,7 @@ customerRouter.get("/customerDelete/:id", async (req, res) => {
 });
 //-----------------------------------Fonction supprimer evenement--------------------------------------------------------------
 
-customerRouter.get("/eventDelete/:id", authGuard,async (req, res) => {
+customerRouter.get("/eventDelete/:id", authGuard, async (req, res) => {
   try {
     await eventModel.eventModel.deleteOne({ _id: req.params.id }); //Il va recuperer l'id de la BDD afin de le supprimer
     res.redirect("/dashboard"); //Ensuite il le redirige vers la page connexion
@@ -153,21 +153,21 @@ customerRouter.get("/modificationEventDate/:id/:date", async (req, res) => { // 
     date.setSeconds(0)
     date.setMilliseconds(0)
     let dateEnd = new Date(req.params.date)
-    dateEnd.setMinutes(date.getMinutes()+30),
+    dateEnd.setMinutes(date.getMinutes() + 30),
 
-    obj = {
-          title:req.session.customer.firstname,
-          start:date.toISOString(),
-          end: dateEnd.toISOString(),
-          dateString: date.toLocaleDateString('fr-fr', {
-            weekday: "long",
-            day: "numeric",
-            month: 'long',
-            year: 'numeric'
-            })+ ' '+date.toLocaleTimeString('fr-FR'),
-          allDay: 0,
-          userId: req.session.customer._id,
-        }
+      obj = {
+        title: req.session.customer.firstname,
+        start: date.toISOString(),
+        end: dateEnd.toISOString(),
+        dateString: date.toLocaleDateString('fr-fr', {
+          weekday: "long",
+          day: "numeric",
+          month: 'long',
+          year: 'numeric'
+        }) + ' ' + date.toLocaleTimeString('fr-FR'),
+        allDay: 0,
+        userId: req.session.customer._id,
+      }
     await eventModel.eventModel.updateOne({ _id: req.params.id }, obj); // on a deux argument : modifier l'id et envoyer un req.body parce qu'on envoi une nouvelle requête qui va modifier grâce au UpdateOne
     res.redirect("/dashboard"); // une fois que c'est fait, redirection sur dashboard.twig
   } catch (error) {
@@ -210,7 +210,7 @@ customerRouter.post("/register", async (req, res) => {
       errors.confirmPassword = "*Les mots de passe doivent être identiques"; //Si ils ne correspondent pas le message d'erreur sera stocké dans la variable errors
       return res.render("register.twig", { errors: errors }); // et seront renvoyé dans la page register
     }
-    let usersearch = await customerModel.findOne({email:req.body.email})
+    let usersearch = await customerModel.findOne({ email: req.body.email })
     if (usersearch) {
       errors.email = "cette email existe déjà";
       return res.render("register.twig", { errors: errors });
@@ -235,7 +235,7 @@ customerRouter.post("/register", async (req, res) => {
         to: req.body.email,
         subject: "Bienvenue chez Tonton",
         html: "Bienvenue chez ODB",
-     })
+      })
       customer.save(); // Le client est enregistré dans la BDD
       req.session.customer = customer; // récupérer le customer qui vient d'être créé en session ( le sauvegarder le réutiliser dans le dashboard)
       res.redirect("/dashboard");
@@ -267,7 +267,7 @@ customerRouter.get("/dashboard", async (req, res) => {
 
 //-----------------------------------Page agenda des clients-------------------------------------------------
 
-customerRouter.get("/customerAgenda" ,async (req, res) => {
+customerRouter.get("/customerAgenda", async (req, res) => {
   try {
     res.render("customerAgenda.twig");
   } catch (error) {
@@ -278,7 +278,7 @@ customerRouter.get("/customerAgenda" ,async (req, res) => {
 
 //-----------------------------------Page Modification profil-------------------------------------------------
 
-customerRouter.get("/modificationProfil/:id", authGuard,async (req, res) => {
+customerRouter.get("/modificationProfil/:id", authGuard, async (req, res) => {
   try {
     let customer = await customerModel.findOne({ _id: req.params.id }); // ici on a une requête mongoose qui va récupérer les données du client grâce à son id connecté afin qu'il puisse les modifier dans le form post
     res.render("modificationProfil.twig", {
@@ -290,7 +290,7 @@ customerRouter.get("/modificationProfil/:id", authGuard,async (req, res) => {
   }
 });
 
-customerRouter.post("/modificationProfil/:id", authGuard,async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
+customerRouter.post("/modificationProfil/:id", authGuard, async (req, res) => { // dans ce post on va modifier toutes les données grâce au post du form
   try {
     await customerModel.updateOne({ _id: req.params.id }, req.body); // on a deux argument : modifier l'id et envoyer un req.body parce qu'on envoi une nouvelle requête qui va modifier grâce au UpdateOne
     res.redirect("/dashboard"); // une fois que c'est fait, redirection sur dashboard.twig
@@ -302,7 +302,7 @@ customerRouter.post("/modificationProfil/:id", authGuard,async (req, res) => { /
 
 //-----------------------------------Page paiement des clients-------------------------------------------------
 
-customerRouter.get("/payment", authGuard,async (req, res) => {
+customerRouter.get("/payment", authGuard, async (req, res) => {
   try {
     res.render("Payment.twig");
   } catch (error) {
@@ -311,7 +311,7 @@ customerRouter.get("/payment", authGuard,async (req, res) => {
   }
 });
 
-customerRouter.get("/postPayment", authGuard,async (req, res) => {
+customerRouter.get("/postPayment", authGuard, async (req, res) => {
   try {
     res.render("postPayment.twig");
   } catch (error) {
@@ -322,7 +322,7 @@ customerRouter.get("/postPayment", authGuard,async (req, res) => {
 
 //-----------------------------------Page Clientview-------------------------------------------------
 
-customerRouter.get("/clientreview",authGuard, async (req, res) => {
+customerRouter.get("/clientreview", authGuard, async (req, res) => {
   // fonction qui servira à récupéré la page clientreview et récupéré les avis de clientreview
   try {
     let reviews = await reviewModel.find(); // récupéré les données du reviewModel postées du formulaire post clientreview
@@ -335,7 +335,7 @@ customerRouter.get("/clientreview",authGuard, async (req, res) => {
   }
 });
 
-customerRouter.post("/clientreview",authGuard, async (req, res) => {
+customerRouter.post("/clientreview", authGuard, async (req, res) => {
   try {
     let review = new reviewModel(req.body); //On prend en compte le reviewModel
     review.save(); // On l'ajoute
@@ -350,27 +350,27 @@ customerRouter.post("/clientreview",authGuard, async (req, res) => {
 
 //------------Route pour la création d'évenement---------------
 
-customerRouter.get("/custumerAgenda/:date/:price", authGuard,async (req, res) => {
+customerRouter.get("/custumerAgenda/:date/:price", authGuard, async (req, res) => {
   try {
     let date = new Date(req.params.date)
     let dateEnd = new Date(req.params.date)
-    dateEnd.setMinutes(date.getMinutes()+30),
+    dateEnd.setMinutes(date.getMinutes() + 30),
 
-    obj = {
-          title:req.session.customer.firstname,
-          start:req.params.date,
-          end: dateEnd.toISOString(),
-          dateString: date.toLocaleDateString('fr-fr', {
-            weekday: "long",
-            day: "numeric",
-            month: 'long',
-            year: 'numeric'
-            })+ ' '+date.toLocaleTimeString('fr-FR'),
-          allDay: 0,
-          userId: req.session.customer._id,
-        }
-        let event = new eventModel.eventModel(obj);
-        event.save()
+      obj = {
+        title: req.session.customer.firstname,
+        start: req.params.date,
+        end: dateEnd.toISOString(),
+        dateString: date.toLocaleDateString('fr-fr', {
+          weekday: "long",
+          day: "numeric",
+          month: 'long',
+          year: 'numeric'
+        }) + ' ' + date.toLocaleTimeString('fr-FR'),
+        allDay: 0,
+        userId: req.session.customer._id,
+      }
+    let event = new eventModel.eventModel(obj);
+    event.save()
     res.redirect("/dashboard"); //Il sera ensuite redirigé vers son dashboard
   } catch (error) {
     console.log(error);
