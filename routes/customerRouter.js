@@ -25,8 +25,8 @@ customerRouter.get('/sendMail', async (req, res) => { // repasser en POST lorsqu
     let info = await transporter.sendMail({
       from: process.env.USER_MAIL, // on va chercher mon mail dans le .env
       to: "boughanmieddy@outlook.fr",
-      subject: "test",
-      html: "test dddd",
+      subject: "Inscription validée",
+      html: "Bienvenue chez ODB !",
     })
     res.redirect('/login')
   } catch (err) {
@@ -55,12 +55,12 @@ customerRouter.get("/login", async (req, res) => {
   // le get permet de récupérer la page de login 
   try {
     let errorLogin = "";
-    if (req.session.errorLogin) {
-      errorLogin = req.session.errorLogin;
-      delete req.session.errorLogin;
+    if (req.session.errorLogin) { // Si la variable errorLogin est présente dans la session de l'utilisateur
+      errorLogin = req.session.errorLogin;// On assigne la valeur de la variable errorLogin de la session à la variable errorLogin locale
+      delete req.session.errorLogin;// On supprime la variable errorLogin de la session.
     }
     res.render("login.twig", {
-      errorLogin: errorLogin,
+      errorLogin: errorLogin,// On passe la valeur de la variable errorLogin à la vue pour l'afficher
     });
   } catch (error) {
     console.log(error);
@@ -72,7 +72,8 @@ customerRouter.post("/login", async (req, res) => {
   // le post va envoyer les données qu'on a entré dans le formulaire de connexion
 
   try {
-    let customer = await customerModel.findOne({ email: req.body.email }); // la méthode findOne va rechercher un email sur mongoDB qui correspond ou pas à l'email entré par l'utilisateur
+    let customer = await customerModel.findOne({ email: req.body.email }); // la méthode findOne va rechercher un email sur 
+    //mongoDB qui correspond ou pas à l'email entré par l'utilisateur
     if (
       customer &&
       (await crypto.comparePassword(req.body.password, customer.password))
@@ -87,11 +88,11 @@ customerRouter.post("/login", async (req, res) => {
         res.redirect("/dashboard"); // Il sera redirigé vers le dashboard
       }
     } else {
-      throw "mot de passe ou email invalide";
+      throw "mot de passe ou email invalide";// si les conditions échouent on affiche un message à l'utilisateur
     }
   } catch (error) {
     console.log(error);
-    req.session.errorLogin = error;
+    req.session.errorLogin = error; //Ensuite, ce message d'erreur est assigné à la variable req.session.errorLogin
     res.redirect("/login");
   }
 });
