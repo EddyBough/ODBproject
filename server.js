@@ -33,6 +33,8 @@ mongoose.connect(db)
     console.log(err);
   });
 
+  module.exports = app
+
 
 //*****************Algo pour créer les rendez-vous directement dans le serveur grace au modelEvent*************/
 
