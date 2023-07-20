@@ -54,11 +54,13 @@ customerRouter.get("/home", async (req, res) => {
 customerRouter.get("/login", async (req, res) => {
   // le get permet de récupérer la page de login 
   try {
+    
     let errorLogin = "";
     if (req.session.errorLogin) { // Si la variable errorLogin est présente dans la session de l'utilisateur
       errorLogin = req.session.errorLogin;// On assigne la valeur de la variable errorLogin de la session à la variable errorLogin locale
       delete req.session.errorLogin;// On supprime la variable errorLogin de la session.
     }
+    console.log(req.body);
     res.render("login.twig", {
       errorLogin: errorLogin,// On passe la valeur de la variable errorLogin à la vue pour l'afficher
     });
