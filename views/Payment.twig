@@ -8,16 +8,17 @@
     </head>
     <body>
         <header>
-            <img id="arrow" src="/img/fleche_gauche.png" width="33px" height="33px" alt="fleche">
+            <a href="/dashboard"><img id="arrow" src="/img/fleche_gauche.png" width="33px" height="33px" alt="fleche"></a>
             <img id="logo" src="/img/logo.png"  alt="logo">
         </header>
         <main>
         <div id="container">
             <div id="container-text">
+            {% for events in events %}
             <p>Ton tete a tete avec Oncle D</p>
             <p>sera le :</p>
-            <p id="date">Mardi 10 Mai a 18h30</p>
-            <p>Confirme si c’est ok pour toi</p>
+            <p id="date"><p>{{ events.dateString }} </p></p>
+                {% endfor %}
             </div>
             <div id="image">
             </div>
