@@ -1,15 +1,14 @@
-@media screen and (max-width:768px) {
-    @font-face {
-        font-family: Istok web;
-        src: url(../font/IstokWeb-Bold.ttf);
-        
-    }
+@font-face {
+    font-family: Istok web;
+    src: url(../font/IstokWeb-Bold.ttf);
+    
+}
 
 body{
-    font-family:Istok web;
-    margin: 0;
-    padding: 0;
-    background-color: #EDE1D1;
+font-family:Istok web;
+margin: 0;
+padding: 0;
+background-color: #EDE1D1;
 
 }
 
@@ -21,43 +20,46 @@ body{
 
 #pictureOne{
     position: absolute;
-    left: 22px;
-top: 75px;
+    left: 10%;
+top: 2%;
 width: 170px;
 height: 160px;
+z-index: 99;
 }
 
 #pictureTwo{
-    position: relative;
-    left: 276.68px;
-    top: 100px;
+    position: absolute;
+    right: 10%;
+    top: 5%;
     width: 102px;
     height: 102px;
+    z-index: 99;
+
 }
 
 main{
     display: flex;
-    margin: auto;
     justify-content: center;
-    margin-top: 3rem;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    height: 100dvh;
 }
 
 #connexion{
-    width: 338px;
-    height: 555px;
+    width: 80%;
+    height: 40rem;
     background: #B18D8B;
-    border-radius: 20px;
+    border-radius: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    margin: auto;
+    position: relative;
 }
 
-
-
 #email{
-    
-    margin-top: 6rem;
+    margin-top: 10%;
     background: #EDE1D1;
     border: 1px solid #523839;
     border-radius: 23px;
@@ -66,6 +68,14 @@ main{
     font-size: large;
     align-items: center;
     text-align: center;
+}
+
+#formulaire{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
 }
 
 #password{
@@ -99,20 +109,13 @@ input[type="password"]::placeholder {
 }
 
 
-
-
-a{
-    margin-top: 5rem;
-    margin-bottom: 4rem;
-}
-
 #connect{
     width: 170px;
     height: 44px;
     background: #EDE1D1;
     border: 1px solid #2B1615;
     border-radius: 26px;
-    margin-bottom: 4rem;
+    margin-top: 10%;
     font-family: Istok web;
 }
 
@@ -130,18 +133,62 @@ a{
 
 #comb{
     position: absolute;
-left: 3px;
-top: 670px;
-
+    left: 10%;
+    bottom: 15%;
+    width: 130px;
+    height: 130px;
+    z-index: 99;
 }
 
 #logo{
-    position: absolute;
-width: 150px;
-height: 150px;
-left: 222px;
-top: 728px;
+
+display: flex;
+justify-content: end;
+width:100%;
+margin-right: 5%;
+}
+
+
+@media screen and (max-width:768px) {
+
+#pictureOne{
+    width: 100px;
+    height: 90px;
 
 }
+
+#pictureTwo{
+    width: 100px;
+    height: 90px;
+    top: 1%;
+}
+
+
+#email{
+    margin-top: 15%;
+}
+
+
+a{
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    font-size: small;
+}
+
+#comb{
+    width: 100px;
+    height: 100px;
+    left: 10%;
+    bottom: 15%;
+}
+#formulaire{
+    margin: auto;
+}
+
+#logo img{
+    width: 80px;
+    height: 80px;
+}
+
 
 }

@@ -1,94 +1,343 @@
-@media screen and (max-width:768px){
-    @font-face {
-        font-family: Istok web;
-        src: url(../font/IstokWeb-Bold.ttf);
-    }
+@font-face {
+    font-family: Istok web;
+    src: url(../font/IstokWeb-Bold.ttf);
+}
+
+body{
+    background-color:#EDE1D1;
+    font-family:Istok web;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    padding: auto;
+    margin: 0 7%;
     
-    body{
-        background-color:#EDE1D1;
-        font-family:Istok web;
-        margin: 0;
-        padding: 0;
-    }
+}
+header img{
+    object-fit: contain;
+}
 
-    header{
-        display: flex;
-        justify-content: space-between;
-        padding: auto;
-        margin: 7%;
-        
-    }
-    header img{
-        object-fit: contain;
-    }
+#home{
+    margin-top: 100%;
+}
 
-    #home{
-        margin-top: 100%;
-    }
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/*************** Dashbord Part************/
+#name{
+    text-align: center;
+    padding:auto ;
+    font-size: x-large;
+    
+}
 
-    main{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    /*************** Dashbord Part************/
-    #name{
-        text-align: center;
-        padding:auto ;
-        font-size: x-large;
-        
-    }
+#appointment_card{
+    width: 100%;
+    display: flex;
+}
 
-    #appointment_card{
-        width: 100%;
-        display: flex;
-    }
+#dashboard{
+    margin: auto;
+    width: 290px;
+    height: 153px;
+    border-radius: 15px;
+    background-color: #B18D8B;
+    box-shadow: 0px 4px 6px rgba(43, 22, 21, 0.43);
+    text-align: center;
+    font-size: large;
+}
 
-    #dashboard{
-        margin: auto;
-        width: 290px;
-        height: 153px;
-        border-radius: 15px;
-        background-color: #B18D8B;
-        box-shadow: 0px 4px 6px rgba(43, 22, 21, 0.43);
-        text-align: center;
-        font-size: large;
-    }
+#dashboard button{
+    width: 100px;
+    height: 23px;
+    background: #EDE1D1;
+    border: 1px solid #000000;
+    border-radius: 14px;
+    font-family:Istok web;
+}
 
-    #dashboard button{
-        width: 100px;
-        height: 23px;
-        background: #EDE1D1;
-        border: 1px solid #000000;
-        border-radius: 14px;
-        font-family:Istok web;
-    }
+#dashboard button:hover{
+    background: #2B1615;
+    color: aliceblue;
+}
+/*************** Service Part************/
+#services{
+    background-color: #B18D8B;
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+#title{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    
+}
+#title div{
+    border: 1px solid #000000;
+    width: 213px;
+    margin-left: 78px;
+}
 
-    #dashboard button:hover{
-        background: #2B1615;
-        color: aliceblue;
-    }
-    /*************** Service Part************/
-    #services{
-        background-color: #B18D8B;
-        width: 100%;
-        margin-top: 3rem;
-        display: flex;
-        flex-direction: column;
-        padding-bottom: 2rem;
-    }
-    #title{
-        font-weight: bold;
-        font-size: 20px;
-        text-align: center;
-        
-    }
-    #title div{
-        border: 1px solid #000000;
-        width: 213px;
-        margin-left: 78px;
-    }
+#container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    max-width: 970px;
+    margin: auto;
+}
+
+.choice{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.checkbox-spin {
+display: none;
+}
+
+.checkbox-spin + label span {
+display: inline-block;
+width: 25px;
+height: 19px;
+margin: 0 5px -4px 0;
+/*layout relationship between check and label*/
+}
+
+.checkbox-spin + label span:before,
+.checkbox-spin + label span:after {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 1rem;
+    height: 1rem;
+    background: transparent;
+    border: 2px solid #2B1615;
+}
+
+.checkbox-spin + label span:after {
+
+    border: none;
+}
+
+.checkbox-spin:checked + label span:before {
+    -webkit-transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -ms-transform: rotateZ(180deg);
+    -o-transform: rotateZ(180deg);
+    transform: rotateZ(180deg);
+    background: #2B1615;
+}
+
+label{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 130px;
+    background-color: #2B1615;
+    border-radius: 100%;
+    margin: 10px;
+    margin-top: 2rem;
+}
+
+.circle:hover{
+    border: 6px solid #55AADB;
+}
+
+.titleCircle{
+    text-align: center;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 8px;
+}
+
+.price{
+    width: 150px;
+    height: 95px;
+    background: #EDE1D1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    
+}
+/*************** Opinion and fidelity ************/
+#OpinionFidelity{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#fidelityCard{
+    display: flex;
+    width: 297px;
+    height: 133px;
+    justify-content: center;
+    background: #B18D8B;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    margin: auto;
+}
+
+#fidelityPicture{
+    display: flex;
+    flex-wrap: wrap;
+    width: 250px;
+    
+}
+
+#fidelityCard img{
+    object-fit: contain;
+    padding: 5px;
+}
+
+#TitleFidelityCard{
+    display: flex;
+    justify-content: center;
+}
+
+#opinion{
+    display: flex;
+    justify-content: center;
+}
+
+#remove{
+    display: flex;
+    flex-direction: column;
+    padding:1rem;
+    align-items: center;
+}
+
+#disconnect{
+    width: 190px;
+    height: 44px;
+    background: #EDE1D1;
+    border: 1px solid #B18D8B;
+    border-radius: 26px;
+    font-size: large;
+    font-family: Istok web;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+#disconnect:hover{
+    background: #B18D8B;
+    color: #ffffff;
+}
+/*************** Modal ************/
+
+/**Bouton supprimer compte*****/
+.show-modal{  
+    width: 201px;
+    height: 47px;
+    background: #F53333;
+    border: 2px solid #641111;
+    border-radius: 26px;
+    font-size: large;
+    font-family: Istok web;
+}
+
+.show-modal:hover{
+    background: #641111;
+    border: 2px solid #F53333;
+    color: #ffffff;
+}
+/*****Croix pour annuler l'apparition du modal*****/
+.close-modal {
+    position: absolute;
+    top: 0.1rem;
+    right: 0.2rem;
+    font-size: 3rem;
+    color: #333;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.hidden {
+    display: none;
+}
+/*****Rectangle blanc du modal*****/
+.modal {
+    position: absolute;
+    top: 170%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+/*****Espace noir transparent*****/
+.overlay {
+    position: absolute;
+    top: 140%;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 5;
+}
+
+#text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 3px;
+    font-family: Istok web;
+}
+
+/*****Bouton*****/
+#text button{
+    width: 90px;
+    height: 25px;
+    margin: 8px;
+    border-radius: 20px;
+    border: 2px solid ;
+}
+
+#text button:hover{
+    background: #641111;
+    border: 2px solid #F53333;
+    color: #ffffff;
+}
+
+#btnNo:hover{
+    background: black;
+    border: 2px solid white;
+    color: #ffffff;
+}
+
+
+@media screen and (max-width:768px){
 
     #container{
         display: flex;
@@ -149,190 +398,7 @@
         flex-direction: row-reverse;
     }
 
-    .circle{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 130px;
-        height: 130px;
-        background-color: #2B1615;
-        border-radius: 100%;
-        margin: 10px;
-        margin-top: 2rem;
-    }
 
-    .circle:hover{
-        border: 6px solid #55AADB;
-    }
 
-    .titleCircle{
-        text-align: center;
-        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        padding: 8px;
-}
-
-    .price{
-        width: 150px;
-        height: 95px;
-        background: #EDE1D1;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 7px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        text-align: center;
-        
-    }
-/*************** Opinion and fidelity ************/
-    #OpinionFidelity{
-        padding: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    #fidelityCard{
-        display: flex;
-        width: 297px;
-        height: 133px;
-        justify-content: center;
-        background: #B18D8B;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 14px;
-        margin: auto;
-    }
-
-    #fidelityPicture{
-        display: flex;
-        flex-wrap: wrap;
-        width: 250px;
-        
-    }
-
-    #fidelityCard img{
-        object-fit: contain;
-        padding: 5px;
-    }
-
-    #TitleFidelityCard{
-        display: flex;
-        justify-content: center;
-    }
-
-    #opinion{
-        display: flex;
-        justify-content: center;
-    }
-    
-    #remove{
-        display: flex;
-        flex-direction: column;
-        padding:1rem;
-        align-items: center;
-    }
-
-    #disconnect{
-        width: 190px;
-        height: 44px;
-        background: #EDE1D1;
-        border: 1px solid #B18D8B;
-        border-radius: 26px;
-        font-size: large;
-        font-family: Istok web;
-        margin-bottom: 2rem;
-        margin-top: 2rem;
-    }
-
-    #disconnect:hover{
-        background: #B18D8B;
-        color: #ffffff;
-    }
- /*************** Modal ************/
-
- /**Bouton supprimer compte*****/
-    .show-modal{  
-        width: 201px;
-        height: 47px;
-        background: #F53333;
-        border: 2px solid #641111;
-        border-radius: 26px;
-        font-size: large;
-        font-family: Istok web;
-    }
-
-    .show-modal:hover{
-        background: #641111;
-        border: 2px solid #F53333;
-        color: #ffffff;
-    }
-/*****Croix pour annuler l'apparition du modal*****/
-    .close-modal {
-        position: absolute;
-        top: 0.1rem;
-        right: 0.2rem;
-        font-size: 3rem;
-        color: #333;
-        cursor: pointer;
-        border: none;
-        background: none;
-    }
-
-    .hidden {
-        display: none;
-    }
-/*****Rectangle blanc du modal*****/
-    .modal {
-        position: absolute;
-        top: 170%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 60%;
-        background-color: white;
-        padding: 3rem;
-        border-radius: 5px;
-        box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
-        z-index: 10;
-    }
-/*****Espace noir transparent*****/
-    .overlay {
-        position: absolute;
-        top: 140%;
-        left: 0;
-        width: 100%;
-        height: 70%;
-        background-color: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(3px);
-        z-index: 5;
-    }
-
-    #text{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin: 3px;
-        font-family: Istok web;
-    }
-    
-    /*****Bouton*****/
-    #text button{
-        width: 90px;
-        height: 25px;
-        margin: 8px;
-        border-radius: 20px;
-        border: 2px solid ;
-    }
-
-    #text button:hover{
-        background: #641111;
-        border: 2px solid #F53333;
-        color: #ffffff;
-    }
-
-    #btnNo:hover{
-        background: black;
-        border: 2px solid white;
-        color: #ffffff;
-    }
 
 }

@@ -23,15 +23,17 @@
 <form method="POST" action="/AddPrestation" enctype="multipart/form-data"> <!-- chemin qui correspond à la route dans adminRouter qui permettra d'ajouter en bdd et de les récupérer sur la page AddServices ensuite. -->
     <h1>Ajout</h1>
     <label>Titre : </label>
-    <input type="text" name="title"/>
+    <input class="input-case" type="text" name="title"/>
     <label>Catégorie : </label>
-    <input type="text" name="category"/>
+    <input class="input-case" type="text" name="category"/>
     <label>Prix : </label>
-    <input type="text" name="price"/>
+    <input class="input-case" type="text" name="price"/>
     <label>Type : </label>
-    <input type="text" name="type"/>
+    <input class="input-case" type="text" name="type"/>
     <label for="file">Sélectionnez une image :</label>
   <input type="file" id="image" name="photo">
+  <div id="ajout">
     <button type="submit">Ajouter</button>
+</div>
 </form>
 </div>

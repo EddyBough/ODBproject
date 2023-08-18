@@ -1,20 +1,137 @@
-@media screen and (max-width:768px) {
 
-    @font-face {
-        font-family: Istok web;
-        src: url(../font/IstokWeb-Bold.ttf);
-        
-    }
+@font-face {
+    font-family: Istok web;
+    src: url(../font/IstokWeb-Bold.ttf);
+    
+}
 
 
 body{
-    display: flex;
-    font-family:Istok web;
-    margin: 0;
-    padding: 0;
-    background-color: #EDE1D1;
-    flex-direction: column;
+display: flex;
+font-family:Istok web;
+margin: 0;
+padding: 0;
+background-color: #EDE1D1;
+flex-direction: column;
 }
+
+header{
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin: 0 20px;
+
+}
+
+#arrow{
+margin-right: 3rem;
+margin-left: 1rem;
+}
+
+#logo{
+margin: 0 2rem;
+}
+
+h2 {
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+main{
+background-color: #F3EBE0;
+}
+
+#calendar{
+margin: auto;
+width: 60%;
+height: 600px;
+background: #FFFFFF;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 20px;
+
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+display: flex;
+margin-top: 8px;
+justify-content: center;
+
+}
+
+
+
+#fc-dom-1{
+font-family: Istok web;
+font-size: 25px;
+margin-left: 25px;
+
+
+}
+.presentation tr:first-child{
+display: none;
+}
+
+.container-date{
+display: flex;
+justify-content: center;
+margin: 8px;
+}
+
+.fc-button {
+display: none;
+}
+
+.date{
+color: rgba(43, 22, 21, 0.59);
+margin: 25px;
+font-size: 17px;
+cursor: pointer;
+}
+/* Permet de changer la couleur de la date au clique */
+.date:hover{
+color: #4169E1;
+}
+
+.fc-daygrid-day-frame {
+display: none;
+}
+.fc-scrollgrid-sync-inner{
+display: none;
+}
+/* Permet de changer la couleur de la grille horaire */
+.fc-timegrid-slot{
+background-color: white;
+}
+
+
+/* Permet de changer la couleur du container evenemment */
+.fc-event-time{
+background-color: rgba(35, 120, 67, 0.61);;
+
+}
+
+
+.fc-event-title-container{
+background-color: rgba(35, 120, 67, 0.61);;
+
+}
+
+.fc-event{
+background-color: rgba(35, 120, 67, 0.61);;
+border-color: rgba(35, 120, 67, 0.61);;
+} 
+
+.fc .fc-timegrid-divider {
+    padding: 0;
+}
+
+
+
+
+
+@media screen and (max-width:768px) {
+
 
 header{
     display: flex;
@@ -29,10 +146,6 @@ header{
 
 #logo{
     margin: 0 2rem;
-}
-
-h2{
-    margin-left: 20px;
 }
 
 main{
@@ -80,39 +193,7 @@ border-radius: 20px;
     margin: 8px;
     font-size: 17px;
 }
-/* Permet de changer la couleur de la date au clique */
-.date:hover{
-    color: #4169E1;
-}
 
-.fc-daygrid-day-frame {
-    display: none;
-}
-.fc-scrollgrid-sync-inner{
-    display: none;
-}
-/* Permet de changer la couleur de la grille horaire */
-.fc-timegrid-slot{
-    background-color: white;
-}
-
-
-/* Permet de changer la couleur du container evenemment */
-.fc-event-time{
-    background-color: rgba(35, 120, 67, 0.61);;
-   
-}
-
-
-.fc-event-title-container{
-    background-color: rgba(35, 120, 67, 0.61);;
-    
-}
-
-.fc-event{
-    background-color: rgba(35, 120, 67, 0.61);;
-    border-color: rgba(35, 120, 67, 0.61);;
-} 
 
 
 

@@ -1,107 +1,176 @@
+@font-face {
+    font-family: Istok web;
+    src: url(../font/IstokWeb-Bold.ttf);
+}
+
+body{
+    background-color:#EDE1D1;
+    font-family:Istok web;
+    margin: 0;
+    padding: 0;
+}
+
+h1{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+h2{
+    text-align: center;
+    color: #2B1615;
+}
+
+#picture{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#mower{
+    position: absolute;
+    left: 10%;
+top: 8%;
+width: 170px;
+height: 160px;
+z-index: 99;
+}
+
+#blade{
+    position: absolute;
+    right: 10%;
+    top: 15%;
+    width: 102px;
+    height: 102px;
+    z-index: 99;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+
+#connexion{
+    width: 80%;
+    height: 40rem;
+    background: #B18D8B;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+}
+
+form div{
+    margin:auto;
+}
+
+label{
+    margin-left: 3%;
+    font-size: medium;
+}
+
+input{
+    width: 250px;
+    height: 30px;
+    background: #FFFFFF;
+    border: 3px solid #2B1615;
+    border-radius: 3px;
+    margin: 5%;
+}
+
+#button{
+    width: 170px;
+    height: 44px;
+    background: #FFFFFF;
+    border: 1px solid #2B1615;
+    border-radius: 26px;
+    font-family:Istok web;
+    margin-top: 10%;
+}
+
+#button:hover{
+    background: #2B1615;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+#comb{
+    position: absolute;
+    left: 2%;
+    top: 90%;
+    width: 130px;
+    height: 130px;
+    z-index: 99;
+}
+
+#pictureThree{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+#logo{
+    display: flex;
+    justify-content: end;
+    margin-right: 5%;
+    margin-top: 2%;
+
+}
+
 @media screen and (max-width:768px) {
-    @font-face {
-        font-family: Istok web;
-        src: url(../font/IstokWeb-Bold.ttf);
-    }
-
-    body{
-        background-color:#EDE1D1;
-        font-family:Istok web;
-        margin: 0;
-        padding: 0;
-    }
-
-    h1{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-
-
-    h2{
-        text-align: center;
-        color: #2B1615;
-    }
-
-
     #mower{
-        position: absolute;
-        top: 9%;
-        right: 70%;
-        z-index: 99;
+        width: 100px;
+        height: 90px;
+        top: 12%;
     }
 
     #blade{
-        position: absolute;
-        top: 10%;
-        right: 6%;
+        width: 100px;
+        height: 90px;
+        top: 13%;
     }
 
-    main{
-        display: flex;
-    }
 
     form{
-        z-index: 1;
-        margin: auto;
-        margin-top: 4%;
         width: 330px;
         height: 596px;
-        background: #B18D8B;
-        border-radius: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        
-        
     }
 
-    form div{
-        margin:auto;
-    }
-
-    label{
-        margin-left: 3%;
-        font-size: large;
-    }
-
-    input{
-        width: 250px;
-        height: 30px;
-        background: #FFFFFF;
-        border: 3px solid #2B1615;
-        border-radius: 3px;
-        margin-left: 3%;
-    }
-
-    #button{
-        width: 170px;
-        height: 44px;
-        background: #FFFFFF;
-        border: 1px solid #2B1615;
-        border-radius: 26px;
-        font-family:Istok web;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    #button:hover{
-        background: #2B1615;
-        border: 1px solid #FFFFFF;
-        color: #FFFFFF;
-    }
 
     #comb{
-        position: absolute;
-        top: 84%;
-        z-index: 99;
+        width: 100px;
+        height: 100px;
+        bottom: 15%;
     }
 
-    #logo{
-        position: absolute;
-        top: 88%;
-        right: 6%;
+
+    #logo img{
+        width: 80px;
+        height: 80px;
+    }
+
+    #logo img{
+        width: 80px;
+        height: 80px;
+    }
+    input{
+        margin:auto;
     }
 
 }

@@ -1,42 +1,104 @@
-@media screen and (max-width: 768px) {
-    *{
-      margin: 0;
-      padding: 0;
-  }
-        @font-face {
-          font-family: istokbold;
-          src: url(/font/IstokWeb-Bold.ttf);
-      }
-      @font-face {
-          font-family: istokregular;
-          src: url(/font/IstokWeb-Regular.ttf);
-      } 
-    body{
-      background-color: #F3EBE0;
+*{
+  margin: 0;
+  padding: 0;
+}
+    @font-face {
       font-family: istokbold;
-    }
-  /* ------------------ nav container ------------------------------- */
-    #navcontainer{
-    display: flex;
-    justify-content:space-between;
-    background-color: #EDE1D1;
-    margin: 0;
-    }
-      #arrowmenu{ /* ------ MENU-------- */
-      margin-top: 48px;
-      margin-left: 12px;
-      }
-      #ODBLogo{/* ------ LOGO ODB  ------ */
-      margin-right:137px ;
-      }
-      p{
-        margin: 7%;
-      }
-      /* ------ client list ------ */
+      src: url(/font/IstokWeb-Bold.ttf);
+  }
+  @font-face {
+      font-family: istokregular;
+      src: url(/font/IstokWeb-Regular.ttf);
+  } 
+body{
+  background-color: #F3EBE0;
+  font-family: istokbold;
+}
+/* ------------------ nav container ------------------------------- */
+#navcontainer{
+display: flex;
+justify-content:space-between;
+background-color: #EDE1D1;
+margin: 0;
+}
+  #arrowmenu{ /* ------ MENU-------- */
+  margin-top: 48px;
+  margin-left: 12px;
+  }
+  #ODBLogo{/* ------ LOGO ODB  ------ */
+  margin-right:137px ;
+  }
+  p{
+    margin: auto;
+  }
 
-      .cardclient{
-        margin: 6%;
-      }
+main{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+}
+
+  /* ------ client list ------ */
+
+  .cardclient{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+
+.cardclient p {
+  font-size: x-large;
+}
+
+
+  .clients { /* ------ list display management ------ */
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 8%;
+    max-width: 980px;
+  }
+  .clientcontainer{
+    box-sizing: border-box;
+    width: 280px;
+    height: 135px;
+    background: #FFFFFF;
+    border-radius: 8px;
+    color: black;
+    margin: 15px;
+    filter :drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    text-align: center;
+  }
+
+  .clientcontainer p{
+    margin: 15px;
+  }
+
+  .clientcontainer a{
+    text-decoration: none;
+    color:black ;
+  }
+
+  .clientcontainer:hover{
+    background-color: #B18D8B;
+    color: white;
+  }
+
+  .clientcontainer a:hover {
+    background-color: #B18D8B;
+    color: white;
+}
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+
       .clients { /* ------ list display management ------ */
         display: flex;
         flex-direction: column;

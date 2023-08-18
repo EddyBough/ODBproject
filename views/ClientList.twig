@@ -21,11 +21,13 @@
 <div class="clients">
     <div class="clientcontainer"><!-- Dans la boucle for on fera apparaître la liste des clients -->
     {% for customer in customers %}
+   
     <a href="/modificationCustomer/{{customer._id}}"><!-- En cliquant sur ce lien on arrive sur la page modificationCustomer.twig qui renverra sur le formulaire de modification, l'info du client selectionnée sur ClientList.twig grâce au champ du formulaire value sur modificationCustomer  -->
     <p>{{ customer.name }} {{ customer.firstname }}</p>
     <p>{{ customer.email }}</p>
     <p>{{ customer.phone }}</p>
     </a>
+    
     </div>
     <div class="clientcontainer">
     <p></p>

@@ -45,7 +45,7 @@ header{
 background-image: url(../img/container.svg);
 background-position: center;
 background-size: cover;
-width: 300px;
+width: 243px;
 height: 121px;
 margin-left: 10px;
 line-height: 0.4em;
@@ -57,19 +57,14 @@ margin: auto;
 #container-text{
     margin:auto;
     font-size: 14px;
-}
-
-#date{
-    font-size: 15px;
-}
-
-#container_low{
     display: flex;
-    justify-content: center;
     flex-direction: column;
-    margin-top: 6%;
-
 }
+
+#container-text p{
+    margin: 5px;
+}
+
 
 
 
@@ -85,53 +80,22 @@ flex-direction: column;
 align-items: center;
 }
 
-#container_white{
-width: 276px;
-height: 160px;
-background: #F5F5F5;
-border: 1px solid #000000;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 4px;
-margin: auto;
-display: flex;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-}
-
-.txt{
-    display: flex;
-    flex-direction: row-reverse;
-    margin: 5;
-}
 
 #image{
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
 }
 
 
-#submit{
-width: 100%;
-display: flex;
-justify-content: center;
-margin-top: 6%;
-}
+#thank{
+    border-radius: 4px;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    }
 
-#submit button{
-width: 276px;
-height: 53px;
-background: #B18D8B;
-border: 2px solid #EDE1D1;
-border-radius: 8px;
-font-family: Istok web;
-font-size: large;
-}
-
-#submit button:hover{
-background: #402D2C;
-color: white;
-}
 
 .point{
     width: 6px;
@@ -164,17 +128,18 @@ color: white;
     }
     
     #date{
-        font-size: 11px;
+        font-size: 20px;
     }
 
+
+    #thank{
+        margin-top: 15%;
+        }
+    
 #image{
     width: 135px;
     height: 135px;
 }
-
-    #container_white{
-    margin-top: 25%;
-    }
 
 
 }

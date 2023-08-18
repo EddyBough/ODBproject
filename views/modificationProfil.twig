@@ -15,15 +15,14 @@
         <img src="/img/home.png" alt="home">
     </h1>
     </a>
-    <header>
-        <img id="mower" src="/img/tondeuse_1.png" alt="tondeuse">
-        <h2>Modifier le profil</h2>
-        <img id="blade"src="/img/lame.png" alt="lame">
-    </header>
     <main>
-    
+        <h2>Modifier le profil</h2>
+        <div id="picture">
+        <img id="mower" src="/img/tondeuse_1.png" alt="tondeuse">
+        <img id="blade"src="/img/lame.png" alt="lame">
+        </div>
+        <div id="connexion">
         <form action="/modificationProfil/{{customer.id}}" method="post">
-        
             <div>
                 <label for="name">Nom</label><br>
                 <input type="text" id="name" name="name" value="{{customer.name}}">
@@ -49,12 +48,15 @@
             </div>
             
         </form>
-
+        <div id="#pictureThree">
+			<img id="comb" src="/img/peigne.png" alt="peigne">
+		</div>
+    </div>
     </main>
-    <footer>
-        <img id="comb" src="/img/peigne.png" alt="peigne">
-        <img id="logo" src="/img/logo.png" alt="logo">
-    </footer>
+        <div id="logo">
+			<img  src="/img/logo.png" alt="logo">
+		</div>
+
 </body>
 
 </html>

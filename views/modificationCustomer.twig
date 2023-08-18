@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/register.css">
+    <link rel="stylesheet" href="/css/modificationCustomer.css">
     <title>Modifier son client</title>
 </head>
 
 <body>
     <header>
-        <img id="mower" src="/img/tondeuse_1.png" alt="tondeuse">
         <h2>Modification</h2>
-        <img id="blade"src="/img/lame.png" alt="lame">
     </header>
     <main>
+    <div id="connexion">
         <form action="/modificationCustomer/{{customer._id}}" method="post"> <!-- Dans ce form grâce au value= on récupère les données des clients séléctionné sur la page ClientList et grâce à la route dans adminRouter on va modifier les champs qu'on veut et les modif' seront effectuées sur mongoDB -->
             <div>
                 <label for="name">Nom</label><br>
@@ -46,11 +45,11 @@
                 <button id="button" type="submit" value="Valider">VALIDER</button>
             </div>
         </form>
+    </div>
     </main>
-    <footer>
-        <img id="comb" src="/img/peigne.png" alt="peigne">
-        <img id="logo" src="/img/logo.png" alt="logo">
-    </footer>
+        <div id="logo">
+			<img  src="/img/logo.png" alt="logo">
+		</div>
 </body>
 
 </html>

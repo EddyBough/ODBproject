@@ -16,30 +16,7 @@ h2{
     color: #2B1615;
 }
 
-#picture{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
 
-
-#mower{
-    position: absolute;
-    left: 10%;
-top: 15%;
-width: 170px;
-height: 160px;
-z-index: 99;
-}
-
-#blade{
-    position: absolute;
-    right: 10%;
-    top: 15%;
-    width: 102px;
-    height: 102px;
-    z-index: 99;
-}
 
 main{
     display: flex;
@@ -47,18 +24,17 @@ main{
     flex-direction: column;
     align-items: center;
     margin: auto;
-    height: 100dvh;
 }
 
 #connexion{
-    width: 80%;
+    width: 60%;
     height: 40rem;
     background: #B18D8B;
     border-radius: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
+    margin: auto;
 }
 
 form{
@@ -66,7 +42,7 @@ form{
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin: 5%;
+    margin: auto;
 }
 
 form div{
@@ -103,51 +79,23 @@ input{
     color: #FFFFFF;
 }
 
-#comb{
-    position: absolute;
-    left: 2%;
-    top: 90%;
-    width: 130px;
-    height: 130px;
-    z-index: 99;
-}
 
-#pictureThree{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
 
 #logo{
     display: flex;
     justify-content: end;
-    width:100%;
-    margin-right: 5%;
-    margin-top: 2%;
+    margin-right: 7%;
+
 }
 
-.error{
-    font-size: small;
-    color: rgb(157, 30, 30);
-}
 
 
 
 
 @media screen and (max-width:768px) {
 
-
-
-    #mower{
-        width: 100px;
-        height: 90px;
-        top: 8%;
-    }
-
-    #blade{
-        width: 100px;
-        height: 90px;
-        top: 10%;
+    #connexion{
+        width: 80%;
     }
 
 
@@ -155,27 +103,5 @@ input{
         width: 330px;
         height: 596px;
     }
-
-
-    #comb{
-        width: 100px;
-        height: 100px;
-        bottom: 15%;
-    }
-
-    #logo img{
-        width: 80px;
-        height: 80px;
-    }
-
-    #logo{
-        margin-top: 55%;
-    }
-
-    .error{
-        font-size: small;
-        color: rgb(157, 30, 30);
-    }
-
 
 }
