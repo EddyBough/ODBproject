@@ -307,11 +307,13 @@ customerRouter.post("/modificationProfil/:id", authGuard, async (req, res) => { 
 
 customerRouter.get("/payment", authGuard, async (req, res) => {
   try {
+    const price = req.session.price
+    req.session.price = null
     // Récupérer les événements du client connecté depuis la base de données
     const events = await eventModel.eventModel.find({ userId: req.session.customer._id });
 
     // Passer les événements à la vue "Payment.twig"
-    res.render("Payment.twig", { events });
+    res.render("Payment.twig", { events, price:price });
   } catch (error) {
     console.log(error);
     res.send(error);
@@ -379,6 +381,7 @@ customerRouter.get("/custumerAgenda/:date/:price", authGuard, async (req, res) =
       }
     let event = new eventModel.eventModel(obj);
     event.save()
+    req.session.price = req.params.price 
     res.redirect("/payment"); //Il sera ensuite redirigé vers son dashboard
   } catch (error) {
     console.log(error);
