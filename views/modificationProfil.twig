@@ -40,7 +40,7 @@
 
             <div>
                 <label for="phone">Téléphone</label><br>
-                <input type="tel" id="phone" name="phone" value="{{customer.phone}}">
+                <input type="tel" id="phone" name="phone" value="{{customer.phone}}" pattern="^(\+33|0)[1-9][0-9]{8}$" required>
             </div>
 
             <div>

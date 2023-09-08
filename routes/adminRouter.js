@@ -182,18 +182,48 @@ adminRouter.get('/modificationCustomer/:id', adminGuard, async (req, res) => {
 
 adminRouter.post("/modificationCustomer/:id", adminGuard, async (req, res) => {
     try {
+        const customerId = req.params.id;
+        const updates = req.body;
 
-        let fidelity = parseInt(req.body.fidelityPoint)
-        if (fidelity > 10) {
-            req.body.fidelityPoint = 10
+        // Définit des regex pour valider le format
+        const nameRegex = /^[a-zA-Z0-9àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+        const phoneRegex = /^(\+33|0)[0-9]{9}$/;
+
+        // Valide le format du nom
+        if (!nameRegex.test(updates.name)) {
+            return res.status(400).send("Le format du nom est incorrect");
         }
-        await customerModel.updateOne(({ _id: req.params.id }), req.body)
+
+        // Valide le format du prénom
+        if (!nameRegex.test(updates.firstname)) {
+            return res.status(400).send("Le format du prénom est incorrect");
+        }
+
+        // Valide le format de l'email
+        if (!emailRegex.test(updates.email)) {
+            return res.status(400).send("Le format de l'email est incorrect");
+        }
+
+        // Valide le format du téléphone
+        if (!phoneRegex.test(updates.phone)) {
+            return res.status(400).send("Le format du numéro de téléphone est incorrect");
+        }
+
+        // Si toutes les validations sont réussies, mettre à jour le client
+        let fidelity = parseInt(updates.fidelityPoint);
+        if (fidelity > 10) {
+            updates.fidelityPoint = 10;
+        }
+
+        await customerModel.updateOne({ _id: customerId }, updates);
         res.redirect("/ClientList");
     } catch (error) {
         console.log(error);
         res.send(error);
     }
 });
+
 
 
 //-----------------------------------Page AdminAgenda------------------------------------------------------------------

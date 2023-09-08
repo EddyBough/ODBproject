@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/ClientListstyle.css">
-    <title>Client List</title>
-</head>
-<body>
-    <header>
-        <nav>  <!-- NAVIGATION MENU -->
-<a href="/adminhome"><div id="navcontainer"><img src="/img/arrowmenu.png"  id="arrowmenu" alt="arrowmenu" width="26px" height="24px"></a>
-                <img src="/img/ODBlogo.png" id="ODBLogo" alt="ODBLogo"></div><br>
-        </nav>
-    </header>
-    
-    <main>
-            <!-- CLIENT LIST PART -->
-<div class="cardclient"><p>Mes clients</p></div>
-<div class="clients">
-    <div class="clientcontainer"><!-- Dans la boucle for on fera apparaître la liste des clients -->
-    {% for customer in customers %}
-   
-    <a href="/modificationCustomer/{{customer._id}}"><!-- En cliquant sur ce lien on arrive sur la page modificationCustomer.twig qui renverra sur le formulaire de modification, l'info du client selectionnée sur ClientList.twig grâce au champ du formulaire value sur modificationCustomer  -->
-    <p>{{ customer.name }} {{ customer.firstname }}</p>
-    <p>{{ customer.email }}</p>
-    <p>{{ customer.phone }}</p>
-    </a>
-    
-    </div>
-    <div class="clientcontainer">
-    <p></p>
-    <p></p>{% endfor %}
-    <p></p>
-    </div>
-    <div class="clientcontainer">
-    <p></p>
-    <p></p>
-    <p></p>
-    </div>
-  </div>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/css/ClientListstyle.css">
+		<title>Client List</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<!-- NAVIGATION MENU -->
+				<a href="/adminhome">
+					<div id="navcontainer"><img src="/img/arrowmenu.png" id="arrowmenu" alt="arrowmenu" width="26px" height="24px"></a>
+					<img src="/img/ODBlogo.png" id="ODBLogo" alt="ODBLogo"></div><br>
+			</nav>
+		</header>
 
+		<main>
+			<!-- CLIENT LIST PART -->
+			<div class="cardclient">
+				<p>Mes clients</p>
+			</div>
+			<div class="clients">
+				<div
+					class="clientcontainer">
+					<!-- Dans la boucle for on fera apparaître la liste des clients -->
+					{% for customer in customers %}
 
-    </main>
-    
-    
-</body>
-</html>
+						<a
+							href="/modificationCustomer/{{customer._id}}">
+							<!-- En cliquant sur ce lien on arrive sur la page modificationCustomer.twig qui renverra sur le formulaire de modification, l'info du client selectionnée sur ClientList.twig grâce au champ du formulaire value sur modificationCustomer  -->
+							<p>{{ customer.name }}
+								{{ customer.firstname }}</p>
+							<p>{{ customer.email }}</p>
+							<p>{{ customer.phone }}</p>
+						</a>
+
+					</div>
+					<div class="clientcontainer">
+						<p></p>
+						<p></p>
+					{% endfor %}
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html></main></body></html>
