@@ -10,6 +10,11 @@ body{
     padding: 0;
 }
 
+a{
+    text-decoration: none;
+    color: #2B1615
+}
+
 header{
     display: flex;
     justify-content: space-between;

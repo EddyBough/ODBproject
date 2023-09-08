@@ -12,6 +12,11 @@ background-color: #EDE1D1;
 
 }
 
+a{
+    text-decoration: none;
+    color: #2B1615
+}
+
 #picture{
     display: flex;
     justify-content: space-between;
