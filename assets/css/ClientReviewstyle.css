@@ -31,8 +31,7 @@ background-color: #EDE1D1;
   }
 
   #ODBLogo{/* ------ LOGO ODB  ------ */
-  margin-right:150px;
-  margin-top: 36px;
+  margin-right:83px;
   width: 11rem;
   height: 11rem;
   }
@@ -118,7 +117,7 @@ button{
 
       #ODBLogo{/* ------ LOGO ODB  ------ */
         width: 7rem;
-        height: 7rem;
+        height: 10rem;
         }
       /* ------------------ CORPS DU CONTAINER ------------------------------- */
       #container{

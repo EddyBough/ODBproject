@@ -16,11 +16,10 @@ flex-direction: column;
 }
 
 header{
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-width: 100%;
-
+    display: flex;
+    justify-content: space-between;
+    margin: 0 7%;
+    
 }
 
 #arrow{
@@ -122,12 +121,13 @@ transform: rotate(-135deg);
 
 header{
     display: flex;
-    align-items: center;
-    width: 240px;
+    justify-content: space-between;
+    margin: 0 7%;
+    
 }
 
 #arrow{
-    margin: 0 0 0 3rem;
+margin: 3rem 0 0 3rem;
 }
 
 #logo{
